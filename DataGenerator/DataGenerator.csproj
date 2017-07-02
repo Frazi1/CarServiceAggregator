@@ -49,7 +49,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataController\DataAccess.csproj">
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{9F889037-E826-419E-92DF-4845AFB1A9D9}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>

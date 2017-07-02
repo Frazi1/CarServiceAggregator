@@ -65,7 +65,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataController\DataAccess.csproj">
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{9f889037-e826-419e-92df-4845afb1a9d9}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
