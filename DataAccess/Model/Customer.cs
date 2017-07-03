@@ -10,6 +10,6 @@ namespace DataAccess.Model
         public string FirstName { get; set; }
         public string Patronymic { get; set; }
         public int BirthYear{ get; set; }
-        public string PhoneNumber { get; set; } // Придумать структуру для номера телефона
+        public string PhoneNumber { get; set; }
     }
 }

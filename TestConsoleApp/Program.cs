@@ -27,7 +27,7 @@ namespace TestConsoleApp
                 Surname = "Petrov"
             };
             IRepository repo;
-            const string connectionString = "server=localhost;port=3306;uid=root;password=Ghuvml134; initial catalog=autoservicedb;";
+            const string connectionString = "server=localhost;port=3306;uid=testuser;password=testpassword; initial catalog=autoservicedb;";
             //const string connectionString = "server=localhost;port=3306;database=auto_service_db;uid=root;password=Ghuvml134";
             //AutoServiceDb db = new AutoServiceDb(connectionString);
             //db.Customers.Add(customer1);
@@ -38,7 +38,7 @@ namespace TestConsoleApp
             //repo.AddCustomer(customer2);
             //repo.SaveChanges();
 
-            repo = new XMLRepository(new FileRepositorySettings("AutoService.xml", System.IO.FileMode.CreateNew));
+            repo = new XMLRepository(new XMLRepositorySettings("AutoService.xml", System.IO.FileMode.CreateNew));
             repo.AddCustomer(customer1);
             repo.AddCustomer(customer2);
             repo.SaveChanges();

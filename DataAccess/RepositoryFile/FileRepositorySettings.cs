@@ -10,7 +10,7 @@ namespace DataAccess.RepositoryFile
         public FileRepositorySettings(string filePath, FileMode fileMode)
         {
             FilePath = filePath;
-            FileMode = FileMode;
+            FileMode = fileMode;
         }
     }
 }

@@ -4,10 +4,10 @@ using System.IO;
 
 namespace DataAccess.RepositoryFile.RepositoryBinary
 {
-    public class BinaryRepository : FileRepository
+    public sealed class BinaryRepository : FileRepository
     {
 
-        public BinaryRepository(FileRepositorySettings settings)
+        public BinaryRepository(BinaryRepositorySettings settings)
             : base(settings)
         {
             if (settings.FileMode == FileMode.Open)

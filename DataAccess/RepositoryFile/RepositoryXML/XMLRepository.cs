@@ -5,9 +5,9 @@ using System.IO;
 
 namespace DataAccess.RepositoryFile.RepositoryXML
 {
-    public class XMLRepository : FileRepository
+    public sealed class XMLRepository : FileRepository
     {
-        public XMLRepository(FileRepositorySettings settings)
+        public XMLRepository(XMLRepositorySettings settings)
             : base(settings)
         {
             if (settings.FileMode == FileMode.Open)
