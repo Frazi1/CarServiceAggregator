@@ -41,6 +41,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRepositorySettingCreator.cs" />
     <Compile Include="Model\CustomersOrdersObject.cs" />
     <Compile Include="RepositoryFile\FileRepository.cs" />
     <Compile Include="RepositoryFile\FileRepositorySettings.cs" />

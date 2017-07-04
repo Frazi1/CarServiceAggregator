@@ -58,7 +58,7 @@ namespace DataGenerator
                 Orders.Add(order);
             }
 
-            const string connectionString = "server=localhost;port=3306;uid=root;password=Ghuvml134; initial catalog=autoservicedb;";
+            const string connectionString = "server=localhost;port=3306;uid=testuser;password=testpassword; initial catalog=autoservicedb;";
             IRepository repo;
             //repo = new XMLRepository(new DataAccess.RepositoryFile.FileRepositorySettings("AutoService.xml", FileMode.Create));
             //repo = new BinaryRepository(new DataAccess.RepositoryFile.FileRepositorySettings("AutoService.dat", FileMode.Create));

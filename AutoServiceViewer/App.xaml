@@ -2,8 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:AutoServiceViewer"
+             xmlns:viewmodels="clr-namespace:AutoServiceViewer.ViewModel"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-         
+        <viewmodels:ViewModelLocator x:Key="ViewModelLocator"/>
     </Application.Resources>
 </Application>

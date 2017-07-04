@@ -14,7 +14,7 @@ namespace DataAccess.Model
         public int EnginePower { get; set; }
         public string TaskName { get; set; }
         public DateTime TaskStarted { get; set; }
-        public DateTime TaskFinished { get; set; }
+        public DateTime? TaskFinished { get; set; }
         public double Price { get; set; }
     }
 }

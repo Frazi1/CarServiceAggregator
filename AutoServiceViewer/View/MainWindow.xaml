@@ -1,18 +1,44 @@
-﻿<Window x:Class="AutoServiceViewer.View.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoServiceViewer"
         xmlns:viewmodels="clr-namespace:AutoServiceViewer.ViewModel"
+        xmlns:SettingsCreator="clr-namespace:AutoServiceViewer.View.SettingsCreator" xmlns:local1="clr-namespace:AutoServiceViewer.View" x:Class="AutoServiceViewer.View.MainWindow"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance viewmodels:MainViewModel }"
-        Title="MainWindow" Height="350" Width="525">
+        d:DataContext="{d:DesignInstance {x:Type viewmodels:MainViewModel}}"
+        Title="MainWindow" Height="443.432" Width="829.767" DataContext="{Binding MainViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}">
     <Grid>
-        <DockPanel>
-            <Button Command="{Binding GetDataCommand}">LoadData</Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="44*"/>
+            <RowDefinition Height="59*"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel VerticalAlignment="Top" Height="20">
+            <Button Width="55" HorizontalAlignment="Left" Command="{Binding GetDataCommand}" Content="LoadData"/>
         </DockPanel>
-        <DataGrid Height="250" VerticalAlignment="Bottom" ItemsSource="{Binding Orders}"/>
+        <DockPanel HorizontalAlignment="Right" Width="84">
+            <StackPanel >
+                <TextBlock FontWeight="Bold" Text="Фамилия"/>
+                <TextBlock Text="{Binding SelectedCustomer.Surname}"/>
+                <TextBlock FontWeight="Bold" Text="Имя"/>
+                <TextBlock Text="{Binding SelectedCustomer.FirstName}"/>
+                <TextBlock FontWeight="Bold" Text="Отчество"/>
+                <TextBlock Text="{Binding SelectedCustomer.Patronymic}"/>
+                <TextBlock FontWeight="Bold" Text="Год рождения"/>
+                <TextBlock Text="{Binding SelectedCustomer.BirthYear}"/>
+                <TextBlock FontWeight="Bold" Text="Телефон"/>
+                <TextBlock Text="{Binding SelectedCustomer.PhoneNumber}"/>
+            </StackPanel>
+        </DockPanel>
+        <DockPanel Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" >
+            <DataGrid x:Name="Grid_Orders" Height="Auto" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" IsReadOnly="True" />
+        </DockPanel>
+
+
+        <SettingsCreator:XMLSettingsCreator x:Name="Settings" 
+            HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="78,0,0,0"/>
 
 
     </Grid>

@@ -25,25 +25,23 @@ namespace AutoServiceViewer
         {
             base.OnStartup(e);
 
-            const string connectionString = "server=localhost;port=3306;uid=testuser;password=testpassword; initial catalog=autoservicedb;";
-            var xmlSettings = new XMLRepositorySettings("AutoService.xml", System.IO.FileMode.Open);
-            var binarySettings = new BinaryRepositorySettings("AutoService.dat", System.IO.FileMode.Open);
-            var databaseSettings = new DatabaseRepositorySettings(connectionString);
+            //IocApp.Initialize();
+            IocApp.Initialize();
 
-            UnityContainer c = new UnityContainer();
-            c.RegisterType<IRepository, XMLRepository>();
-            c.RegisterType<IRepository, BinaryRepository>();
-            c.RegisterType<IRepository, DatabaseRepository>();
-            c.RegisterInstance(xmlSettings);
-            c.RegisterInstance(binarySettings);
-            c.RegisterInstance(databaseSettings);
-            c.RegisterType<MainViewModel>();
+            //const string connectionString = "server=localhost;port=3306;uid=testuser;password=testpassword; initial catalog=autoservicedb;";
+            //var xmlSettings = new XMLRepositorySettings("AutoService.xml", System.IO.FileMode.Open);
+            //var binarySettings = new BinaryRepositorySettings("AutoService.dat", System.IO.FileMode.Open);
+            //var databaseSettings = new DatabaseRepositorySettings(connectionString);
+            //IocApp.Container.RegisterInstance(xmlSettings);
+            //IocApp.Container.RegisterInstance(binarySettings);
+            //IocApp.Container.RegisterInstance(databaseSettings);
 
-            var window = new MainWindow
-            {
-                DataContext = c.Resolve<MainViewModel>("DatabaseRepository")
-            };
-            window.ShowDialog();
+            //IocApp.Container.RegisterType<IRepository, XMLRepository>();
+            //IocApp.Container.RegisterType<IRepository, BinaryRepository>();
+            //IocApp.Container.RegisterType<IRepository, DatabaseRepository>();
+
+            //var test = IocApp.Container.Resolve<IRepository>();
+           
         }
     }
 }

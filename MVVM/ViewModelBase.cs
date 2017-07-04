@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace MVVM
 {
@@ -7,7 +8,7 @@ namespace MVVM
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void NotifyPropertyChanged([CallerMemberName] string properyName = "")
+        protected virtual void NotifyPropertyChanged([CallerMemberName] string properyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(properyName));
         }

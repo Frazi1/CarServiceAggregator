@@ -7,19 +7,42 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using Microsoft.Practices.Unity;
+using System.Runtime.CompilerServices;
 
 namespace AutoServiceViewer.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private readonly IRepository _repository;
+        private IRepository _repository;
         private ObservableCollection<Customer> _customers;
         private ObservableCollection<Order> _orders;
+        private Customer _selectedCustomer;
+        private Order _selectedOrder;
 
+        public MainViewModel()
+        {
+            Customers = new ObservableCollection<Customer>();
+            Orders = new ObservableCollection<Order>();
+        }
 
-        public Customer SelectedCustomer { get; set; }
-        public Order SelectedOrder { get; set; }
+        public Customer SelectedCustomer {
+            get { return _selectedCustomer; }
+            set {
+                _selectedCustomer = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public Order SelectedOrder {
+            get { return _selectedOrder; }
+            set {
+                _selectedOrder = value;
+                NotifyPropertyChanged();
+                SetSelectedCustomer();
+            }
+        }
 
         public ObservableCollection<Customer> Customers {
             get { return _customers; }
@@ -28,7 +51,6 @@ namespace AutoServiceViewer.ViewModel
                 NotifyPropertyChanged();
             }
         }
-
         public ObservableCollection<Order> Orders {
             get { return _orders; }
             set {
@@ -37,19 +59,19 @@ namespace AutoServiceViewer.ViewModel
             }
         }
 
-        public MainViewModel(IRepository repository)
-        {
-            Customers = new ObservableCollection<Customer>();
-            Orders = new ObservableCollection<Order>();
-            _repository = repository;
-        }
-
         public ICommand GetDataCommand => new RelayCommand(o => GetData());
 
         private void GetData()
         {
+            //_repository = IocApp.Container.Resolve<IRepository>();
+            _repository = IocApp.XMLContainer.Resolve<IRepository>();
             Orders = new ObservableCollection<Order>(_repository.Orders);
             Customers = new ObservableCollection<Customer>(_repository.Customers);
+        }
+
+        private void SetSelectedCustomer()
+        {
+            SelectedCustomer = Customers.FirstOrDefault(c => c.ID == SelectedOrder?.CustomerID);
         }
 
     }
