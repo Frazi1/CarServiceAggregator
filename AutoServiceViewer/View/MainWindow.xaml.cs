@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoServiceViewer.ViewModel;
+using Microsoft.Practices.ServiceLocation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,12 @@ namespace AutoServiceViewer.View
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show(ServiceLocator.Current.GetInstance<DatabaseSettingsViewModel>().ToString());
+            MessageBox.Show(DatabaseSettings.DataContext.ToString());
         }
     }
 }

@@ -2,15 +2,11 @@
 using DataAccess.Model;
 using MVVM;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using Microsoft.Practices.Unity;
-using System.Runtime.CompilerServices;
+using System.Diagnostics;
 
 namespace AutoServiceViewer.ViewModel
 {
@@ -26,6 +22,12 @@ namespace AutoServiceViewer.ViewModel
         {
             Customers = new ObservableCollection<Customer>();
             Orders = new ObservableCollection<Order>();
+            GetDataCommand.CanExecuteChanged += Test;
+        }
+
+        private void Test(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Execute Changed Invoked");
         }
 
         public Customer SelectedCustomer {
@@ -59,12 +61,16 @@ namespace AutoServiceViewer.ViewModel
             }
         }
 
-        public ICommand GetDataCommand => new RelayCommand(o => GetData());
+        public ICommand GetDataCommand => new RelayCommand(o => GetData(), o => IocApp.Container.IsRegistered<IRepository>());
+
+
 
         private void GetData()
         {
             //_repository = IocApp.Container.Resolve<IRepository>();
-            _repository = IocApp.XMLContainer.Resolve<IRepository>();
+            //_repository = IocApp.XMLContainer.Resolve<IRepository>();
+            //_repository = IocApp.Container.ResolveAll<IRepository>().FirstOrDefault(s => s != null);
+            _repository = IocApp.Container.Resolve<IRepository>();
             Orders = new ObservableCollection<Order>(_repository.Orders);
             Customers = new ObservableCollection<Customer>(_repository.Customers);
         }
@@ -74,5 +80,6 @@ namespace AutoServiceViewer.ViewModel
             SelectedCustomer = Customers.FirstOrDefault(c => c.ID == SelectedOrder?.CustomerID);
         }
 
+        
     }
 }

@@ -9,15 +9,21 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance {x:Type viewmodels:MainViewModel}}"
         Title="MainWindow" Height="443.432" Width="829.767" DataContext="{Binding MainViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="44*"/>
             <RowDefinition Height="59*"/>
         </Grid.RowDefinitions>
 
-        <DockPanel VerticalAlignment="Top" Height="20">
-            <Button Width="55" HorizontalAlignment="Left" Command="{Binding GetDataCommand}" Content="LoadData"/>
+        <DockPanel Height="20">
+            <Button Width="111" HorizontalAlignment="Left" Command="{Binding GetDataCommand}" Content="Загрузить данные"/>
         </DockPanel>
+        <Button Width="50" Height="20" Margin="0,50,0,0" Click="Button_Click"></Button>
+
+        <!--Владелец автомобиля-->
         <DockPanel HorizontalAlignment="Right" Width="84">
             <StackPanel >
                 <TextBlock FontWeight="Bold" Text="Фамилия"/>
@@ -32,14 +38,37 @@
                 <TextBlock Text="{Binding SelectedCustomer.PhoneNumber}"/>
             </StackPanel>
         </DockPanel>
+        <!--/Владелец автомобиля-->
+
+        <!--Таблица-->
         <DockPanel Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" >
             <DataGrid x:Name="Grid_Orders" Height="Auto" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" IsReadOnly="True" />
         </DockPanel>
+        <!--/Таблица-->
 
-
-        <SettingsCreator:XMLSettingsCreator x:Name="Settings" 
-            HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="78,0,0,0"/>
-
+        <!--Переключалка-->
+        <DockPanel>
+            <StackPanel VerticalAlignment="Top">
+                <RadioButton x:Name="RB_XML" IsChecked="False">XML</RadioButton>
+                <RadioButton x:Name="RB_Binary">Бинарный</RadioButton>
+                <RadioButton x:Name="RB_MySql" IsChecked="True">MySql</RadioButton>
+            </StackPanel>
+            <StackPanel Width="150" Height="150">
+                <SettingsCreator:XMLSettingsCreator x:Name="XMLSettings" 
+                                DataContext="{Binding XMLSettingsViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                                HorizontalAlignment="Left" VerticalAlignment="Top"
+                                Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=RB_XML}" />
+                <SettingsCreator:BinarySettingsCreator x:Name="BinarySettings" 
+                                DataContext="{Binding BinarySettingsViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                                HorizontalAlignment="Left" VerticalAlignment="Top"
+                                Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=RB_Binary}" />
+                <SettingsCreator:DatabaseSettingsCreator x:Name="DatabaseSettings" 
+                                DataContext="{Binding DatabaseSettingsViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                                HorizontalAlignment="Left" VerticalAlignment="Top" 
+                                Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=RB_MySql}" />
+            </StackPanel>
+        </DockPanel>
+        <!--/Переключалка-->
 
     </Grid>
 </Window>

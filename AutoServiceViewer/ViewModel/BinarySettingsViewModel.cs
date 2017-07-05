@@ -1,5 +1,5 @@
 ﻿using DataAccess;
-using DataAccess.RepositoryFile.RepositoryXML;
+using DataAccess.RepositoryFile.RepositoryBinary;
 using Microsoft.Practices.Unity;
 using Microsoft.Win32;
 using MVVM;
@@ -8,23 +8,23 @@ using System.Windows.Input;
 
 namespace AutoServiceViewer.ViewModel
 {
-    public class XMLSettingsViewModel : ViewModelBase, IRepositorySettingCreator<XMLRepositorySettings>
+    public class BinarySettingsViewModel : ViewModelBase, IRepositorySettingCreator<BinaryRepositorySettings>
     {
         public string FileName { get; set; }
         public FileMode FileMode { get; set; }
 
         public ICommand OpenFileCommand => new RelayCommand(o => OpenFile());
 
-        public XMLRepositorySettings Create()
+        public BinaryRepositorySettings Create()
         {
-            return new XMLRepositorySettings(FileName, FileMode);
+            return new BinaryRepositorySettings(FileName, FileMode);
         }
 
         private void OpenFile()
         {
             var ofd = new OpenFileDialog
             {
-                Filter = "xml | *.xml"
+                Filter = "dat | *.dat"
             };
             if (ofd.ShowDialog() == true)
             {
@@ -33,11 +33,10 @@ namespace AutoServiceViewer.ViewModel
                 UpdateContainer();
             }
         }
-
         private void UpdateContainer()
         {
             var settings = Create();
-            IocApp.Container.RegisterType<IRepository, XMLRepository>(/*"xml"*/);
+            IocApp.Container.RegisterType<IRepository, BinaryRepository>();
             IocApp.Container.RegisterInstance(settings);
         }
     }

@@ -2,7 +2,7 @@
 
 namespace DataAccess.RepositoryFile
 {
-    public class FileRepositorySettings
+    public class FileRepositorySettings : RepositorySettings
     {
         public string FilePath { get; }
         public FileMode FileMode { get; }

@@ -41,23 +41,23 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRepositorySettingCreator.cs" />
+    <Compile Include="Repository\IRepositorySettingCreator.cs" />
     <Compile Include="Model\CustomersOrdersObject.cs" />
-    <Compile Include="RepositoryFile\FileRepository.cs" />
-    <Compile Include="RepositoryFile\FileRepositorySettings.cs" />
-    <Compile Include="RepositoryFile\RepositoryBinary\BinaryHelper.cs" />
-    <Compile Include="RepositoryFile\RepositoryBinary\BinaryRepository.cs" />
-    <Compile Include="RepositoryDb\AutoServiceDb.cs" />
-    <Compile Include="RepositoryDb\DatabaseRepositorySettings.cs" />
+    <Compile Include="Repository\RepositoryFile\FileRepository.cs" />
+    <Compile Include="Repository\RepositoryFile\FileRepositorySettings.cs" />
+    <Compile Include="Repository\RepositoryFile\RepositoryBinary\BinaryHelper.cs" />
+    <Compile Include="Repository\RepositoryFile\RepositoryBinary\BinaryRepository.cs" />
+    <Compile Include="Repository\RepositoryDb\AutoServiceDb.cs" />
+    <Compile Include="Repository\RepositoryDb\DatabaseRepositorySettings.cs" />
     <Compile Include="Model\Customer.cs" />
-    <Compile Include="RepositoryDb\DatabaseRepository.cs" />
-    <Compile Include="IRepository.cs" />
+    <Compile Include="Repository\RepositoryDb\DatabaseRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Model\Order.cs" />
-    <Compile Include="RepositoryFile\RepositoryBinary\BinaryRepositorySettings.cs" />
-    <Compile Include="RepositoryFile\RepositoryXML\XMLRepositorySettings.cs" />
-    <Compile Include="RepositorySettings.cs" />
-    <Compile Include="RepositoryFile\RepositoryXML\XMLHelper.cs" />
-    <Compile Include="RepositoryFile\RepositoryXML\XMLRepository.cs" />
+    <Compile Include="Repository\RepositoryFile\RepositoryBinary\BinaryRepositorySettings.cs" />
+    <Compile Include="Repository\RepositoryFile\RepositoryXML\XMLRepositorySettings.cs" />
+    <Compile Include="Repository\RepositorySettings.cs" />
+    <Compile Include="Repository\RepositoryFile\RepositoryXML\XMLHelper.cs" />
+    <Compile Include="Repository\RepositoryFile\RepositoryXML\XMLRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">

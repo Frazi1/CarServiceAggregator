@@ -8,7 +8,15 @@ namespace MVVM
         private readonly Action<object> _action;
         private readonly Predicate<object> _predicate;
 
-        public event EventHandler CanExecuteChanged;
+        //TODO: Переделать реализацию
+        public event EventHandler CanExecuteChanged {
+            add {
+                CommandManager.RequerySuggested += value;
+            }
+            remove {
+                CommandManager.RequerySuggested -= value;
+            }
+        }
 
         public RelayCommand(Action<object> action)
             : this(action, null)

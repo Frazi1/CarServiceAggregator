@@ -66,6 +66,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\SettingsCreator\BinarySettingsCreator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SettingsCreator\DatabaseSettingsCreator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SettingsCreator\XMLSettingsCreator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -79,8 +87,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IocApp.cs" />
+    <Compile Include="ViewModel\BinarySettingsViewModel.cs" />
+    <Compile Include="ViewModel\DatabaseSettingsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\XMLSettingsViewModel.cs" />
+    <Compile Include="View\SettingsCreator\BinarySettingsCreator.xaml.cs">
+      <DependentUpon>BinarySettingsCreator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingsCreator\DatabaseSettingsCreator.xaml.cs">
+      <DependentUpon>DatabaseSettingsCreator.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SettingsCreator\XMLSettingsCreator.xaml.cs">
       <DependentUpon>XMLSettingsCreator.xaml</DependentUpon>
     </Compile>
