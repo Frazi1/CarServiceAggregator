@@ -17,6 +17,8 @@ namespace DataAccess.RepositoryFile.RepositoryBinary
 
         public static CustomersOrdersObject Load(string fileName)
         {
+
+            //TODO: Добавить обработку исключений
             CustomersOrdersObject result;
             using (FileStream fs = new FileStream(fileName, FileMode.Open))
             {

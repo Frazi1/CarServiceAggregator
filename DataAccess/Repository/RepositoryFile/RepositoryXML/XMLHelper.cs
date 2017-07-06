@@ -7,6 +7,8 @@ namespace DataAccess.RepositoryFile.RepositoryXML
     {
         public static CustomersOrdersObject Load(string filePath)
         {
+            //TODO: Обработка исключений
+
             CustomersOrdersObject result;
             using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
             {
