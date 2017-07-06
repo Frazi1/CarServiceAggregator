@@ -13,8 +13,8 @@ namespace DataAccess.RepositoryFile.RepositoryBinary
             if (settings.FileMode == FileMode.Open)
             {
                 var data = BinaryHelper.Load(FilePath);
-                customers = data.Customers.ToList();
-                orders = data.Orders.ToList();
+                CustomersList = data.Customers.ToList();
+                OrdersList = data.Orders.ToList();
             }
         }
 
@@ -24,8 +24,8 @@ namespace DataAccess.RepositoryFile.RepositoryBinary
             {
                 var coo = new CustomersOrdersObject()
                 {
-                    Customers = customers.ToArray(),
-                    Orders = orders.ToArray()
+                    Customers = CustomersList.ToArray(),
+                    Orders = OrdersList.ToArray()
                 };
 
                 BinaryHelper.Save(FilePath, coo);

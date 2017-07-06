@@ -1,7 +1,4 @@
 ﻿using DataAccess.Model;
-using System;
-using System.Collections;
-using System.Data.Entity;
 using System.Collections.Generic;
 
 namespace DataAccess.RepositoryDb

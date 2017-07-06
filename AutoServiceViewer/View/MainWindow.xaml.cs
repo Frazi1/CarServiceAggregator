@@ -26,11 +26,5 @@ namespace AutoServiceViewer.View
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //MessageBox.Show(ServiceLocator.Current.GetInstance<DatabaseSettingsViewModel>().ToString());
-            MessageBox.Show(DatabaseSettings.DataContext.ToString());
-        }
     }
 }

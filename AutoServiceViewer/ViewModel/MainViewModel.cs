@@ -22,12 +22,6 @@ namespace AutoServiceViewer.ViewModel
         {
             Customers = new ObservableCollection<Customer>();
             Orders = new ObservableCollection<Order>();
-            GetDataCommand.CanExecuteChanged += Test;
-        }
-
-        private void Test(object sender, EventArgs e)
-        {
-            Debug.WriteLine("Execute Changed Invoked");
         }
 
         public Customer SelectedCustomer {
@@ -77,9 +71,8 @@ namespace AutoServiceViewer.ViewModel
 
         private void SetSelectedCustomer()
         {
-            SelectedCustomer = Customers.FirstOrDefault(c => c.ID == SelectedOrder?.CustomerID);
+            if (SelectedOrder != null)
+                SelectedCustomer = Customers.FirstOrDefault(c => c.ID == SelectedOrder.CustomerID);
         }
-
-        
     }
 }

@@ -1,14 +1,10 @@
-using System;
 using System.Data.Entity;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Data.Common;
 using MySql.Data.Entity;
 using DataAccess.Model;
 
 namespace DataAccess.RepositoryDb
 {
-
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public partial class AutoServiceDb : DbContext
     {

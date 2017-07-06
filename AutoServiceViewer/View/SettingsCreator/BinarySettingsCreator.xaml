@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:AutoServiceViewer.View.SettingsCreator"
              xmlns:viewmodels="clr-namespace:AutoServiceViewer.ViewModel"
              mc:Ignorable="d" 
-             d:DataContext="{d:DesignData viewmodels:BinarySettingsViewModel}"
+             d:DataContext="{d:DesignInstance viewmodels:BinarySettingsViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <DockPanel HorizontalAlignment="Left" Width="105">

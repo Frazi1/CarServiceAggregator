@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:AutoServiceViewer.View.SettingsCreator"
              mc:Ignorable="d" 
              xmlns:viewmodels="clr-namespace:AutoServiceViewer.ViewModel"
-             d:DataContext="{d:DesignData viewmodels: DatabaseSettingsViewModel}"
+             d:DataContext="{d:DesignInstance viewmodels:DatabaseSettingsViewModel}"
              d:DesignHeight="105" d:DesignWidth="105">
     <Grid>
         <StackPanel HorizontalAlignment="Left" Width="105">

@@ -8,7 +8,7 @@
         xmlns:SettingsCreator="clr-namespace:AutoServiceViewer.View.SettingsCreator" xmlns:local1="clr-namespace:AutoServiceViewer.View" x:Class="AutoServiceViewer.View.MainWindow"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance {x:Type viewmodels:MainViewModel}}"
-        Title="MainWindow" Height="443.432" Width="829.767" DataContext="{Binding MainViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}">
+        Title="MainWindow" Height="443.432" Width="881.619" DataContext="{Binding MainViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>
@@ -21,7 +21,6 @@
         <DockPanel Height="20">
             <Button Width="111" HorizontalAlignment="Left" Command="{Binding GetDataCommand}" Content="Загрузить данные"/>
         </DockPanel>
-        <Button Width="50" Height="20" Margin="0,50,0,0" Click="Button_Click"></Button>
 
         <!--Владелец автомобиля-->
         <DockPanel HorizontalAlignment="Right" Width="84">
@@ -49,9 +48,9 @@
         <!--Переключалка-->
         <DockPanel>
             <StackPanel VerticalAlignment="Top">
-                <RadioButton x:Name="RB_XML" IsChecked="False">XML</RadioButton>
+                <RadioButton x:Name="RB_XML" IsChecked="True">XML</RadioButton>
                 <RadioButton x:Name="RB_Binary">Бинарный</RadioButton>
-                <RadioButton x:Name="RB_MySql" IsChecked="True">MySql</RadioButton>
+                <RadioButton x:Name="RB_MySql" IsChecked="False">MySql</RadioButton>
             </StackPanel>
             <StackPanel Width="150" Height="150">
                 <SettingsCreator:XMLSettingsCreator x:Name="XMLSettings" 

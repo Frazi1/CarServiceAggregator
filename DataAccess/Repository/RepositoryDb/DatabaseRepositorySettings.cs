@@ -2,7 +2,7 @@
 {
     public class DatabaseRepositorySettings : RepositorySettings
     {
-        public string ConnectionString { get; set; }
+        public string ConnectionString { get; }
 
         public DatabaseRepositorySettings(string connectionString)
         {

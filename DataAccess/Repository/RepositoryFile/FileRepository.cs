@@ -7,11 +7,11 @@ namespace DataAccess.RepositoryFile
     public abstract class FileRepository : IRepository
     {
         public string FilePath { get; protected set; }
-        protected IList<Customer> customers { get; set; } = new List<Customer>();
-        protected IList<Order> orders { get; set; } = new List<Order>();
+        protected IList<Customer> CustomersList { get; set; } = new List<Customer>();
+        protected IList<Order> OrdersList { get; set; } = new List<Order>();
 
-        public IEnumerable<Customer> Customers => customers.AsEnumerable();
-        public IEnumerable<Order> Orders => orders.AsEnumerable();
+        public IEnumerable<Customer> Customers => CustomersList.AsEnumerable();
+        public IEnumerable<Order> Orders => OrdersList.AsEnumerable();
 
         public FileRepository(FileRepositorySettings settings)
         {
@@ -20,12 +20,12 @@ namespace DataAccess.RepositoryFile
 
         public void AddCustomer(Customer customer)
         {
-            customers.Add(customer);
+            CustomersList.Add(customer);
         }
 
         public void AddOrder(Order order)
         {
-            orders.Add(order);
+            OrdersList.Add(order);
         }
 
         public abstract void SaveChanges();

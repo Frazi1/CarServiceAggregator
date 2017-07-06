@@ -1,4 +1,5 @@
-﻿using DataAccess;
+﻿using AutoServiceViewer.Configurator;
+using DataAccess;
 using DataAccess.RepositoryFile.RepositoryXML;
 using Microsoft.Practices.Unity;
 using Microsoft.Win32;
@@ -8,18 +9,17 @@ using System.Windows.Input;
 
 namespace AutoServiceViewer.ViewModel
 {
-    public class XMLSettingsViewModel : ViewModelBase, IRepositorySettingCreator<XMLRepositorySettings>
+    public class XMLSettingsViewModel : ViewModelBase
     {
-        public string FileName { get; set; }
-        public FileMode FileMode { get; set; }
+        private readonly XMLRepositoryConfigurator _configurator;
 
-        public ICommand OpenFileCommand => new RelayCommand(o => OpenFile());
-
-        public XMLRepositorySettings Create()
+        public XMLSettingsViewModel()
         {
-            return new XMLRepositorySettings(FileName, FileMode);
+            _configurator = new XMLRepositoryConfigurator();
         }
 
+        public ICommand OpenFileCommand => new RelayCommand(o => OpenFile());
+        
         private void OpenFile()
         {
             var ofd = new OpenFileDialog
@@ -28,17 +28,9 @@ namespace AutoServiceViewer.ViewModel
             };
             if (ofd.ShowDialog() == true)
             {
-                FileName = ofd.FileName;
-                FileMode = FileMode.Open;
-                UpdateContainer();
+                _configurator.FileName = ofd.FileName;
+                _configurator.UpdateContainer(IocApp.Container);
             }
-        }
-
-        private void UpdateContainer()
-        {
-            var settings = Create();
-            IocApp.Container.RegisterType<IRepository, XMLRepository>(/*"xml"*/);
-            IocApp.Container.RegisterInstance(settings);
         }
     }
 }

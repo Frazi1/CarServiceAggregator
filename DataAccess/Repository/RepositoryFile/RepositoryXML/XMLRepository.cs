@@ -13,8 +13,8 @@ namespace DataAccess.RepositoryFile.RepositoryXML
             if (settings.FileMode == FileMode.Open)
             {
                 var data = XMLHelper.Load(settings.FilePath);
-                customers = data.Customers.ToList();
-                orders = data.Orders.ToList();
+                CustomersList = data.Customers.ToList();
+                OrdersList = data.Orders.ToList();
             }
         }
 
@@ -22,8 +22,8 @@ namespace DataAccess.RepositoryFile.RepositoryXML
         {
             var coo = new CustomersOrdersObject()
             {
-                Customers = customers.ToArray(),
-                Orders = orders.ToArray()
+                Customers = CustomersList.ToArray(),
+                Orders = OrdersList.ToArray()
             };
             XMLHelper.Save(FilePath, coo);
         }

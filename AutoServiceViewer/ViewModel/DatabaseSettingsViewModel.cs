@@ -1,4 +1,5 @@
-﻿using DataAccess;
+﻿using AutoServiceViewer.Configurator;
+using DataAccess;
 using DataAccess.RepositoryDb;
 using Microsoft.Practices.Unity;
 using Microsoft.Win32;
@@ -9,18 +10,16 @@ using System.Windows.Input;
 
 namespace AutoServiceViewer.ViewModel
 {
-    public class DatabaseSettingsViewModel : ViewModelBase, IRepositorySettingCreator<DatabaseRepositorySettings>
+    public class DatabaseSettingsViewModel : ViewModelBase
     {
-        public string FileName { get; set; }
-        public FileMode FileMode { get; set; }
-        public string ConnectionString { get; set; }
+        private readonly DatabaseRepositoryConfigurator _configurator;
+
+        public DatabaseSettingsViewModel()
+        {
+            _configurator = new DatabaseRepositoryConfigurator();
+        }
 
         public ICommand OpenFileCommand => new RelayCommand(o => OpenFile());
-
-        public DatabaseRepositorySettings Create()
-        {
-            return new DatabaseRepositorySettings(ConnectionString);
-        }
 
         private void OpenFile()
         {
@@ -37,12 +36,6 @@ namespace AutoServiceViewer.ViewModel
             //    UpdateContainer();
             //}
             MessageBox.Show("Not implemented yet");
-        }
-        private void UpdateContainer()
-        {
-            var settings = Create();
-            IocApp.Container.RegisterType<IRepository, DatabaseRepository>();
-            IocApp.Container.RegisterInstance(settings);
         }
     }
 }
