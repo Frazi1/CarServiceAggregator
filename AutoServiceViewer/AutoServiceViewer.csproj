@@ -82,11 +82,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Configurator\BinaryRepositoryConfigurator.cs" />
-    <Compile Include="Configurator\DatabaseRepositoryConfigurator.cs" />
-    <Compile Include="Configurator\XMLRepositoryConfigurator.cs" />
+    <Compile Include="RepositoryRegistrator\BinaryRepositoryRegistrator.cs" />
+    <Compile Include="RepositoryRegistrator\DatabaseRepositoryRegistrator.cs" />
+    <Compile Include="RepositoryRegistrator\XmlRepositoryRegistrator.cs" />
     <Compile Include="IocApp.cs" />
-    <Compile Include="Configurator\RepositoryConfigurator.cs" />
+    <Compile Include="RepositoryRegistrator\RepositoryRegistrator.cs" />
     <Compile Include="ViewModel\BinarySettingsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\XmlSettingsViewModel.cs" />

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Configuration;
+using AutoServiceViewer.RepositoryRegistrator;
 using DataAccess;
 using DataAccess.RepositoryDb;
 using DataAccess.RepositoryFile.RepositoryBinary;
 using DataAccess.RepositoryFile.RepositoryXML;
 using Microsoft.Practices.Unity;
-using AutoServiceViewer.Configurator;
 
 namespace AutoServiceViewer
 {
@@ -24,11 +24,11 @@ namespace AutoServiceViewer
         {
             _container = new UnityContainer();
             string connectionString = ConfigurationSettings.AppSettings.Get("connectionString");
-            var configurator = new DatabaseRepositoryConfigurator
+            var configurator = new DatabaseRepositoryRegistrator
             {
                 ConnectionString = connectionString
             };
-            configurator.UpdateContainer(_container);
+            configurator.Register(_container);
         }
 
         public static IRepository GetRepository(RepositoryType repositoryType)

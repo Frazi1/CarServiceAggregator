@@ -1,17 +1,17 @@
-﻿using AutoServiceViewer.Configurator;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using MVVM;
 using System.Windows.Input;
+using AutoServiceViewer.RepositoryRegistrator;
 
 namespace AutoServiceViewer.ViewModel
 {
     public class BinarySettingsViewModel : ViewModelBase
     {
-        private readonly BinaryRepositoryConfigurator _configurator;
+        private readonly BinaryRepositoryRegistrator _registrator;
 
         public BinarySettingsViewModel()
         {
-            _configurator = new BinaryRepositoryConfigurator();
+            _registrator = new BinaryRepositoryRegistrator();
         }
 
         public ICommand OpenFileCommand => new RelayCommand(o => OpenFile());
@@ -23,11 +23,9 @@ namespace AutoServiceViewer.ViewModel
             {
                 Filter = "dat | *.dat"
             };
-            if (ofd.ShowDialog() == true)
-            {
-                _configurator.FileName = ofd.FileName;
-                _configurator.UpdateContainer(IocApp.Container);
-            }
+            if (ofd.ShowDialog() != true) return;
+            _registrator.FileName = ofd.FileName;
+            _registrator.Register(IocApp.Container);
         }
 
     }

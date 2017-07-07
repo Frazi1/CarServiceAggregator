@@ -1,17 +1,17 @@
-﻿using AutoServiceViewer.Configurator;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using MVVM;
 using System.Windows.Input;
+using AutoServiceViewer.RepositoryRegistrator;
 
 namespace AutoServiceViewer.ViewModel
 {
     public class XmlSettingsViewModel : ViewModelBase
     {
-        private readonly XmlRepositoryConfigurator _configurator;
+        private readonly XmlRepositoryRegistrator _registrator;
 
         public XmlSettingsViewModel()
         {
-            _configurator = new XmlRepositoryConfigurator();
+            _registrator = new XmlRepositoryRegistrator();
         }
 
         public ICommand OpenFileCommand => new RelayCommand(o => OpenFile());
@@ -23,8 +23,8 @@ namespace AutoServiceViewer.ViewModel
                 Filter = "xml | *.xml"
             };
             if (ofd.ShowDialog() != true) return;
-            _configurator.FileName = ofd.FileName;
-            _configurator.UpdateContainer(IocApp.Container);
+            _registrator.FileName = ofd.FileName;
+            _registrator.Register(IocApp.Container);
         }
     }
 }
