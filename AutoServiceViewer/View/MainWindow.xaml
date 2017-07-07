@@ -3,14 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AutoServiceViewer"
         xmlns:viewmodels="clr-namespace:AutoServiceViewer.ViewModel"
-        xmlns:SettingsCreator="clr-namespace:AutoServiceViewer.View.SettingsCreator" xmlns:local1="clr-namespace:AutoServiceViewer.View" x:Class="AutoServiceViewer.View.MainWindow"
+        xmlns:settingsCreator="clr-namespace:AutoServiceViewer.View.SettingsCreator" 
+        x:Class="AutoServiceViewer.View.MainWindow"
+    xmlns:dataacc="clr-namespace:DataAccess;assembly=DataAccess"
+        xmlns:mvvm="clr-namespace:MVVM.Converters;assembly=MVVM"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance {x:Type viewmodels:MainViewModel}}"
         Title="MainWindow" Height="443.432" Width="881.619" DataContext="{Binding MainViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <mvvm:BooleanToEnumConverter x:Key="BooleanToEnumConverter"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -23,7 +26,7 @@
         </DockPanel>
 
         <!--Владелец автомобиля-->
-        <DockPanel HorizontalAlignment="Right" Width="84">
+        <DockPanel Grid.Row="0" HorizontalAlignment="Right" Width="84">
             <StackPanel >
                 <TextBlock FontWeight="Bold" Text="Фамилия"/>
                 <TextBlock Text="{Binding SelectedCustomer.Surname}"/>
@@ -41,30 +44,29 @@
 
         <!--Таблица-->
         <DockPanel Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" >
-            <DataGrid x:Name="Grid_Orders" Height="Auto" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" IsReadOnly="True" />
+            <DataGrid x:Name="GridOrders" Height="Auto" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" IsReadOnly="True" />
         </DockPanel>
         <!--/Таблица-->
 
         <!--Переключалка-->
-        <DockPanel>
+        <DockPanel Grid.Row="0">
             <StackPanel VerticalAlignment="Top">
-                <RadioButton x:Name="RB_XML" IsChecked="True">XML</RadioButton>
-                <RadioButton x:Name="RB_Binary">Бинарный</RadioButton>
-                <RadioButton x:Name="RB_MySql" IsChecked="False">MySql</RadioButton>
+                <RadioButton x:Name="RbXml" Content="Xml"
+                             IsChecked="{Binding RepositoryType, Converter={StaticResource BooleanToEnumConverter}, ConverterParameter={x:Static dataacc:RepositoryType.Xml}}"/>
+                <RadioButton x:Name="RbBinary" Content="Binary"
+                             IsChecked="{Binding RepositoryType, Converter={StaticResource BooleanToEnumConverter}, ConverterParameter={x:Static dataacc:RepositoryType.Binary}}"/>
+                <RadioButton x:Name="RbMySql" Content="MySql" 
+                             IsChecked="{Binding RepositoryType, Converter={StaticResource BooleanToEnumConverter}, ConverterParameter={x:Static dataacc:RepositoryType.Database}}"/>
             </StackPanel>
             <StackPanel Width="150" Height="150">
-                <SettingsCreator:XMLSettingsCreator x:Name="XMLSettings" 
-                                DataContext="{Binding XMLSettingsViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                <settingsCreator:XMLSettingsCreator x:Name="XmlSettings" 
+                                DataContext="{Binding XmlSettingsViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
                                 HorizontalAlignment="Left" VerticalAlignment="Top"
-                                Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=RB_XML}" />
-                <SettingsCreator:BinarySettingsCreator x:Name="BinarySettings" 
+                                Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=RbXml}" />
+                <settingsCreator:BinarySettingsCreator x:Name="BinarySettings" 
                                 DataContext="{Binding BinarySettingsViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
                                 HorizontalAlignment="Left" VerticalAlignment="Top"
-                                Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=RB_Binary}" />
-                <SettingsCreator:DatabaseSettingsCreator x:Name="DatabaseSettings" 
-                                DataContext="{Binding DatabaseSettingsViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
-                                HorizontalAlignment="Left" VerticalAlignment="Top" 
-                                Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=RB_MySql}" />
+                                Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=RbBinary}" />
             </StackPanel>
         </DockPanel>
         <!--/Переключалка-->

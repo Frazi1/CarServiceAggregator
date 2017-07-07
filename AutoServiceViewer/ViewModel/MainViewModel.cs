@@ -1,18 +1,17 @@
 ﻿using DataAccess;
 using DataAccess.Model;
 using MVVM;
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using Microsoft.Practices.Unity;
-using System.Diagnostics;
 
 namespace AutoServiceViewer.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
         private IRepository _repository;
+        private RepositoryType _repositoryType;
         private ObservableCollection<Customer> _customers;
         private ObservableCollection<Order> _orders;
         private Customer _selectedCustomer;
@@ -22,6 +21,14 @@ namespace AutoServiceViewer.ViewModel
         {
             Customers = new ObservableCollection<Customer>();
             Orders = new ObservableCollection<Order>();
+        }
+
+        public RepositoryType RepositoryType {
+            get { return _repositoryType; }
+            set {
+                _repositoryType = value;
+                NotifyPropertyChanged();
+            }
         }
 
         public Customer SelectedCustomer {
@@ -55,16 +62,18 @@ namespace AutoServiceViewer.ViewModel
             }
         }
 
-        public ICommand GetDataCommand => new RelayCommand(o => GetData(), o => IocApp.Container.IsRegistered<IRepository>());
+        public ICommand GetDataCommand => new RelayCommand(o => GetData(), o => IsRepositoryRegistered());
 
-
-
+        private bool IsRepositoryRegistered()
+        {
+            //TODO: Придумать что-то получше
+            string name = RepositoryType + "Repository";
+            return IocApp.Container.IsRegistered<IRepository>(name);
+        }
         private void GetData()
         {
             //_repository = IocApp.Container.Resolve<IRepository>();
-            //_repository = IocApp.XMLContainer.Resolve<IRepository>();
-            //_repository = IocApp.Container.ResolveAll<IRepository>().FirstOrDefault(s => s != null);
-            _repository = IocApp.Container.Resolve<IRepository>();
+            _repository = IocApp.GetRepository(RepositoryType);
             Orders = new ObservableCollection<Order>(_repository.Orders);
             Customers = new ObservableCollection<Customer>(_repository.Customers);
         }
