@@ -1,50 +1,53 @@
 ﻿<Window
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewmodels="clr-namespace:AutoServiceViewer.ViewModel"
-        xmlns:settingsCreator="clr-namespace:AutoServiceViewer.View.SettingsCreator" 
-        x:Class="AutoServiceViewer.View.MainWindow"
-    xmlns:dataacc="clr-namespace:DataAccess;assembly=DataAccess"
-        xmlns:mvvm="clr-namespace:MVVM.Converters;assembly=MVVM"
-        mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance {x:Type viewmodels:MainViewModel}}"
-        Title="MainWindow" Height="443.432" Width="881.619" DataContext="{Binding MainViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}">
+    x:Class="AutoServiceViewer.View.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:AutoServiceViewer.ViewModel"
+    xmlns:settingsCreator="clr-namespace:AutoServiceViewer.View.SettingsCreator"
+    xmlns:mvvm="clr-namespace:MVVM.Converters;assembly=MVVM"
+    xmlns:repository="clr-namespace:DataAccess.Repository;assembly=DataAccess"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance {x:Type viewmodels:MainViewModel}}"
+    Title="MainWindow" Height="443.432" Width="881.619"
+    DataContext="{Binding MainViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}">
     <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        <mvvm:BooleanToEnumConverter x:Key="BooleanToEnumConverter"/>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <mvvm:BooleanToEnumConverter x:Key="BooleanToEnumConverter" />
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="44*"/>
-            <RowDefinition Height="59*"/>
+            <RowDefinition Height="44*" />
+            <RowDefinition Height="59*" />
         </Grid.RowDefinitions>
 
         <DockPanel Height="20">
-            <Button Width="111" HorizontalAlignment="Left" Command="{Binding GetDataCommand}" Content="Загрузить данные"/>
+            <Button Width="111" HorizontalAlignment="Left" Command="{Binding GetDataCommand}"
+                    Content="Загрузить данные" />
         </DockPanel>
 
         <!--Владелец автомобиля-->
         <DockPanel Grid.Row="0" HorizontalAlignment="Right" Width="84">
-            <StackPanel >
-                <TextBlock FontWeight="Bold" Text="Фамилия"/>
-                <TextBlock Text="{Binding SelectedCustomer.Surname}"/>
-                <TextBlock FontWeight="Bold" Text="Имя"/>
-                <TextBlock Text="{Binding SelectedCustomer.FirstName}"/>
-                <TextBlock FontWeight="Bold" Text="Отчество"/>
-                <TextBlock Text="{Binding SelectedCustomer.Patronymic}"/>
-                <TextBlock FontWeight="Bold" Text="Год рождения"/>
-                <TextBlock Text="{Binding SelectedCustomer.BirthYear}"/>
-                <TextBlock FontWeight="Bold" Text="Телефон"/>
-                <TextBlock Text="{Binding SelectedCustomer.PhoneNumber}"/>
+            <StackPanel>
+                <TextBlock FontWeight="Bold" Text="Фамилия" />
+                <TextBlock Text="{Binding SelectedCustomer.Surname}" />
+                <TextBlock FontWeight="Bold" Text="Имя" />
+                <TextBlock Text="{Binding SelectedCustomer.FirstName}" />
+                <TextBlock FontWeight="Bold" Text="Отчество" />
+                <TextBlock Text="{Binding SelectedCustomer.Patronymic}" />
+                <TextBlock FontWeight="Bold" Text="Год рождения" />
+                <TextBlock Text="{Binding SelectedCustomer.BirthYear}" />
+                <TextBlock FontWeight="Bold" Text="Телефон" />
+                <TextBlock Text="{Binding SelectedCustomer.PhoneNumber}" />
             </StackPanel>
         </DockPanel>
         <!--/Владелец автомобиля-->
 
         <!--Таблица-->
-        <DockPanel Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" >
-            <DataGrid x:Name="GridOrders" Height="Auto" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" IsReadOnly="True" />
+        <DockPanel Grid.Row="1" VerticalAlignment="Stretch" Height="Auto">
+            <DataGrid x:Name="GridOrders" Height="Auto" ItemsSource="{Binding Orders}"
+                      SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" IsReadOnly="True" />
         </DockPanel>
         <!--/Таблица-->
 
@@ -52,21 +55,21 @@
         <DockPanel Grid.Row="0">
             <StackPanel VerticalAlignment="Top">
                 <RadioButton x:Name="RbXml" Content="Xml"
-                             IsChecked="{Binding RepositoryType, Converter={StaticResource BooleanToEnumConverter}, ConverterParameter={x:Static dataacc:RepositoryType.Xml}}"/>
+                             IsChecked="{Binding RepositoryType, Converter={StaticResource BooleanToEnumConverter}, ConverterParameter={x:Static repository:RepositoryType.Xml}}" />
                 <RadioButton x:Name="RbBinary" Content="Binary"
-                             IsChecked="{Binding RepositoryType, Converter={StaticResource BooleanToEnumConverter}, ConverterParameter={x:Static dataacc:RepositoryType.Binary}}"/>
-                <RadioButton x:Name="RbMySql" Content="MySql" 
-                             IsChecked="{Binding RepositoryType, Converter={StaticResource BooleanToEnumConverter}, ConverterParameter={x:Static dataacc:RepositoryType.Database}}"/>
+                             IsChecked="{Binding RepositoryType, Converter={StaticResource BooleanToEnumConverter}, ConverterParameter={x:Static repository:RepositoryType.Binary}}" />
+                <RadioButton x:Name="RbMySql" Content="MySql"
+                             IsChecked="{Binding RepositoryType, Converter={StaticResource BooleanToEnumConverter}, ConverterParameter={x:Static repository:RepositoryType.Database}}" />
             </StackPanel>
             <StackPanel Width="150" Height="150">
-                <settingsCreator:XmlSettingsCreator x:Name="XmlSettings" 
-                                DataContext="{Binding XmlSettingsViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
-                                HorizontalAlignment="Left" VerticalAlignment="Top"
-                                Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=RbXml}" />
-                <settingsCreator:BinarySettingsCreator x:Name="BinarySettings" 
-                                DataContext="{Binding BinarySettingsViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
-                                HorizontalAlignment="Left" VerticalAlignment="Top"
-                                Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=RbBinary}" />
+                <settingsCreator:XmlSettingsCreator x:Name="XmlSettings"
+                                                    DataContext="{Binding XmlSettingsViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                                                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                    Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=RbXml}" />
+                <settingsCreator:BinarySettingsCreator x:Name="BinarySettings"
+                                                       DataContext="{Binding BinarySettingsViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                                                       HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                       Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=RbBinary}" />
             </StackPanel>
         </DockPanel>
         <!--/Переключалка-->

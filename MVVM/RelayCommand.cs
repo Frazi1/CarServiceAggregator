@@ -8,16 +8,6 @@ namespace MVVM
         private readonly Action<object> _action;
         private readonly Predicate<object> _predicate;
 
-        //TODO: Переделать реализацию
-        public event EventHandler CanExecuteChanged {
-            add {
-                CommandManager.RequerySuggested += value;
-            }
-            remove {
-                CommandManager.RequerySuggested -= value;
-            }
-        }
-
         public RelayCommand(Action<object> action)
             : this(action, null)
         {
@@ -25,9 +15,15 @@ namespace MVVM
 
         public RelayCommand(Action<object> action, Predicate<object> predicate)
         {
-            if (action == null) throw new ArgumentNullException("Command action must not be null");
+            if (action == null) throw new ArgumentNullException(nameof(action));
             _action = action;
             _predicate = predicate;
+        }
+
+        //TODO: Переделать реализацию
+        public event EventHandler CanExecuteChanged {
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
         }
 
         public bool CanExecute(object parameter)

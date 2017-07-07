@@ -1,8 +1,6 @@
-﻿using DataAccess;
-using DataAccess.Model;
-using DataAccess.RepositoryFile;
-using DataAccess.RepositoryFile.RepositoryXML;
+﻿using DataAccess.Model;
 using System;
+using DataAccess.Repository;
 
 namespace TestConsoleApp
 {

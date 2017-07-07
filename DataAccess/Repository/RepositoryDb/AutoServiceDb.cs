@@ -1,23 +1,21 @@
-using System.Data.Entity;
 using System.Data.Common;
-using MySql.Data.Entity;
+using System.Data.Entity;
 using DataAccess.Model;
+using MySql.Data.Entity;
 
-namespace DataAccess.RepositoryDb
+namespace DataAccess.Repository.RepositoryDb
 {
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
-    public partial class AutoServiceDb : DbContext
+    public class AutoServiceDb : DbContext
     {
         public AutoServiceDb(string connectionString)
-            : base (connectionString)
+            : base(connectionString)
         {
-
         }
 
         public AutoServiceDb(DbConnection existingConnection, bool contextsOwnsConnection)
             : base(existingConnection, contextsOwnsConnection)
         {
-
         }
 
         public DbSet<Customer> Customers { get; set; }

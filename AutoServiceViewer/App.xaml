@@ -5,6 +5,6 @@
              xmlns:viewmodels="clr-namespace:AutoServiceViewer.ViewModel"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-        <viewmodels:ViewModelLocator x:Key="ViewModelLocator"/>
+        <viewmodels:ViewModelLocator x:Key="ViewModelLocator" />
     </Application.Resources>
 </Application>

@@ -1,4 +1,4 @@
-﻿namespace DataAccess
+﻿namespace DataAccess.Repository
 {
     public enum RepositoryType
     {

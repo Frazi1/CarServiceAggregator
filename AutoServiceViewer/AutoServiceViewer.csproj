@@ -87,9 +87,9 @@
     <Compile Include="RepositoryRegistrator\XmlRepositoryRegistrator.cs" />
     <Compile Include="IocApp.cs" />
     <Compile Include="RepositoryRegistrator\RepositoryRegistrator.cs" />
-    <Compile Include="ViewModel\BinarySettingsViewModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel\BinarySettingsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="ViewModel\XmlSettingsViewModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel\XmlSettingsViewModel.cs" />
     <Compile Include="View\SettingsCreator\BinarySettingsCreator.xaml.cs">
       <DependentUpon>BinarySettingsCreator.xaml</DependentUpon>
     </Compile>

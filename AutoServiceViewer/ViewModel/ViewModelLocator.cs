@@ -10,10 +10,10 @@ namespace AutoServiceViewer.ViewModel
             ServiceLocator.SetLocatorProvider(() => new UnityServiceLocator(IocApp.Container));
         }
 
-        public MainViewModel MainViewModel 
+        public MainViewModel MainViewModel
             => ServiceLocator.Current.GetInstance<MainViewModel>();
 
-        public XmlSettingsViewModel XmlSettingsViewModel 
+        public XmlSettingsViewModel XmlSettingsViewModel
             => ServiceLocator.Current.GetInstance<XmlSettingsViewModel>();
 
         public BinarySettingsViewModel BinarySettingsViewModel

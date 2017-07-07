@@ -1,5 +1,5 @@
 ﻿using System;
-using DataAccess.RepositoryDb;
+using DataAccess.Repository.RepositoryDb;
 using Microsoft.Practices.Unity;
 
 namespace AutoServiceViewer.RepositoryRegistrator
@@ -10,7 +10,8 @@ namespace AutoServiceViewer.RepositoryRegistrator
 
         protected override void RegisterSettings(IUnityContainer container)
         {
-            if(string.IsNullOrEmpty(ConnectionString)) throw new ArgumentException("Connection string must not be null");
+            if (string.IsNullOrEmpty(ConnectionString))
+                throw new ArgumentException("Connection string must not be null");
             DatabaseRepositorySettings settings = new DatabaseRepositorySettings(ConnectionString);
             container.RegisterInstance(settings);
         }

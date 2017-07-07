@@ -1,18 +1,17 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using DataAccess.Model;
-using System.IO;
 
-namespace DataAccess.RepositoryFile.RepositoryBinary
+namespace DataAccess.Repository.RepositoryFile
 {
     public sealed class BinaryRepository : FileRepository
     {
-
         public BinaryRepository(BinaryRepositorySettings settings)
             : base(settings)
         {
             if (settings.FileMode == FileMode.Open)
             {
-                var data = BinaryHelper.Load(FilePath);
+                CustomersOrdersObject data = BinaryHelper.Load(FilePath);
                 CustomersList = data.Customers.ToList();
                 OrdersList = data.Orders.ToList();
             }
@@ -22,7 +21,7 @@ namespace DataAccess.RepositoryFile.RepositoryBinary
         {
             try
             {
-                var coo = new CustomersOrdersObject()
+                CustomersOrdersObject coo = new CustomersOrdersObject
                 {
                     Customers = CustomersList.ToArray(),
                     Orders = OrdersList.ToArray()
@@ -35,6 +34,5 @@ namespace DataAccess.RepositoryFile.RepositoryBinary
                 throw;
             }
         }
-
     }
 }

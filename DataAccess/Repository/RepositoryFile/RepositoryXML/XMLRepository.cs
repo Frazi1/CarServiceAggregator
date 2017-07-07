@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.IO;
 using System.Linq;
 using DataAccess.Model;
-using System.IO;
 
-namespace DataAccess.RepositoryFile.RepositoryXML
+namespace DataAccess.Repository.RepositoryFile
 {
     public sealed class XmlRepository : FileRepository
     {
@@ -12,7 +11,7 @@ namespace DataAccess.RepositoryFile.RepositoryXML
         {
             if (settings.FileMode == FileMode.Open)
             {
-                var data = XMLHelper.Load(settings.FilePath);
+                CustomersOrdersObject data = XMLHelper.Load(settings.FilePath);
                 CustomersList = data.Customers.ToList();
                 OrdersList = data.Orders.ToList();
             }
@@ -20,7 +19,7 @@ namespace DataAccess.RepositoryFile.RepositoryXML
 
         public override void SaveChanges()
         {
-            var coo = new CustomersOrdersObject()
+            CustomersOrdersObject coo = new CustomersOrdersObject
             {
                 Customers = CustomersList.ToArray(),
                 Orders = OrdersList.ToArray()

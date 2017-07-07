@@ -1,10 +1,8 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 using AutoServiceViewer.RepositoryRegistrator;
-using DataAccess;
-using DataAccess.RepositoryDb;
-using DataAccess.RepositoryFile.RepositoryBinary;
-using DataAccess.RepositoryFile.RepositoryXML;
+using DataAccess.Repository;
+using DataAccess.Repository.RepositoryDb;
+using DataAccess.Repository.RepositoryFile;
 using Microsoft.Practices.Unity;
 
 namespace AutoServiceViewer
@@ -12,6 +10,10 @@ namespace AutoServiceViewer
     public class IocApp
     {
         private static IUnityContainer _container;
+
+        protected IocApp()
+        {
+        }
 
         public static IUnityContainer Container {
             get {
@@ -23,8 +25,8 @@ namespace AutoServiceViewer
         private static void Initialize()
         {
             _container = new UnityContainer();
-            string connectionString = ConfigurationSettings.AppSettings.Get("connectionString");
-            var configurator = new DatabaseRepositoryRegistrator
+            var connectionString = ConfigurationSettings.AppSettings.Get("connectionString");
+            DatabaseRepositoryRegistrator configurator = new DatabaseRepositoryRegistrator
             {
                 ConnectionString = connectionString
             };
@@ -45,8 +47,5 @@ namespace AutoServiceViewer
                     return null;
             }
         }
-
-        protected IocApp()
-        { }
     }
 }

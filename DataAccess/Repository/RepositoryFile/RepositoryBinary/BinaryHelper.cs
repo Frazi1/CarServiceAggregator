@@ -1,8 +1,8 @@
-﻿using DataAccess.Model;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using DataAccess.Model;
 
-namespace DataAccess.RepositoryFile.RepositoryBinary
+namespace DataAccess.Repository.RepositoryFile
 {
     public static class BinaryHelper
     {
@@ -17,13 +17,12 @@ namespace DataAccess.RepositoryFile.RepositoryBinary
 
         public static CustomersOrdersObject Load(string fileName)
         {
-
             //TODO: Добавить обработку исключений
             CustomersOrdersObject result;
             using (FileStream fs = new FileStream(fileName, FileMode.Open))
             {
                 BinaryFormatter bf = new BinaryFormatter();
-                result = (CustomersOrdersObject)bf.Deserialize(fs);
+                result = (CustomersOrdersObject) bf.Deserialize(fs);
             }
             return result;
         }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using DataAccess.RepositoryFile.RepositoryBinary;
+using DataAccess.Repository.RepositoryFile;
 using Microsoft.Practices.Unity;
 
 namespace AutoServiceViewer.RepositoryRegistrator
@@ -12,7 +12,7 @@ namespace AutoServiceViewer.RepositoryRegistrator
         protected override void RegisterSettings(IUnityContainer container)
         {
             if (string.IsNullOrEmpty(FileName)) throw new ArgumentException("Filename must not be null");
-            var settings = new BinaryRepositorySettings(FileName, FileMode.Open);
+            BinaryRepositorySettings settings = new BinaryRepositorySettings(FileName, FileMode.Open);
             container.RegisterInstance(settings);
         }
     }

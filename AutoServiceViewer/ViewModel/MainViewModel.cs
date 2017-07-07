@@ -1,19 +1,19 @@
-﻿using DataAccess;
-using DataAccess.Model;
-using MVVM;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using DataAccess.Model;
+using DataAccess.Repository;
 using Microsoft.Practices.Unity;
+using MVVM;
 
 namespace AutoServiceViewer.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private IRepository _repository;
-        private RepositoryType _repositoryType;
         private ObservableCollection<Customer> _customers;
         private ObservableCollection<Order> _orders;
+        private IRepository _repository;
+        private RepositoryType _repositoryType;
         private Customer _selectedCustomer;
         private Order _selectedOrder;
 
@@ -24,7 +24,7 @@ namespace AutoServiceViewer.ViewModel
         }
 
         public RepositoryType RepositoryType {
-            get { return _repositoryType; }
+            get => _repositoryType;
             set {
                 _repositoryType = value;
                 NotifyPropertyChanged();
@@ -32,14 +32,15 @@ namespace AutoServiceViewer.ViewModel
         }
 
         public Customer SelectedCustomer {
-            get { return _selectedCustomer; }
+            get => _selectedCustomer;
             set {
                 _selectedCustomer = value;
                 NotifyPropertyChanged();
             }
         }
+
         public Order SelectedOrder {
-            get { return _selectedOrder; }
+            get => _selectedOrder;
             set {
                 _selectedOrder = value;
                 NotifyPropertyChanged();
@@ -48,14 +49,15 @@ namespace AutoServiceViewer.ViewModel
         }
 
         public ObservableCollection<Customer> Customers {
-            get { return _customers; }
+            get => _customers;
             set {
                 _customers = value;
                 NotifyPropertyChanged();
             }
         }
+
         public ObservableCollection<Order> Orders {
-            get { return _orders; }
+            get => _orders;
             set {
                 _orders = value;
                 NotifyPropertyChanged();
@@ -67,9 +69,10 @@ namespace AutoServiceViewer.ViewModel
         private bool IsRepositoryRegistered()
         {
             //TODO: Придумать что-то получше
-            string name = RepositoryType + "Repository";
+            var name = RepositoryType + "Repository";
             return IocApp.Container.IsRegistered<IRepository>(name);
         }
+
         private void GetData()
         {
             //_repository = IocApp.Container.Resolve<IRepository>();
@@ -80,8 +83,7 @@ namespace AutoServiceViewer.ViewModel
 
         private void SetSelectedCustomer()
         {
-            if (SelectedOrder != null)
-                SelectedCustomer = Customers.FirstOrDefault(c => c.ID == SelectedOrder.CustomerID);
+            SelectedCustomer = Customers.FirstOrDefault(c => c.ID == SelectedOrder?.CustomerID);
         }
     }
 }

@@ -1,37 +1,43 @@
-﻿using DataAccess.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DataAccess.Model;
 
-namespace DataAccess.RepositoryDb
+namespace DataAccess.Repository.RepositoryDb
 {
     public class DatabaseRepository : IRepository
     {
-        private readonly AutoServiceDb db;
-
-        public IEnumerable<Customer> Customers => db.Customers;
-        public IEnumerable<Order> Orders => db.Orders;
+        private readonly AutoServiceDb _db;
 
         public DatabaseRepository(DatabaseRepositorySettings settings)
         {
-            db = new AutoServiceDb(settings.ConnectionString);
+            _db = new AutoServiceDb(settings.ConnectionString);
         }
+
+        public IEnumerable<Customer> Customers => _db.Customers;
+        public IEnumerable<Order> Orders => _db.Orders;
 
         public void AddCustomer(Customer customer)
         {
-            db.Customers.Add(customer);
+            _db.Customers.Add(customer);
         }
 
         public void AddOrder(Order order)
         {
-            db.Orders.Add(order);
+            _db.Orders.Add(order);
         }
-
-        public Customer GetCustomer(int id) => db.Customers.Find(id);
-
-        public Order GetOrder(int id) => db.Orders.Find(id);
 
         public void SaveChanges()
         {
-            db.SaveChanges();
+            _db.SaveChanges();
+        }
+
+        public Customer GetCustomer(int id)
+        {
+            return _db.Customers.Find(id);
+        }
+
+        public Order GetOrder(int id)
+        {
+            return _db.Orders.Find(id);
         }
     }
 }

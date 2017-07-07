@@ -21,5 +21,4 @@ namespace MVVM.Converters
             return parameterEnum;
         }
     }
-
 }

@@ -1,7 +1,7 @@
-﻿using DataAccess.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DataAccess.Model;
 
-namespace DataAccess
+namespace DataAccess.Repository
 {
     public interface IRepository
     {
@@ -9,6 +9,7 @@ namespace DataAccess
         IEnumerable<Order> Orders { get; }
 
         void AddOrder(Order order);
+
         void AddCustomer(Customer customer);
         //Order GetOrder(int id);
         //Customer GetCustomer(int id);

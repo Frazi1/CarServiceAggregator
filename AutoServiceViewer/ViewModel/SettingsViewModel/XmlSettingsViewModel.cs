@@ -1,7 +1,7 @@
-﻿using Microsoft.Win32;
-using MVVM;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using AutoServiceViewer.RepositoryRegistrator;
+using Microsoft.Win32;
+using MVVM;
 
 namespace AutoServiceViewer.ViewModel
 {
@@ -15,10 +15,10 @@ namespace AutoServiceViewer.ViewModel
         }
 
         public ICommand OpenFileCommand => new RelayCommand(o => OpenFile());
-        
+
         private void OpenFile()
         {
-            var ofd = new OpenFileDialog
+            OpenFileDialog ofd = new OpenFileDialog
             {
                 Filter = "xml | *.xml"
             };

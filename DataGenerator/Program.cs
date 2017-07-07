@@ -1,14 +1,11 @@
-﻿using DataAccess;
-using DataAccess.Model;
-using DataAccess.RepositoryDb;
-using DataAccess.RepositoryFile.RepositoryBinary;
-using DataAccess.RepositoryFile.RepositoryXML;
+﻿using DataAccess.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using DataAccess.Repository;
+using DataAccess.Repository.RepositoryFile;
 
 namespace DataGenerator
 {

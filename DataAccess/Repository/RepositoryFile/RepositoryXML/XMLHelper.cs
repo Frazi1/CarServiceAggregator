@@ -1,7 +1,8 @@
-﻿using DataAccess.Model;
-using System.IO;
+﻿using System.IO;
 using System.Xml.Serialization;
-namespace DataAccess.RepositoryFile.RepositoryXML
+using DataAccess.Model;
+
+namespace DataAccess.Repository.RepositoryFile
 {
     public static class XMLHelper
     {
@@ -13,7 +14,7 @@ namespace DataAccess.RepositoryFile.RepositoryXML
             using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
             {
                 XmlSerializer x = new XmlSerializer(typeof(CustomersOrdersObject));
-                result = (CustomersOrdersObject)x.Deserialize(fs);
+                result = (CustomersOrdersObject) x.Deserialize(fs);
             }
             return result;
         }
