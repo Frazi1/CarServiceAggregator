@@ -47,22 +47,23 @@ namespace DataGenerator
             for (int i = 0; i < count_customers; i++)
             {
                 var customer = GenerateCustomer(r);
-                customer.ID = i;
+                customer.ID = i + 1;
+                customer.FirstName = "Test3";
                 Customers.Add(customer);
             }
 
             for (int i = 0; i < count_orders; i++)
             {
                 var order = GenerateOrder(r);
-                order.ID = i;
+                order.ID = i + 1;
                 Orders.Add(order);
             }
 
             const string connectionString = "server=localhost;port=3306;uid=testuser;password=testpassword; initial catalog=autoservicedb;";
             IRepository repo;
-            //repo = new XMLRepository(new DataAccess.RepositoryFile.FileRepositorySettings("AutoService.xml", FileMode.Create));
+            repo = new XmlRepository(new XmlRepositorySettings("AutoService3.xml", FileMode.Create));
             //repo = new BinaryRepository(new DataAccess.RepositoryFile.FileRepositorySettings("AutoService.dat", FileMode.Create));
-            repo = new DatabaseRepository(new DatabaseRepositorySettings(connectionString));
+            //repo = new DatabaseRepository(new DatabaseRepositorySettings(connectionString));
 
             foreach (var item in Customers)
             {

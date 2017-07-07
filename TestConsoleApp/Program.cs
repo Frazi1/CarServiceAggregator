@@ -38,12 +38,13 @@ namespace TestConsoleApp
             //repo.AddCustomer(customer2);
             //repo.SaveChanges();
 
-            repo = new XMLRepository(new XMLRepositorySettings("AutoService.xml", System.IO.FileMode.CreateNew));
-            repo.AddCustomer(customer1);
-            repo.AddCustomer(customer2);
-            repo.SaveChanges();
-        
+            //repo = new XMLRepository(new XMLRepositorySettings("AutoService.xml", System.IO.FileMode.CreateNew));
+            //repo.AddCustomer(customer1);
+            //repo.AddCustomer(customer2);
+            //repo.SaveChanges();
 
+
+            Console.WriteLine(RepositoryType.Xml.ToString());
             Console.ReadKey();
         }
     }
