@@ -12,7 +12,8 @@ namespace AutoServiceViewer.Configurator
         public virtual void UpdateContainer(IUnityContainer container)
         {
             var settings = GetSettings();
-            container.RegisterType<IRepository, T>();
+            string name = typeof(T).Name;
+            container.RegisterType<IRepository, T>(name);
             container.RegisterInstance(settings);
         }
     }
