@@ -2,12 +2,12 @@
 
 namespace AutoServiceViewer.Configurator
 {
-    public class XMLRepositoryConfigurator : RepositoryConfigurator<XMLRepository, XMLRepositorySettings>
+    public class XmlRepositoryConfigurator : RepositoryConfigurator<XmlRepository, XmlRepositorySettings>
     {
         public string FileName { get; set; }
-        protected override XMLRepositorySettings GetSettings()
+        protected override XmlRepositorySettings GetSettings()
         {
-            return new XMLRepositorySettings(FileName, System.IO.FileMode.Open);
+            return new XmlRepositorySettings(FileName, System.IO.FileMode.Open);
         }
     }
 }

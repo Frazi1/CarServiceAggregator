@@ -2,9 +2,9 @@
 
 namespace DataAccess.RepositoryFile.RepositoryXML
 {
-    public sealed class XMLRepositorySettings : FileRepositorySettings
+    public sealed class XmlRepositorySettings : FileRepositorySettings
     {
-        public XMLRepositorySettings(string filePath, FileMode fileMode) 
+        public XmlRepositorySettings(string filePath, FileMode fileMode) 
             : base(filePath, fileMode)
         {
         }
