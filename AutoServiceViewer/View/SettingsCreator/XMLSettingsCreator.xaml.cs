@@ -20,9 +20,9 @@ namespace AutoServiceViewer.View.SettingsCreator
     /// <summary>
     /// Interaction logic for XMLSettingsCreator.xaml
     /// </summary>
-    public partial class XMLSettingsCreator : UserControl
+    public partial class XmlSettingsCreator : UserControl
     {
-        public XMLSettingsCreator()
+        public XmlSettingsCreator()
         {
             InitializeComponent();
         }

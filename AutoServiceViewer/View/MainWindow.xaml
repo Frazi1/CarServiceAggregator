@@ -59,7 +59,7 @@
                              IsChecked="{Binding RepositoryType, Converter={StaticResource BooleanToEnumConverter}, ConverterParameter={x:Static dataacc:RepositoryType.Database}}"/>
             </StackPanel>
             <StackPanel Width="150" Height="150">
-                <settingsCreator:XMLSettingsCreator x:Name="XmlSettings" 
+                <settingsCreator:XmlSettingsCreator x:Name="XmlSettings" 
                                 DataContext="{Binding XmlSettingsViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
                                 HorizontalAlignment="Left" VerticalAlignment="Top"
                                 Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=RbXml}" />
