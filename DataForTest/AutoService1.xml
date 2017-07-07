@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<CustomersOrdersObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Customers>
+    <Customer>
+      <ID>1</ID>
+      <Surname>Емельянов</Surname>
+      <FirstName>Test1</FirstName>
+      <Patronymic>Захарьевич</Patronymic>
+      <BirthYear>1997</BirthYear>
+      <PhoneNumber>88866157722</PhoneNumber>
+    </Customer>
+  </Customers>
+  <Orders>
+    <Order>
+      <ID>1</ID>
+      <CustomerID>1</CustomerID>
+      <CarBrand>Porsche</CarBrand>
+      <CarModel>Model4</CarModel>
+      <ManufactureYear>2007</ManufactureYear>
+      <Transmission>Автомат</Transmission>
+      <EnginePower>121</EnginePower>
+      <TaskName>Замена колеса</TaskName>
+      <TaskStarted>2017-07-06T22:55:54.5250064+03:00</TaskStarted>
+      <TaskFinished>2017-07-06T22:55:54.5260108+03:00</TaskFinished>
+      <Price>11114</Price>
+    </Order>
+  </Orders>
+</CustomersOrdersObject>

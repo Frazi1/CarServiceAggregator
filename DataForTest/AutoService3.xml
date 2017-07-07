@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<CustomersOrdersObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Customers>
+    <Customer>
+      <ID>1</ID>
+      <Surname>Константинов</Surname>
+      <FirstName>Test3</FirstName>
+      <Patronymic>Ильич</Patronymic>
+      <BirthYear>1997</BirthYear>
+      <PhoneNumber>84496051928</PhoneNumber>
+    </Customer>
+  </Customers>
+  <Orders>
+    <Order>
+      <ID>1</ID>
+      <CustomerID>1</CustomerID>
+      <CarBrand>Mitsubishi</CarBrand>
+      <CarModel>Model4</CarModel>
+      <ManufactureYear>1984</ManufactureYear>
+      <Transmission>Вариатор</Transmission>
+      <EnginePower>132</EnginePower>
+      <TaskName>Замена колеса</TaskName>
+      <TaskStarted>2017-07-06T22:56:14.6608283+03:00</TaskStarted>
+      <TaskFinished>2017-07-06T22:56:14.6613301+03:00</TaskFinished>
+      <Price>12900</Price>
+    </Order>
+  </Orders>
+</CustomersOrdersObject>
