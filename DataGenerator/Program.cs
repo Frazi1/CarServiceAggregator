@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using DataAccess.Model;
 using DataAccess.Repository;
 using DataAccess.Repository.RepositoryDb;
@@ -11,26 +9,28 @@ using DataGeneratorLib;
 
 namespace DataGeneratorConsole
 {
-    class Program
+    internal class Program
     {
-        public static Dictionary<string, string> FilePaths = new Dictionary<string, string>();
-        private const string ConnectionString = "server=localhost;port=3306;uid=testuser;password=testpassword; initial catalog=autoservicedb;";
+        private const string ConnectionString =
+            "server=localhost;port=3306;uid=testuser;password=testpassword; initial catalog=autoservicedb;";
 
-        static void Main(string[] args)
+        public static Dictionary<string, string> FilePaths = new Dictionary<string, string>();
+
+        private static void Main(string[] args)
         {
             Initialize();
             DataGenerator generator = new DataGenerator(true);
             Random r = new Random();
 
             Console.WriteLine("Number Customers");
-            int countCustomers = int.Parse(Console.ReadLine());
+            var countCustomers = int.Parse(Console.ReadLine());
             Console.WriteLine("Number orders");
-            int countOrders = int.Parse(Console.ReadLine());
+            var countOrders = int.Parse(Console.ReadLine());
 
             generator.GenerateCustomer(countCustomers, r);
             generator.GenerateOrder(countOrders, r);
 
-            List<IRepository> repositories = new List<IRepository>
+            var repositories = new List<IRepository>
             {
                 new XmlRepository(new XmlRepositorySettings(FilePaths["xml"], FileMode.Create)),
                 new BinaryRepository(new BinaryRepositorySettings(FilePaths["binary"], FileMode.Create)),
@@ -40,14 +40,10 @@ namespace DataGeneratorConsole
 
             foreach (IRepository repo in repositories)
             {
-                foreach (var item in generator.Customers)
-                {
+                foreach (Customer item in generator.Customers)
                     repo.AddCustomer(item);
-                }
-                foreach (var item in generator.Orders)
-                {
+                foreach (Order item in generator.Orders)
                     repo.AddOrder(item);
-                }
                 repo.SaveChanges();
             }
 
@@ -59,8 +55,8 @@ namespace DataGeneratorConsole
             const string prefixNewPath = @"../../../DataForTest/";
             foreach (var sourcePath in FilePaths)
             {
-                string oldPath = sourcePath.Value;
-                string newPath = prefixNewPath + sourcePath.Value;
+                var oldPath = sourcePath.Value;
+                var newPath = prefixNewPath + sourcePath.Value;
                 File.Copy(oldPath, newPath);
             }
         }
