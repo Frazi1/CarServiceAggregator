@@ -18,7 +18,7 @@ namespace Data.Test
         [TestInitialize]
         public virtual void Initialize()
         {
-            DataGenerator = new DataGenerator();
+            DataGenerator = new DataGenerator(true);
             Random = new Random();
             DataGenerator.GenerateCustomer(30, Random);
             DataGenerator.GenerateOrder(50, Random);
@@ -110,13 +110,13 @@ namespace Data.Test
 
         public override void SaveData()
         {
-            Repository = new DatabaseRepository(new DatabaseRepositorySettings(ConnectionString));
+            Repository = new DatabaseRepository(new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create));
             base.SaveData();
         }
 
         public override void LoadData()
         {
-            Repository = new DatabaseRepository(new DatabaseRepositorySettings(ConnectionString));
+            Repository = new DatabaseRepository(new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create));
         }
     }
 }
