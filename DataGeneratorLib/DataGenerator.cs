@@ -13,12 +13,13 @@ namespace DataGeneratorLib
 
         protected Dictionary<string, string> FilePaths = new Dictionary<string, string>();
         public List<Order> Orders = new List<Order>();
+        public bool SetId { get; set; }
 
-
-        public DataGenerator()
+        public DataGenerator(bool setId)
         {
             InitializePaths();
             Initialize();
+            SetId = setId;
         }
 
         protected List<string> Surnames { get; set; }
@@ -59,13 +60,15 @@ namespace DataGeneratorLib
                     CarModel = CarModels[r.Next(CarModels.Count)],
                     CustomerId = Customers[r.Next(Customers.Count)].CustomerId,
                     EnginePower = r.Next(50, 300),
-                    ManufactureYear = (short) r.Next(1950, 2017),
+                    ManufactureYear = (short)r.Next(1950, 2017),
                     Price = r.Next(1000, 20000),
                     TransmissionType = Transmissions[r.Next(Transmissions.Count)],
                     TaskName = TaskNames[r.Next(TaskNames.Count)],
                     TaskStarted = DateTime.Now,
                     TaskFinished = DateTime.Now
                 };
+                if (SetId)
+                    order.OrderId = i + 1;
                 Orders.Add(order);
             }
         }
@@ -83,10 +86,12 @@ namespace DataGeneratorLib
                     Surname = Surnames[r.Next(Surnames.Count)],
                     FirstName = Firstnames[r.Next(Firstnames.Count)],
                     Patronymic = Patronymics[r.Next(Patronymics.Count)],
-                    BirthYear = (short) r.Next(1950, 1998),
+                    BirthYear = (short)r.Next(1950, 1998),
                     PhoneNumber = phone.ToString()
                 };
 
+                if (SetId)
+                    customer.CustomerId = j + 1;
                 Customers.Add(customer);
             }
         }
@@ -97,7 +102,7 @@ namespace DataGeneratorLib
             {
                 Patronymics = s.ReadToEnd()
                     .Replace('\r', ' ')
-                    .Split(new[] {'\n'}, StringSplitOptions.RemoveEmptyEntries)
+                    .Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(str => str.Trim())
                     .ToList();
             }
@@ -107,7 +112,7 @@ namespace DataGeneratorLib
         {
             using (StreamReader s = new StreamReader(FilePaths["firstname"], Encoding.GetEncoding(1251)))
             {
-                Firstnames = s.ReadToEnd().Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries).ToList();
+                Firstnames = s.ReadToEnd().Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
             }
         }
 
@@ -117,7 +122,7 @@ namespace DataGeneratorLib
             {
                 Surnames = s.ReadToEnd()
                     .Replace('\r', ' ')
-                    .Split(new[] {'\n'}, StringSplitOptions.RemoveEmptyEntries)
+                    .Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(str => str.Trim())
                     .ToList();
             }
@@ -129,7 +134,7 @@ namespace DataGeneratorLib
             {
                 CarBrands = s.ReadToEnd()
                     .Replace('\r', ' ')
-                    .Split(new[] {'\n'}, StringSplitOptions.RemoveEmptyEntries)
+                    .Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(str => str.Trim())
                     .ToList();
             }
@@ -144,7 +149,7 @@ namespace DataGeneratorLib
 
         protected void ReadTransmissions()
         {
-            Transmissions = new List<string> {"Автомат", "Вариатор", "Механическая"};
+            Transmissions = new List<string> { "Автомат", "Вариатор", "Механическая" };
         }
 
         protected void ReadTaskNames()
@@ -153,7 +158,7 @@ namespace DataGeneratorLib
             {
                 TaskNames = s.ReadToEnd()
                     .Replace('\r', ' ')
-                    .Split(new[] {'\n'}, StringSplitOptions.RemoveEmptyEntries)
+                    .Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(str => str.Trim())
                     .ToList();
             }
