@@ -1,177 +1,70 @@
-﻿using DataAccess.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
+using DataAccess.Model;
 using DataAccess.Repository;
+using DataAccess.Repository.RepositoryDb;
 using DataAccess.Repository.RepositoryFile;
+using DataGeneratorLib;
 
-namespace DataGenerator
+namespace DataGeneratorConsole
 {
-    class Program
+    internal class Program
     {
-        private static List<string> Surnames { get; set; }
-        private static List<string> Firstnames { get; set; }
-        private static List<string> Patronymics { get; set; }
+        private const string ConnectionString =
+            "server=localhost;port=3306;uid=testuser;password=testpassword; initial catalog=autoservicedb;";
 
-        private static List<string> CarBrands { get; set; }
-        private static List<string> CarModels { get; set; }
-        private static List<string> Transmissions { get; set; }
-        private static List<string> TaskNames { get; set; }
+        public static Dictionary<string, string> FilePaths = new Dictionary<string, string>();
 
-        private static List<Customer> Customers = new List<Customer>();
-        private static List<Order> Orders = new List<Order>();
-
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            ReadSurnames();
-            ReadFirstNames();
-            ReadPatronymics();
-            ReadCarBrands();
-            ReadCarModels();
-            ReadTaskNames();
-            ReadTransmissions();
-
+            Initialize();
+            DataGenerator generator = new DataGenerator(true);
             Random r = new Random();
 
-
             Console.WriteLine("Number Customers");
-            uint count_customers = uint.Parse(Console.ReadLine());
+            var countCustomers = int.Parse(Console.ReadLine());
             Console.WriteLine("Number orders");
-            uint count_orders = uint.Parse(Console.ReadLine());
+            var countOrders = int.Parse(Console.ReadLine());
 
-            for (int i = 0; i < count_customers; i++)
+            generator.GenerateCustomer(countCustomers, r);
+            generator.GenerateOrder(countOrders, r);
+
+            var repositories = new List<IRepository>
             {
-                var customer = GenerateCustomer(r);
-                customer.ID = i + 1;
-                customer.FirstName = "Test3";
-                Customers.Add(customer);
-            }
-
-            for (int i = 0; i < count_orders; i++)
-            {
-                var order = GenerateOrder(r);
-                order.ID = i + 1;
-                Orders.Add(order);
-            }
-
-            const string connectionString = "server=localhost;port=3306;uid=testuser;password=testpassword; initial catalog=autoservicedb;";
-            IRepository repo;
-            repo = new XmlRepository(new XmlRepositorySettings("AutoService3.xml", FileMode.Create));
-            //repo = new BinaryRepository(new DataAccess.RepositoryFile.FileRepositorySettings("AutoService.dat", FileMode.Create));
-            //repo = new DatabaseRepository(new DatabaseRepositorySettings(connectionString));
-
-            foreach (var item in Customers)
-            {
-                repo.AddCustomer(item);
-            }
-            foreach (var item in Orders)
-            {
-                repo.AddOrder(item);
-            }
-            repo.SaveChanges();
-
-        }
-
-        private static Order GenerateOrder(Random r)
-        {
-            var order = new Order()
-            {
-                CarBrand = CarBrands[r.Next(CarBrands.Count)],
-                CarModel = CarModels[r.Next(CarModels.Count)],
-                CustomerID = Customers[r.Next(Customers.Count)].ID,
-                EnginePower = r.Next(50, 300),
-                ManufactureYear = r.Next(1950, 2017),
-                Price = r.Next(1000, 20000),
-                Transmission = Transmissions[r.Next(Transmissions.Count)],
-                TaskName = TaskNames[r.Next(TaskNames.Count)],
-                TaskStarted = DateTime.Now,
-                TaskFinished = DateTime.Now,
+                new XmlRepository(new XmlRepositorySettings(FilePaths["xml"], FileMode.Create)),
+                new BinaryRepository(new BinaryRepositorySettings(FilePaths["binary"], FileMode.Create)),
+                new DatabaseRepository(
+                    new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create))
             };
-            return order;
-        }
 
-        private static Customer GenerateCustomer(Random r)
-        {
-            StringBuilder phone = new StringBuilder();
-            phone.Append("8");
-            for (int i = 0; i < 10; i++)
-                phone.Append(r.Next(10));
-            return new Customer()
+            foreach (IRepository repo in repositories)
             {
-                Surname = Surnames[r.Next(Surnames.Count)],
-                FirstName = Firstnames[r.Next(Firstnames.Count)],
-                Patronymic = Patronymics[r.Next(Patronymics.Count)],
-                BirthYear = r.Next(1950, 1998),
-                PhoneNumber = phone.ToString()
-            };
+                foreach (Customer item in generator.Customers)
+                    repo.AddCustomer(item);
+                foreach (Order item in generator.Orders)
+                    repo.AddOrder(item);
+                repo.SaveChanges();
+            }
+
+            CopyFiles();
         }
 
-        private static void ReadPatronymics()
+        private static void CopyFiles()
         {
-            StreamReader s = new StreamReader("patronymic.txt", Encoding.GetEncoding(1251));
-            Patronymics = s.ReadToEnd()
-                .Replace('\r', ' ')
-                .Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(str => str.Trim())
-                .ToList();
-            //Patronymics = File.ReadAllLines("patronymic.txt").ToList();
+            const string prefixNewPath = @"../../../DataForTest/";
+            foreach (var sourcePath in FilePaths)
+            {
+                var oldPath = sourcePath.Value;
+                var newPath = prefixNewPath + sourcePath.Value;
+                File.Copy(oldPath, newPath);
+            }
         }
 
-        private static void ReadFirstNames()
+        private static void Initialize()
         {
-            StreamReader s = new StreamReader("firstname.txt", Encoding.GetEncoding(1251));
-            Firstnames = s.ReadToEnd().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-        }
-
-        private static void ReadSurnames()
-        {
-            //Surnames = File.ReadLines("surname.txt").ToList();
-            StreamReader s = new StreamReader("surname.txt", Encoding.GetEncoding(1251));
-            Surnames = s.ReadToEnd()
-                .Replace('\r', ' ')
-                .Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(str => str.Trim())
-                .ToList();
-        }
-
-        private static void ReadCarBrands()
-        {
-            StreamReader s = new StreamReader("brands.txt", Encoding.GetEncoding(1251));
-            CarBrands = s.ReadToEnd()
-                .Replace('\r', ' ')
-                .Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(str => str.Trim())
-                .ToList();
-            //CarBrands = File.ReadAllLines("brands.txt")
-            //    .ToList();
-        }
-
-        private static void ReadCarModels()
-        {
-            CarModels = new List<string>();
-            for (int i = 0; i < 10; i++)
-                CarModels.Add($"Model{i}");
-        }
-
-        private static void ReadTransmissions()
-        {
-            Transmissions = new List<string>();
-            Transmissions.Add("Автомат");
-            Transmissions.Add("Вариатор");
-            Transmissions.Add("Механическая");
-        }
-
-        private static void ReadTaskNames()
-        {
-            StreamReader s = new StreamReader("tasks.txt", Encoding.GetEncoding(1251));
-            TaskNames = s.ReadToEnd()
-                .Replace('\r', ' ')
-                .Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(str => str.Trim())
-                .ToList();
-            //TaskNames = File.ReadAllLines("tasks.txt").ToList();
+            FilePaths.Add("xml", "AutoService.xml");
+            FilePaths.Add("binary", "AutoService.dat");
         }
     }
 }

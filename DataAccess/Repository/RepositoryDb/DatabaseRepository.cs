@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DataAccess.Model;
 
 namespace DataAccess.Repository.RepositoryDb
@@ -10,6 +11,7 @@ namespace DataAccess.Repository.RepositoryDb
         public DatabaseRepository(DatabaseRepositorySettings settings)
         {
             _db = new AutoServiceDb(settings.ConnectionString);
+            DbInitialize(settings);
         }
 
         public IEnumerable<Customer> Customers => _db.Customers;
@@ -28,6 +30,24 @@ namespace DataAccess.Repository.RepositoryDb
         public void SaveChanges()
         {
             _db.SaveChanges();
+        }
+
+        private void DbInitialize(DatabaseRepositorySettings settings)
+        {
+            switch (settings.DatabaseConnectionAction)
+            {
+                case DatabaseConnectionAction.Create:
+                    _db.Database.Delete();
+                    _db.Database.Create();
+                    break;
+                case DatabaseConnectionAction.CreateIfNotExists:
+                    _db.Database.CreateIfNotExists();
+                    break;
+                case DatabaseConnectionAction.Connect:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         public Customer GetCustomer(int id)

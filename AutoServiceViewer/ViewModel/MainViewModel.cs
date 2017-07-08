@@ -75,7 +75,7 @@ namespace AutoServiceViewer.ViewModel
 
         private void SetSelectedCustomer()
         {
-            SelectedCustomer = Customers.FirstOrDefault(c => c.ID == SelectedOrder?.CustomerID);
+            SelectedCustomer = Customers.FirstOrDefault(c => c.CustomerId == SelectedOrder?.CustomerId);
         }
     }
 }
