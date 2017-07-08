@@ -8,6 +8,8 @@ namespace DataAccess.Model
     [Serializable]
     public class Order
     {
+        [XmlIgnore] [NonSerialized] private Customer _customer;
+
         public int OrderId { get; set; }
 
         public int CustomerId { get; set; }
@@ -39,10 +41,6 @@ namespace DataAccess.Model
 
         [Required]
         public double Price { get; set; }
-
-        [XmlIgnore]
-        [NonSerialized]
-        private Customer _customer;
 
         [ForeignKey("CustomerId")]
         public Customer Customer {
