@@ -27,18 +27,13 @@ namespace Data.Test
         public virtual void SaveData()
         {
             foreach (Customer customer in DataGenerator.Customers)
-            {
                 Repository.AddCustomer(customer);
-            }
             foreach (Order order in DataGenerator.Orders)
-            {
                 Repository.AddOrder(order);
-            }
             Repository.SaveChanges();
         }
 
         public abstract void LoadData();
-
     }
 
     public class BaseXmlDataModelTest : BaseDataModel
@@ -51,6 +46,13 @@ namespace Data.Test
             XmlFilePath = "test.xml";
             base.Initialize();
         }
+
+        [TestCleanup]
+        public void CleanUp()
+        {
+            File.Delete(XmlFilePath);
+        }
+
 
         public override void SaveData()
         {
@@ -76,6 +78,12 @@ namespace Data.Test
             base.Initialize();
         }
 
+        [TestCleanup]
+        public void CleanUp()
+        {
+            File.Delete(BinaryFilePath);
+        }
+
         public override void SaveData()
         {
             Repository = new BinaryRepository(new BinaryRepositorySettings(BinaryFilePath, FileMode.Create));
@@ -95,7 +103,8 @@ namespace Data.Test
         [TestInitialize]
         public override void Initialize()
         {
-            ConnectionString = "server=localhost;port=3306;userid=testuser;password=testpassword;initial catalog=test_db_auto_data";
+            ConnectionString =
+                "server=localhost;port=3306;userid=testuser;password=testpassword;initial catalog=test_db_auto_data";
             base.Initialize();
         }
 

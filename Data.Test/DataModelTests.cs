@@ -1,8 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using DataAccess.Model;
-using DataAccess.Repository.RepositoryFile;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Data.Test
@@ -29,7 +25,6 @@ namespace Data.Test
     [TestClass]
     public class XmlDataModelTests : BaseXmlDataModelTest
     {
-
         [TestMethod]
         public void XmlRepositoryModelCreationTest()
         {
@@ -44,13 +39,11 @@ namespace Data.Test
             Assert.IsTrue(Repository.Orders.Any());
             Assert.IsTrue(Repository.Customers.Any());
         }
-
     }
 
     [TestClass]
     public class DatabaseDataModelTests : BaseDatabaseDataModelTest
     {
-
         [TestMethod]
         public void DatabaseRepositoryModelCreationTest()
         {
@@ -60,7 +53,7 @@ namespace Data.Test
         [TestMethod]
         public void DatabaseRepositoryModelLoadTest()
         {
-            SaveData();
+            //SaveData();
             LoadData();
             Assert.IsTrue(Repository.Orders.Any());
             Assert.IsTrue(Repository.Customers.Any());
