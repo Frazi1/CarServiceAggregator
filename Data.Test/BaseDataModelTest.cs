@@ -116,7 +116,7 @@ namespace Data.Test
 
         public override void LoadData()
         {
-            Repository = new DatabaseRepository(new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create));
+            Repository = new DatabaseRepository(new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Connect));
         }
     }
 }

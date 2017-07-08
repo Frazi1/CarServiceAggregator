@@ -53,7 +53,7 @@ namespace Data.Test
         [TestMethod]
         public void DatabaseRepositoryModelLoadTest()
         {
-            //SaveData();
+            SaveData();
             LoadData();
             Assert.IsTrue(Repository.Orders.Any());
             Assert.IsTrue(Repository.Customers.Any());
