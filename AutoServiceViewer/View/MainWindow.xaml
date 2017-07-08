@@ -31,15 +31,15 @@
         <DockPanel Grid.Row="0" HorizontalAlignment="Right" Width="84">
             <StackPanel>
                 <TextBlock FontWeight="Bold" Text="Фамилия" />
-                <TextBlock Text="{Binding SelectedCustomer.Surname}" />
+                <TextBlock Text="{Binding SelectedOrder.Customer.Surname}" />
                 <TextBlock FontWeight="Bold" Text="Имя" />
-                <TextBlock Text="{Binding SelectedCustomer.FirstName}" />
+                <TextBlock Text="{Binding SelectedOrder.Customer.FirstName}" />
                 <TextBlock FontWeight="Bold" Text="Отчество" />
-                <TextBlock Text="{Binding SelectedCustomer.Patronymic}" />
+                <TextBlock Text="{Binding SelectedOrder.Customer.Patronymic}" />
                 <TextBlock FontWeight="Bold" Text="Год рождения" />
-                <TextBlock Text="{Binding SelectedCustomer.BirthYear}" />
+                <TextBlock Text="{Binding SelectedOrder.Customer.BirthYear}" />
                 <TextBlock FontWeight="Bold" Text="Телефон" />
-                <TextBlock Text="{Binding SelectedCustomer.PhoneNumber}" />
+                <TextBlock Text="{Binding SelectedOrder.Customer.PhoneNumber}" />
             </StackPanel>
         </DockPanel>
         <!--/Владелец автомобиля-->
@@ -49,11 +49,11 @@
             <DataGrid x:Name="GridOrders" Height="Auto" ItemsSource="{Binding Orders}" AutoGenerateColumns="False"
                       SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" IsReadOnly="True" ColumnWidth="Auto" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="ID" Binding="{Binding OrderId}"/>
                     <DataGridTextColumn Header="Марка" Binding="{Binding CarBrand}"/>
                     <DataGridTextColumn Header="Модель" Binding="{Binding CarModel}"/>
                     <DataGridTextColumn Header="Год выпуска" Binding="{Binding ManufactureYear}"/>
-                    <DataGridTextColumn Header="Тип трансмиссии" Binding="{Binding Transmission}"/>
+                    <DataGridTextColumn Header="Тип трансмиссии" Binding="{Binding TransmissionType}"/>
                     <DataGridTextColumn Header="Мощность двигателя" Binding="{Binding EnginePower, StringFormat={}{0} л.с.}"/>
                     <DataGridTextColumn Header="Наименование работ" Binding="{Binding TaskName}"/>
                     <DataGridTextColumn Header="Время начала работ" Binding="{Binding TaskStarted}"/>
