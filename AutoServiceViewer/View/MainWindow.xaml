@@ -46,8 +46,21 @@
 
         <!--Таблица-->
         <DockPanel Grid.Row="1" VerticalAlignment="Stretch" Height="Auto">
-            <DataGrid x:Name="GridOrders" Height="Auto" ItemsSource="{Binding Orders}"
-                      SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" IsReadOnly="True" />
+            <DataGrid x:Name="GridOrders" Height="Auto" ItemsSource="{Binding Orders}" AutoGenerateColumns="False"
+                      SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" IsReadOnly="True" ColumnWidth="Auto" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="Марка" Binding="{Binding CarBrand}"/>
+                    <DataGridTextColumn Header="Модель" Binding="{Binding CarModel}"/>
+                    <DataGridTextColumn Header="Год выпуска" Binding="{Binding ManufactureYear}"/>
+                    <DataGridTextColumn Header="Тип трансмиссии" Binding="{Binding Transmission}"/>
+                    <DataGridTextColumn Header="Мощность двигателя" Binding="{Binding EnginePower, StringFormat={}{0} л.с.}"/>
+                    <DataGridTextColumn Header="Наименование работ" Binding="{Binding TaskName}"/>
+                    <DataGridTextColumn Header="Время начала работ" Binding="{Binding TaskStarted}"/>
+                    <DataGridTextColumn Header="Время окончания работ" Binding="{Binding TaskFinished}"/>
+                    <DataGridTextColumn Header="Стоимость работ" Binding="{Binding Price, StringFormat={}{0} руб.}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </DockPanel>
         <!--/Таблица-->
 
