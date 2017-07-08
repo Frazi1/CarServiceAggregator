@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApp", "TestConsoleApp\TestConsoleApp.csproj", "{5C07B170-0A92-4E9A-B3F3-039F4C96F6F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGenerator", "DataGenerator\DataGenerator.csproj", "{EED90E03-5D8F-42E7-B252-42781E05C92B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGeneratorConsole", "DataGenerator\DataGeneratorConsole.csproj", "{EED90E03-5D8F-42E7-B252-42781E05C92B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoServiceViewer", "AutoServiceViewer\AutoServiceViewer.csproj", "{3F252B57-7F9F-4981-946F-99350CC0A9A8}"
 EndProject
