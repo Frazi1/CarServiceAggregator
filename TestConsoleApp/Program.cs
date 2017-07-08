@@ -10,7 +10,7 @@ namespace TestConsoleApp
         {
             var customer1 = new Customer()
             {
-                ID = 1,
+                CustomerId = 1,
                 FirstName = "Valera",
                 Surname = "Petuhov",
                 BirthYear = 1996,
@@ -20,7 +20,7 @@ namespace TestConsoleApp
 
             var customer2 = new Customer()
             {
-                ID = 2,
+                CustomerId = 2,
                 FirstName = "Evgeny",
                 Surname = "Petrov"
             };

@@ -1,897 +1,797 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <CustomersOrdersObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Customers>
     <Customer>
-      <ID>0</ID>
-      <Surname>Дьячков</Surname>
-      <FirstName> Елизар</FirstName>
-      <Patronymic>Владленович</Patronymic>
-      <BirthYear>1980</BirthYear>
-      <PhoneNumber>86822203242</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>1</ID>
-      <Surname>Сафонов</Surname>
-      <FirstName> Иларион</FirstName>
-      <Patronymic>Валерьевич</Patronymic>
-      <BirthYear>1984</BirthYear>
-      <PhoneNumber>83664185642</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>2</ID>
-      <Surname>Максимов</Surname>
-      <FirstName> Аполлон</FirstName>
-      <Patronymic>Артурович</Patronymic>
-      <BirthYear>1983</BirthYear>
-      <PhoneNumber>85384313587</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>3</ID>
-      <Surname>Козлов</Surname>
-      <FirstName> Арсений</FirstName>
-      <Patronymic>Иосифович</Patronymic>
-      <BirthYear>1995</BirthYear>
-      <PhoneNumber>86825417798</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>4</ID>
-      <Surname>Мельников</Surname>
-      <FirstName> Анатолий</FirstName>
-      <Patronymic>Всеволодович</Patronymic>
-      <BirthYear>1989</BirthYear>
-      <PhoneNumber>83053867137</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>5</ID>
-      <Surname>Большаков</Surname>
-      <FirstName> Аггей</FirstName>
-      <Patronymic>Эдуардович</Patronymic>
-      <BirthYear>1989</BirthYear>
-      <PhoneNumber>87819689591</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>6</ID>
-      <Surname>Большаков</Surname>
-      <FirstName> Гавриил</FirstName>
-      <Patronymic>Юлианович</Patronymic>
-      <BirthYear>1976</BirthYear>
-      <PhoneNumber>84040431829</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>7</ID>
-      <Surname>Рожков</Surname>
-      <FirstName> Иларион</FirstName>
-      <Patronymic>Юльевич</Patronymic>
-      <BirthYear>1990</BirthYear>
-      <PhoneNumber>84513899061</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>8</ID>
-      <Surname>Галкин</Surname>
-      <FirstName>Ювеналий</FirstName>
-      <Patronymic>Измаилович</Patronymic>
-      <BirthYear>1995</BirthYear>
-      <PhoneNumber>80397697333</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>9</ID>
-      <Surname>Борисов</Surname>
-      <FirstName> Авдей</FirstName>
-      <Patronymic>Фокич</Patronymic>
-      <BirthYear>1967</BirthYear>
-      <PhoneNumber>86151840400</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>10</ID>
-      <Surname>Блохин</Surname>
-      <FirstName> Агей</FirstName>
-      <Patronymic>Феофанович</Patronymic>
-      <BirthYear>1956</BirthYear>
-      <PhoneNumber>83256337996</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>11</ID>
-      <Surname>Морозов</Surname>
-      <FirstName> Гавриил</FirstName>
-      <Patronymic>Тимурович</Patronymic>
-      <BirthYear>1982</BirthYear>
-      <PhoneNumber>81778294454</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>12</ID>
-      <Surname>Емельянов</Surname>
-      <FirstName> Будимир</FirstName>
-      <Patronymic>Афанасьевич</Patronymic>
-      <BirthYear>1983</BirthYear>
-      <PhoneNumber>82956039080</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>13</ID>
-      <Surname>Сафонов</Surname>
-      <FirstName> Иларион</FirstName>
-      <Patronymic>Фролович</Patronymic>
-      <BirthYear>1992</BirthYear>
-      <PhoneNumber>82827592233</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>14</ID>
-      <Surname>Петров</Surname>
-      <FirstName> Владимир</FirstName>
-      <Patronymic>Бенедиктович</Patronymic>
-      <BirthYear>1956</BirthYear>
-      <PhoneNumber>86058506012</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>15</ID>
-      <Surname>Константинов</Surname>
-      <FirstName> Ермил</FirstName>
-      <Patronymic>Демидович</Patronymic>
-      <BirthYear>1997</BirthYear>
-      <PhoneNumber>89729872722</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>16</ID>
-      <Surname>Костин</Surname>
-      <FirstName> Азарий</FirstName>
-      <Patronymic>Андреевич</Patronymic>
-      <BirthYear>1960</BirthYear>
-      <PhoneNumber>86181403747</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>17</ID>
-      <Surname>Семёнов</Surname>
-      <FirstName> Андриан</FirstName>
-      <Patronymic>Игнатович</Patronymic>
+      <CustomerId>1</CustomerId>
+      <FirstName> Антон</FirstName>
+      <Surname>Тетерин</Surname>
+      <Patronymic>Авдеевич</Patronymic>
       <BirthYear>1996</BirthYear>
-      <PhoneNumber>87970703607</PhoneNumber>
+      <PhoneNumber>82435124916</PhoneNumber>
     </Customer>
     <Customer>
-      <ID>18</ID>
-      <Surname>Васильев</Surname>
-      <FirstName> Алексей</FirstName>
-      <Patronymic>Трифонович</Patronymic>
-      <BirthYear>1957</BirthYear>
-      <PhoneNumber>88387663939</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>19</ID>
-      <Surname>Петров</Surname>
-      <FirstName> Борей</FirstName>
-      <Patronymic>Жоресович</Patronymic>
-      <BirthYear>1951</BirthYear>
-      <PhoneNumber>82427609359</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>20</ID>
-      <Surname>Блинов</Surname>
-      <FirstName> Викентий</FirstName>
-      <Patronymic>Феофанович</Patronymic>
-      <BirthYear>1988</BirthYear>
-      <PhoneNumber>80103439199</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>21</ID>
-      <Surname>Колесников</Surname>
-      <FirstName> Герман</FirstName>
-      <Patronymic>Яковлевич</Patronymic>
+      <CustomerId>2</CustomerId>
+      <FirstName> Бронислав</FirstName>
+      <Surname>Морозов</Surname>
+      <Patronymic>Харлампович</Patronymic>
       <BirthYear>1974</BirthYear>
-      <PhoneNumber>85806323553</PhoneNumber>
+      <PhoneNumber>82450735951</PhoneNumber>
     </Customer>
     <Customer>
-      <ID>22</ID>
-      <Surname>Хохлов</Surname>
-      <FirstName> Бартоломей</FirstName>
+      <CustomerId>3</CustomerId>
+      <FirstName> Авдей</FirstName>
+      <Surname>Абрамов</Surname>
+      <Patronymic>Феликсович</Patronymic>
+      <BirthYear>1961</BirthYear>
+      <PhoneNumber>89297696350</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>4</CustomerId>
+      <FirstName> Аполлон</FirstName>
+      <Surname>Костин</Surname>
+      <Patronymic>Викторович</Patronymic>
+      <BirthYear>1965</BirthYear>
+      <PhoneNumber>89506256391</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>5</CustomerId>
+      <FirstName> Адам</FirstName>
+      <Surname>Рыбаков</Surname>
+      <Patronymic>Владленович</Patronymic>
+      <BirthYear>1990</BirthYear>
+      <PhoneNumber>88257390979</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>6</CustomerId>
+      <FirstName> Берек</FirstName>
+      <Surname>Лебедев</Surname>
+      <Patronymic>Феодосьевич</Patronymic>
+      <BirthYear>1975</BirthYear>
+      <PhoneNumber>88547420004</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>7</CustomerId>
+      <FirstName> Ипат</FirstName>
+      <Surname>Фокин</Surname>
+      <Patronymic>Брониславович</Patronymic>
+      <BirthYear>1996</BirthYear>
+      <PhoneNumber>82894634347</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>8</CustomerId>
+      <FirstName> Юлиан</FirstName>
+      <Surname>Игнатьев</Surname>
+      <Patronymic>Вилорович</Patronymic>
+      <BirthYear>1991</BirthYear>
+      <PhoneNumber>88002284460</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>9</CustomerId>
+      <FirstName> Исидор</FirstName>
+      <Surname>Никифоров</Surname>
+      <Patronymic>Германович</Patronymic>
+      <BirthYear>1976</BirthYear>
+      <PhoneNumber>81179047890</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>10</CustomerId>
+      <FirstName> Авксентий</FirstName>
+      <Surname>Виноградов</Surname>
+      <Patronymic>Адамович</Patronymic>
+      <BirthYear>1989</BirthYear>
+      <PhoneNumber>80705001037</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>11</CustomerId>
+      <FirstName> Доброслав</FirstName>
+      <Surname>Рогов</Surname>
       <Patronymic>Валерьевич</Patronymic>
-      <BirthYear>1955</BirthYear>
-      <PhoneNumber>88972038287</PhoneNumber>
+      <BirthYear>1995</BirthYear>
+      <PhoneNumber>81976051397</PhoneNumber>
     </Customer>
     <Customer>
-      <ID>23</ID>
-      <Surname>Зайцев</Surname>
-      <FirstName> Валентин</FirstName>
-      <Patronymic>Иларионович</Patronymic>
-      <BirthYear>1973</BirthYear>
-      <PhoneNumber>85222117693</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>24</ID>
-      <Surname>Мельников</Surname>
-      <FirstName> Владислав</FirstName>
-      <Patronymic>Эдгарович</Patronymic>
-      <BirthYear>1963</BirthYear>
-      <PhoneNumber>85788443022</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>25</ID>
-      <Surname>Ефимов</Surname>
-      <FirstName> Емельян</FirstName>
-      <Patronymic>Матвеевич</Patronymic>
-      <BirthYear>1956</BirthYear>
-      <PhoneNumber>89209920302</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>26</ID>
-      <Surname>Лаврентьев</Surname>
-      <FirstName> Ермолай</FirstName>
-      <Patronymic>Трофимович</Patronymic>
-      <BirthYear>1974</BirthYear>
-      <PhoneNumber>89316636188</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>27</ID>
-      <Surname>Коновалов</Surname>
-      <FirstName> Варлам</FirstName>
-      <Patronymic>Даниилович</Patronymic>
-      <BirthYear>1960</BirthYear>
-      <PhoneNumber>89076246631</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>28</ID>
-      <Surname>Филатов</Surname>
-      <FirstName> Герасим</FirstName>
-      <Patronymic>Ефремович</Patronymic>
-      <BirthYear>1992</BirthYear>
-      <PhoneNumber>87646610908</PhoneNumber>
-    </Customer>
-    <Customer>
-      <ID>29</ID>
-      <Surname>Воронов</Surname>
+      <CustomerId>12</CustomerId>
       <FirstName> Арсений</FirstName>
-      <Patronymic>Даниилович</Patronymic>
+      <Surname>Блохин</Surname>
+      <Patronymic>Ильясович</Patronymic>
+      <BirthYear>1955</BirthYear>
+      <PhoneNumber>81982493901</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>13</CustomerId>
+      <FirstName> Епифан</FirstName>
+      <Surname>Кондратьев</Surname>
+      <Patronymic>Гаврилович</Patronymic>
+      <BirthYear>1983</BirthYear>
+      <PhoneNumber>87990497036</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>14</CustomerId>
+      <FirstName> Аким</FirstName>
+      <Surname>Чернов</Surname>
+      <Patronymic>Дмитриевич</Patronymic>
+      <BirthYear>1961</BirthYear>
+      <PhoneNumber>87273829397</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>15</CustomerId>
+      <FirstName> Бронислав</FirstName>
+      <Surname>Цветков</Surname>
+      <Patronymic>Брониславович</Patronymic>
+      <BirthYear>1955</BirthYear>
+      <PhoneNumber>88578805088</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>16</CustomerId>
+      <FirstName> Венедикт</FirstName>
+      <Surname>Дан</Surname>
+      <Patronymic>Богданович</Patronymic>
+      <BirthYear>1972</BirthYear>
+      <PhoneNumber>86136562745</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>17</CustomerId>
+      <FirstName> Афиноген</FirstName>
+      <Surname>Ситников</Surname>
+      <Patronymic>Антонович</Patronymic>
+      <BirthYear>1982</BirthYear>
+      <PhoneNumber>80143441791</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>18</CustomerId>
+      <FirstName> Игнатий</FirstName>
+      <Surname>Гаврилов</Surname>
+      <Patronymic>Авдеевич</Patronymic>
+      <BirthYear>1956</BirthYear>
+      <PhoneNumber>84804086849</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>19</CustomerId>
+      <FirstName> Евгений</FirstName>
+      <Surname>Симонов</Surname>
+      <Patronymic>Якубович</Patronymic>
+      <BirthYear>1990</BirthYear>
+      <PhoneNumber>81244810639</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>20</CustomerId>
+      <FirstName> Боеслав</FirstName>
+      <Surname>Коновалов</Surname>
+      <Patronymic>Трифонович</Patronymic>
+      <BirthYear>1959</BirthYear>
+      <PhoneNumber>82273552549</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>21</CustomerId>
+      <FirstName> Исидор</FirstName>
+      <Surname>Веселов</Surname>
+      <Patronymic>Измаилович</Patronymic>
+      <BirthYear>1988</BirthYear>
+      <PhoneNumber>87485496664</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>22</CustomerId>
+      <FirstName> Владимир</FirstName>
+      <Surname>Сидоров</Surname>
+      <Patronymic>Филатович</Patronymic>
+      <BirthYear>1976</BirthYear>
+      <PhoneNumber>85152885121</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>23</CustomerId>
+      <FirstName> Август</FirstName>
+      <Surname>Журавлёв</Surname>
+      <Patronymic>Бенедиктович</Patronymic>
+      <BirthYear>1978</BirthYear>
+      <PhoneNumber>87405389903</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>24</CustomerId>
+      <FirstName> Ипполит</FirstName>
+      <Surname>Рыбаков</Surname>
+      <Patronymic>Измаилович</Patronymic>
+      <BirthYear>1976</BirthYear>
+      <PhoneNumber>85295840231</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>25</CustomerId>
+      <FirstName> Ефрем</FirstName>
+      <Surname>Панфилов</Surname>
+      <Patronymic>Федосьевич</Patronymic>
+      <BirthYear>1976</BirthYear>
+      <PhoneNumber>81629118248</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>26</CustomerId>
+      <FirstName> Боримир</FirstName>
+      <Surname>Лобанов</Surname>
+      <Patronymic>Евсеевич</Patronymic>
+      <BirthYear>1975</BirthYear>
+      <PhoneNumber>81208695927</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>27</CustomerId>
+      <FirstName> Адам</FirstName>
+      <Surname>Дементьев</Surname>
+      <Patronymic>Марсович</Patronymic>
       <BirthYear>1967</BirthYear>
-      <PhoneNumber>83191454947</PhoneNumber>
+      <PhoneNumber>81994147303</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>28</CustomerId>
+      <FirstName> Дмитрий</FirstName>
+      <Surname>Жуков</Surname>
+      <Patronymic>Эдгарович</Patronymic>
+      <BirthYear>1958</BirthYear>
+      <PhoneNumber>88090641017</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>29</CustomerId>
+      <FirstName> Боримир</FirstName>
+      <Surname>Стрелков</Surname>
+      <Patronymic>Фадеевич</Patronymic>
+      <BirthYear>1987</BirthYear>
+      <PhoneNumber>84437630581</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>30</CustomerId>
+      <FirstName> Август</FirstName>
+      <Surname>Ермаков</Surname>
+      <Patronymic>Гордеевич</Patronymic>
+      <BirthYear>1955</BirthYear>
+      <PhoneNumber>81695221186</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>31</CustomerId>
+      <FirstName> Борей</FirstName>
+      <Surname>Карпов</Surname>
+      <Patronymic>Власович</Patronymic>
+      <BirthYear>1965</BirthYear>
+      <PhoneNumber>87214459601</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>32</CustomerId>
+      <FirstName> Доброслав</FirstName>
+      <Surname>Афанасьев</Surname>
+      <Patronymic>Аверьянович</Patronymic>
+      <BirthYear>1961</BirthYear>
+      <PhoneNumber>82732739476</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>33</CustomerId>
+      <FirstName> Аполлинарий</FirstName>
+      <Surname>Дементьев</Surname>
+      <Patronymic>Феоктистович</Patronymic>
+      <BirthYear>1975</BirthYear>
+      <PhoneNumber>86605997502</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>34</CustomerId>
+      <FirstName> Азарий</FirstName>
+      <Surname>Князев</Surname>
+      <Patronymic>Борисович</Patronymic>
+      <BirthYear>1967</BirthYear>
+      <PhoneNumber>86718989024</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>35</CustomerId>
+      <FirstName> Валерий</FirstName>
+      <Surname>Ефимов</Surname>
+      <Patronymic>Жанович</Patronymic>
+      <BirthYear>1979</BirthYear>
+      <PhoneNumber>84497570318</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>36</CustomerId>
+      <FirstName> Арефий</FirstName>
+      <Surname>Нестеров</Surname>
+      <Patronymic>Валерьянович</Patronymic>
+      <BirthYear>1975</BirthYear>
+      <PhoneNumber>86135437056</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>37</CustomerId>
+      <FirstName> Андрей</FirstName>
+      <Surname>Лобанов</Surname>
+      <Patronymic>Евсеевич</Patronymic>
+      <BirthYear>1966</BirthYear>
+      <PhoneNumber>84628730521</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>38</CustomerId>
+      <FirstName> Ерофей</FirstName>
+      <Surname>Горшков</Surname>
+      <Patronymic>Жанович</Patronymic>
+      <BirthYear>1972</BirthYear>
+      <PhoneNumber>86245234107</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>39</CustomerId>
+      <FirstName> Артем</FirstName>
+      <Surname>Колобов</Surname>
+      <Patronymic>Егорович</Patronymic>
+      <BirthYear>1955</BirthYear>
+      <PhoneNumber>89393448555</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>40</CustomerId>
+      <FirstName> Иларион</FirstName>
+      <Surname>Авдеев</Surname>
+      <Patronymic>Арсенович</Patronymic>
+      <BirthYear>1963</BirthYear>
+      <PhoneNumber>88283843312</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>41</CustomerId>
+      <FirstName> Аверкий</FirstName>
+      <Surname>Фомичёв</Surname>
+      <Patronymic>Давыдович</Patronymic>
+      <BirthYear>1956</BirthYear>
+      <PhoneNumber>85428766812</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>42</CustomerId>
+      <FirstName> Антип</FirstName>
+      <Surname>Мамонтов</Surname>
+      <Patronymic>Антипович</Patronymic>
+      <BirthYear>1978</BirthYear>
+      <PhoneNumber>86889822792</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>43</CustomerId>
+      <FirstName> Илларион</FirstName>
+      <Surname>Тихонов</Surname>
+      <Patronymic>Данилович</Patronymic>
+      <BirthYear>1997</BirthYear>
+      <PhoneNumber>81635369038</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>44</CustomerId>
+      <FirstName> Иван</FirstName>
+      <Surname>Петров</Surname>
+      <Patronymic>Якубович</Patronymic>
+      <BirthYear>1990</BirthYear>
+      <PhoneNumber>80568926340</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>45</CustomerId>
+      <FirstName> Ермолай</FirstName>
+      <Surname>Жданов</Surname>
+      <Patronymic>Валентинович</Patronymic>
+      <BirthYear>1976</BirthYear>
+      <PhoneNumber>85995506590</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>46</CustomerId>
+      <FirstName> Изот</FirstName>
+      <Surname>Сазонов</Surname>
+      <Patronymic>Эдгарович</Patronymic>
+      <BirthYear>1991</BirthYear>
+      <PhoneNumber>85049836351</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>47</CustomerId>
+      <FirstName> Вадим</FirstName>
+      <Surname>Дмитриев</Surname>
+      <Patronymic>Вилорович</Patronymic>
+      <BirthYear>1977</BirthYear>
+      <PhoneNumber>81355605389</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>48</CustomerId>
+      <FirstName> Дементий</FirstName>
+      <Surname>Кузнецов</Surname>
+      <Patronymic>Бориславич</Patronymic>
+      <BirthYear>1959</BirthYear>
+      <PhoneNumber>86511007450</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>49</CustomerId>
+      <FirstName> Андроник</FirstName>
+      <Surname>Одинцов</Surname>
+      <Patronymic>Августович</Patronymic>
+      <BirthYear>1959</BirthYear>
+      <PhoneNumber>84836183651</PhoneNumber>
+    </Customer>
+    <Customer>
+      <CustomerId>50</CustomerId>
+      <FirstName> Игнатий</FirstName>
+      <Surname>Владимиров</Surname>
+      <Patronymic>Алексеевич</Patronymic>
+      <BirthYear>1983</BirthYear>
+      <PhoneNumber>81554007990</PhoneNumber>
     </Customer>
   </Customers>
   <Orders>
     <Order>
-      <ID>0</ID>
-      <CustomerID>5</CustomerID>
-      <CarBrand>Subaru</CarBrand>
-      <CarModel>Model0</CarModel>
-      <ManufactureYear>2010</ManufactureYear>
-      <Transmission>Вариатор</Transmission>
-      <EnginePower>111</EnginePower>
-      <TaskName>Ремонт двигателя</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9886852+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9886852+03:00</TaskFinished>
-      <Price>10033</Price>
-    </Order>
-    <Order>
-      <ID>1</ID>
-      <CustomerID>3</CustomerID>
-      <CarBrand>Datsun</CarBrand>
-      <CarModel>Model3</CarModel>
-      <ManufactureYear>1981</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>197</EnginePower>
-      <TaskName>Осмотр</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>1292</Price>
-    </Order>
-    <Order>
-      <ID>2</ID>
-      <CustomerID>27</CustomerID>
-      <CarBrand>Nissan</CarBrand>
-      <CarModel>Model6</CarModel>
-      <ManufactureYear>1967</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>254</EnginePower>
-      <TaskName>Ремонт двигателя</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>4830</Price>
-    </Order>
-    <Order>
-      <ID>3</ID>
-      <CustomerID>24</CustomerID>
-      <CarBrand>Toyota</CarBrand>
-      <CarModel>Model8</CarModel>
-      <ManufactureYear>1957</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>232</EnginePower>
-      <TaskName>Ремонт трансмиссии</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>12959</Price>
-    </Order>
-    <Order>
-      <ID>4</ID>
-      <CustomerID>29</CustomerID>
+      <OrderId>1</OrderId>
+      <CustomerId>26</CustomerId>
       <CarBrand>Mitsubishi</CarBrand>
-      <CarModel>Model6</CarModel>
-      <ManufactureYear>1993</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>289</EnginePower>
-      <TaskName>Замена масла</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>12445</Price>
-    </Order>
-    <Order>
-      <ID>5</ID>
-      <CustomerID>22</CustomerID>
-      <CarBrand>Honda</CarBrand>
-      <CarModel>Model0</CarModel>
-      <ManufactureYear>1952</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>195</EnginePower>
-      <TaskName>Ремонт трансмиссии</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>17814</Price>
-    </Order>
-    <Order>
-      <ID>6</ID>
-      <CustomerID>28</CustomerID>
-      <CarBrand>Toyota</CarBrand>
-      <CarModel>Model5</CarModel>
-      <ManufactureYear>1972</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>276</EnginePower>
-      <TaskName>Замена колеса</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>12884</Price>
-    </Order>
-    <Order>
-      <ID>7</ID>
-      <CustomerID>9</CustomerID>
-      <CarBrand>Toyota</CarBrand>
-      <CarModel>Model9</CarModel>
-      <ManufactureYear>1994</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>52</EnginePower>
-      <TaskName>Замена колеса</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>13799</Price>
-    </Order>
-    <Order>
-      <ID>8</ID>
-      <CustomerID>25</CustomerID>
-      <CarBrand>Volkswagen</CarBrand>
-      <CarModel>Model6</CarModel>
-      <ManufactureYear>1952</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>248</EnginePower>
-      <TaskName>Ремонт двигателя</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>2683</Price>
-    </Order>
-    <Order>
-      <ID>9</ID>
-      <CustomerID>10</CustomerID>
-      <CarBrand>Subaru</CarBrand>
-      <CarModel>Model7</CarModel>
-      <ManufactureYear>1979</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>93</EnginePower>
-      <TaskName>Замена масла</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>12331</Price>
-    </Order>
-    <Order>
-      <ID>10</ID>
-      <CustomerID>24</CustomerID>
-      <CarBrand>Nissan</CarBrand>
       <CarModel>Model4</CarModel>
-      <ManufactureYear>1994</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>186</EnginePower>
+      <ManufactureYear>2009</ManufactureYear>
+      <TransmissionType>Механическая</TransmissionType>
+      <EnginePower>286</EnginePower>
       <TaskName>Замена масла</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>3978</Price>
+      <TaskStarted>2017-07-08T17:40:30.7369544+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>7334</Price>
     </Order>
     <Order>
-      <ID>11</ID>
-      <CustomerID>2</CustomerID>
-      <CarBrand>Isuzu</CarBrand>
-      <CarModel>Model2</CarModel>
-      <ManufactureYear>1970</ManufactureYear>
-      <Transmission>Вариатор</Transmission>
-      <EnginePower>229</EnginePower>
-      <TaskName>Замена колеса</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>14000</Price>
-    </Order>
-    <Order>
-      <ID>12</ID>
-      <CustomerID>8</CustomerID>
-      <CarBrand>Toyota</CarBrand>
-      <CarModel>Model9</CarModel>
-      <ManufactureYear>1952</ManufactureYear>
-      <Transmission>Вариатор</Transmission>
-      <EnginePower>139</EnginePower>
-      <TaskName>Осмотр</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>6322</Price>
-    </Order>
-    <Order>
-      <ID>13</ID>
-      <CustomerID>28</CustomerID>
-      <CarBrand>Volkswagen</CarBrand>
-      <CarModel>Model7</CarModel>
-      <ManufactureYear>1968</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>186</EnginePower>
-      <TaskName>Ремонт двигателя</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>18586</Price>
-    </Order>
-    <Order>
-      <ID>14</ID>
-      <CustomerID>5</CustomerID>
-      <CarBrand>Mazda</CarBrand>
-      <CarModel>Model2</CarModel>
-      <ManufactureYear>2008</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>107</EnginePower>
-      <TaskName>Замена масла</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>13056</Price>
-    </Order>
-    <Order>
-      <ID>15</ID>
-      <CustomerID>6</CustomerID>
+      <OrderId>2</OrderId>
+      <CustomerId>14</CustomerId>
       <CarBrand>Infiniti</CarBrand>
       <CarModel>Model7</CarModel>
-      <ManufactureYear>1951</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>257</EnginePower>
-      <TaskName>Ремонт двигателя</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>11501</Price>
+      <ManufactureYear>1966</ManufactureYear>
+      <TransmissionType>Автомат</TransmissionType>
+      <EnginePower>164</EnginePower>
+      <TaskName>Замена масла</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>1410</Price>
     </Order>
     <Order>
-      <ID>16</ID>
-      <CustomerID>7</CustomerID>
+      <OrderId>3</OrderId>
+      <CustomerId>4</CustomerId>
+      <CarBrand>Subaru</CarBrand>
+      <CarModel>Model8</CarModel>
+      <ManufactureYear>1972</ManufactureYear>
+      <TransmissionType>Вариатор</TransmissionType>
+      <EnginePower>198</EnginePower>
+      <TaskName>Ремонт подвески</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>19483</Price>
+    </Order>
+    <Order>
+      <OrderId>4</OrderId>
+      <CustomerId>25</CustomerId>
+      <CarBrand>Mazda</CarBrand>
+      <CarModel>Model1</CarModel>
+      <ManufactureYear>2010</ManufactureYear>
+      <TransmissionType>Механическая</TransmissionType>
+      <EnginePower>155</EnginePower>
+      <TaskName>Ремонт двигателя</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>8070</Price>
+    </Order>
+    <Order>
+      <OrderId>5</OrderId>
+      <CustomerId>42</CustomerId>
+      <CarBrand>Mitsubishi</CarBrand>
+      <CarModel>Model6</CarModel>
+      <ManufactureYear>1992</ManufactureYear>
+      <TransmissionType>Автомат</TransmissionType>
+      <EnginePower>77</EnginePower>
+      <TaskName>Замена колеса</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>5524</Price>
+    </Order>
+    <Order>
+      <OrderId>6</OrderId>
+      <CustomerId>3</CustomerId>
       <CarBrand>Volkswagen</CarBrand>
-      <CarModel>Model5</CarModel>
-      <ManufactureYear>1971</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>170</EnginePower>
-      <TaskName>Ремонт подвески</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>17515</Price>
-    </Order>
-    <Order>
-      <ID>17</ID>
-      <CustomerID>7</CustomerID>
-      <CarBrand>BMW</CarBrand>
-      <CarModel>Model9</CarModel>
-      <ManufactureYear>1963</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>280</EnginePower>
-      <TaskName>Ремонт подвески</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>11947</Price>
-    </Order>
-    <Order>
-      <ID>18</ID>
-      <CustomerID>0</CustomerID>
-      <CarBrand>Toyota</CarBrand>
-      <CarModel>Model7</CarModel>
-      <ManufactureYear>1983</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>64</EnginePower>
-      <TaskName>Ремонт двигателя</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>5322</Price>
-    </Order>
-    <Order>
-      <ID>19</ID>
-      <CustomerID>24</CustomerID>
-      <CarBrand>Suzuki</CarBrand>
-      <CarModel>Model1</CarModel>
-      <ManufactureYear>1954</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>126</EnginePower>
-      <TaskName>Замена колеса</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>10706</Price>
-    </Order>
-    <Order>
-      <ID>20</ID>
-      <CustomerID>6</CustomerID>
-      <CarBrand>Suzuki</CarBrand>
-      <CarModel>Model6</CarModel>
-      <ManufactureYear>1994</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>233</EnginePower>
-      <TaskName>Замена колеса</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>16731</Price>
-    </Order>
-    <Order>
-      <ID>21</ID>
-      <CustomerID>4</CustomerID>
-      <CarBrand>Opel</CarBrand>
-      <CarModel>Model6</CarModel>
-      <ManufactureYear>1975</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>278</EnginePower>
-      <TaskName>Осмотр</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>4777</Price>
-    </Order>
-    <Order>
-      <ID>22</ID>
-      <CustomerID>27</CustomerID>
-      <CarBrand>Toyota</CarBrand>
-      <CarModel>Model5</CarModel>
-      <ManufactureYear>1985</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>111</EnginePower>
-      <TaskName>Замена масла</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>17200</Price>
-    </Order>
-    <Order>
-      <ID>23</ID>
-      <CustomerID>19</CustomerID>
-      <CarBrand>Lexus</CarBrand>
-      <CarModel>Model9</CarModel>
-      <ManufactureYear>1953</ManufactureYear>
-      <Transmission>Вариатор</Transmission>
-      <EnginePower>99</EnginePower>
-      <TaskName>Ремонт подвески</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>14643</Price>
-    </Order>
-    <Order>
-      <ID>24</ID>
-      <CustomerID>2</CustomerID>
-      <CarBrand>Mercedes-Benz</CarBrand>
-      <CarModel>Model5</CarModel>
-      <ManufactureYear>1973</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>176</EnginePower>
-      <TaskName>Замена масла</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>2974</Price>
-    </Order>
-    <Order>
-      <ID>25</ID>
-      <CustomerID>25</CustomerID>
-      <CarBrand>Nissan</CarBrand>
-      <CarModel>Model1</CarModel>
-      <ManufactureYear>1955</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>261</EnginePower>
-      <TaskName>Ремонт подвески</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>1254</Price>
-    </Order>
-    <Order>
-      <ID>26</ID>
-      <CustomerID>12</CustomerID>
-      <CarBrand>Opel</CarBrand>
-      <CarModel>Model8</CarModel>
-      <ManufactureYear>1988</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>173</EnginePower>
-      <TaskName>Осмотр</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>11878</Price>
-    </Order>
-    <Order>
-      <ID>27</ID>
-      <CustomerID>3</CustomerID>
-      <CarBrand>Toyota</CarBrand>
-      <CarModel>Model1</CarModel>
-      <ManufactureYear>1962</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>218</EnginePower>
-      <TaskName>Ремонт подвески</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>15693</Price>
-    </Order>
-    <Order>
-      <ID>28</ID>
-      <CustomerID>23</CustomerID>
-      <CarBrand>Opel</CarBrand>
-      <CarModel>Model5</CarModel>
-      <ManufactureYear>1957</ManufactureYear>
-      <Transmission>Вариатор</Transmission>
-      <EnginePower>270</EnginePower>
-      <TaskName>Замена колеса</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>9427</Price>
-    </Order>
-    <Order>
-      <ID>29</ID>
-      <CustomerID>13</CustomerID>
-      <CarBrand>Isuzu</CarBrand>
-      <CarModel>Model8</CarModel>
-      <ManufactureYear>1951</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>137</EnginePower>
-      <TaskName>Ремонт подвески</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>18599</Price>
-    </Order>
-    <Order>
-      <ID>30</ID>
-      <CustomerID>0</CustomerID>
-      <CarBrand>BMW</CarBrand>
       <CarModel>Model0</CarModel>
-      <ManufactureYear>1970</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>105</EnginePower>
-      <TaskName>Ремонт подвески</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>19655</Price>
+      <ManufactureYear>1960</ManufactureYear>
+      <TransmissionType>Механическая</TransmissionType>
+      <EnginePower>269</EnginePower>
+      <TaskName>Замена колеса</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>11551</Price>
     </Order>
     <Order>
-      <ID>31</ID>
-      <CustomerID>17</CustomerID>
-      <CarBrand>Volkswagen</CarBrand>
-      <CarModel>Model1</CarModel>
-      <ManufactureYear>2016</ManufactureYear>
-      <Transmission>Механическая</Transmission>
+      <OrderId>7</OrderId>
+      <CustomerId>2</CustomerId>
+      <CarBrand>Subaru</CarBrand>
+      <CarModel>Model8</CarModel>
+      <ManufactureYear>2002</ManufactureYear>
+      <TransmissionType>Вариатор</TransmissionType>
+      <EnginePower>54</EnginePower>
+      <TaskName>Замена колеса</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>10083</Price>
+    </Order>
+    <Order>
+      <OrderId>8</OrderId>
+      <CustomerId>14</CustomerId>
+      <CarBrand>Toyota</CarBrand>
+      <CarModel>Model9</CarModel>
+      <ManufactureYear>2006</ManufactureYear>
+      <TransmissionType>Автомат</TransmissionType>
+      <EnginePower>242</EnginePower>
+      <TaskName>Замена масла</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>10343</Price>
+    </Order>
+    <Order>
+      <OrderId>9</OrderId>
+      <CustomerId>36</CustomerId>
+      <CarBrand>Toyota</CarBrand>
+      <CarModel>Model0</CarModel>
+      <ManufactureYear>1962</ManufactureYear>
+      <TransmissionType>Вариатор</TransmissionType>
+      <EnginePower>201</EnginePower>
+      <TaskName>Замена колеса</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>18621</Price>
+    </Order>
+    <Order>
+      <OrderId>10</OrderId>
+      <CustomerId>16</CustomerId>
+      <CarBrand>Isuzu</CarBrand>
+      <CarModel>Model3</CarModel>
+      <ManufactureYear>2011</ManufactureYear>
+      <TransmissionType>Вариатор</TransmissionType>
       <EnginePower>109</EnginePower>
       <TaskName>Замена масла</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>7000</Price>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>12983</Price>
     </Order>
     <Order>
-      <ID>32</ID>
-      <CustomerID>20</CustomerID>
-      <CarBrand>Datsun</CarBrand>
-      <CarModel>Model3</CarModel>
-      <ManufactureYear>1966</ManufactureYear>
-      <Transmission>Вариатор</Transmission>
-      <EnginePower>180</EnginePower>
+      <OrderId>11</OrderId>
+      <CustomerId>24</CustomerId>
+      <CarBrand>Volkswagen</CarBrand>
+      <CarModel>Model8</CarModel>
+      <ManufactureYear>1973</ManufactureYear>
+      <TransmissionType>Вариатор</TransmissionType>
+      <EnginePower>58</EnginePower>
+      <TaskName>Ремонт двигателя</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>15546</Price>
+    </Order>
+    <Order>
+      <OrderId>12</OrderId>
+      <CustomerId>9</CustomerId>
+      <CarBrand>Porsche</CarBrand>
+      <CarModel>Model0</CarModel>
+      <ManufactureYear>2014</ManufactureYear>
+      <TransmissionType>Механическая</TransmissionType>
+      <EnginePower>226</EnginePower>
       <TaskName>Замена колеса</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>1150</Price>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>10393</Price>
     </Order>
     <Order>
-      <ID>33</ID>
-      <CustomerID>27</CustomerID>
-      <CarBrand>Opel</CarBrand>
-      <CarModel>Model6</CarModel>
-      <ManufactureYear>1958</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>231</EnginePower>
-      <TaskName>Осмотр</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>17290</Price>
-    </Order>
-    <Order>
-      <ID>34</ID>
-      <CustomerID>17</CustomerID>
-      <CarBrand>BMW</CarBrand>
-      <CarModel>Model5</CarModel>
-      <ManufactureYear>2000</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>95</EnginePower>
-      <TaskName>Ремонт двигателя</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>11432</Price>
-    </Order>
-    <Order>
-      <ID>35</ID>
-      <CustomerID>17</CustomerID>
-      <CarBrand>Isuzu</CarBrand>
-      <CarModel>Model2</CarModel>
-      <ManufactureYear>2007</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>52</EnginePower>
-      <TaskName>Ремонт двигателя</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>8159</Price>
-    </Order>
-    <Order>
-      <ID>36</ID>
-      <CustomerID>28</CustomerID>
+      <OrderId>13</OrderId>
+      <CustomerId>48</CustomerId>
       <CarBrand>Subaru</CarBrand>
-      <CarModel>Model4</CarModel>
-      <ManufactureYear>1967</ManufactureYear>
-      <Transmission>Вариатор</Transmission>
-      <EnginePower>220</EnginePower>
+      <CarModel>Model8</CarModel>
+      <ManufactureYear>2007</ManufactureYear>
+      <TransmissionType>Вариатор</TransmissionType>
+      <EnginePower>87</EnginePower>
       <TaskName>Замена масла</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>10346</Price>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>5329</Price>
     </Order>
     <Order>
-      <ID>37</ID>
-      <CustomerID>0</CustomerID>
+      <OrderId>14</OrderId>
+      <CustomerId>22</CustomerId>
       <CarBrand>Honda</CarBrand>
       <CarModel>Model2</CarModel>
-      <ManufactureYear>1954</ManufactureYear>
-      <Transmission>Вариатор</Transmission>
-      <EnginePower>222</EnginePower>
-      <TaskName>Ремонт трансмиссии</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>6130</Price>
-    </Order>
-    <Order>
-      <ID>38</ID>
-      <CustomerID>4</CustomerID>
-      <CarBrand>Mercedes-Benz</CarBrand>
-      <CarModel>Model5</CarModel>
-      <ManufactureYear>1999</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>171</EnginePower>
-      <TaskName>Осмотр</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>14420</Price>
-    </Order>
-    <Order>
-      <ID>39</ID>
-      <CustomerID>28</CustomerID>
-      <CarBrand>Mercedes-Benz</CarBrand>
-      <CarModel>Model4</CarModel>
-      <ManufactureYear>1978</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>60</EnginePower>
-      <TaskName>Осмотр</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>10872</Price>
-    </Order>
-    <Order>
-      <ID>40</ID>
-      <CustomerID>22</CustomerID>
-      <CarBrand>Nissan</CarBrand>
-      <CarModel>Model6</CarModel>
-      <ManufactureYear>2011</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>229</EnginePower>
-      <TaskName>Ремонт подвески</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>6474</Price>
-    </Order>
-    <Order>
-      <ID>41</ID>
-      <CustomerID>21</CustomerID>
-      <CarBrand>Mercedes-Benz</CarBrand>
-      <CarModel>Model4</CarModel>
-      <ManufactureYear>1986</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>165</EnginePower>
-      <TaskName>Ремонт двигателя</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>10609</Price>
-    </Order>
-    <Order>
-      <ID>42</ID>
-      <CustomerID>26</CustomerID>
-      <CarBrand>Mitsubishi</CarBrand>
-      <CarModel>Model1</CarModel>
-      <ManufactureYear>1966</ManufactureYear>
-      <Transmission>Вариатор</Transmission>
-      <EnginePower>117</EnginePower>
-      <TaskName>Ремонт двигателя</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>7000</Price>
-    </Order>
-    <Order>
-      <ID>43</ID>
-      <CustomerID>16</CustomerID>
-      <CarBrand>Mercedes-Benz</CarBrand>
-      <CarModel>Model0</CarModel>
-      <ManufactureYear>1985</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>243</EnginePower>
-      <TaskName>Осмотр</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>7157</Price>
-    </Order>
-    <Order>
-      <ID>44</ID>
-      <CustomerID>26</CustomerID>
-      <CarBrand>Datsun</CarBrand>
-      <CarModel>Model1</CarModel>
-      <ManufactureYear>1984</ManufactureYear>
-      <Transmission>Вариатор</Transmission>
+      <ManufactureYear>1961</ManufactureYear>
+      <TransmissionType>Механическая</TransmissionType>
       <EnginePower>150</EnginePower>
-      <TaskName>Осмотр</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>14653</Price>
+      <TaskName>Ремонт двигателя</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>3662</Price>
     </Order>
     <Order>
-      <ID>45</ID>
-      <CustomerID>10</CustomerID>
-      <CarBrand>Suzuki</CarBrand>
-      <CarModel>Model5</CarModel>
-      <ManufactureYear>2016</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>114</EnginePower>
-      <TaskName>Ремонт подвески</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>16556</Price>
+      <OrderId>15</OrderId>
+      <CustomerId>25</CustomerId>
+      <CarBrand>Infiniti</CarBrand>
+      <CarModel>Model1</CarModel>
+      <ManufactureYear>1951</ManufactureYear>
+      <TransmissionType>Механическая</TransmissionType>
+      <EnginePower>58</EnginePower>
+      <TaskName>Замена масла</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>3001</Price>
     </Order>
     <Order>
-      <ID>46</ID>
-      <CustomerID>8</CustomerID>
-      <CarBrand>Acura</CarBrand>
-      <CarModel>Model6</CarModel>
-      <ManufactureYear>1993</ManufactureYear>
-      <Transmission>Вариатор</Transmission>
-      <EnginePower>120</EnginePower>
-      <TaskName>Ремонт подвески</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>12406</Price>
-    </Order>
-    <Order>
-      <ID>47</ID>
-      <CustomerID>17</CustomerID>
-      <CarBrand>Mercedes-Benz</CarBrand>
+      <OrderId>16</OrderId>
+      <CustomerId>18</CustomerId>
+      <CarBrand>Infiniti</CarBrand>
       <CarModel>Model4</CarModel>
       <ManufactureYear>2000</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>261</EnginePower>
-      <TaskName>Замена колеса</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>19383</Price>
-    </Order>
-    <Order>
-      <ID>48</ID>
-      <CustomerID>1</CustomerID>
-      <CarBrand>Nissan</CarBrand>
-      <CarModel>Model7</CarModel>
-      <ManufactureYear>1992</ManufactureYear>
-      <Transmission>Механическая</Transmission>
-      <EnginePower>146</EnginePower>
+      <TransmissionType>Механическая</TransmissionType>
+      <EnginePower>86</EnginePower>
       <TaskName>Замена масла</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>14776</Price>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>14493</Price>
     </Order>
     <Order>
-      <ID>49</ID>
-      <CustomerID>12</CustomerID>
-      <CarBrand>Lexus</CarBrand>
-      <CarModel>Model0</CarModel>
-      <ManufactureYear>2015</ManufactureYear>
-      <Transmission>Автомат</Transmission>
-      <EnginePower>229</EnginePower>
+      <OrderId>17</OrderId>
+      <CustomerId>15</CustomerId>
+      <CarBrand>Infiniti</CarBrand>
+      <CarModel>Model5</CarModel>
+      <ManufactureYear>1994</ManufactureYear>
+      <TransmissionType>Автомат</TransmissionType>
+      <EnginePower>56</EnginePower>
+      <TaskName>Замена масла</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>6075</Price>
+    </Order>
+    <Order>
+      <OrderId>18</OrderId>
+      <CustomerId>29</CustomerId>
+      <CarBrand>Volkswagen</CarBrand>
+      <CarModel>Model4</CarModel>
+      <ManufactureYear>1972</ManufactureYear>
+      <TransmissionType>Автомат</TransmissionType>
+      <EnginePower>66</EnginePower>
+      <TaskName>Замена масла</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>2433</Price>
+    </Order>
+    <Order>
+      <OrderId>19</OrderId>
+      <CustomerId>10</CustomerId>
+      <CarBrand>Mercedes-Benz</CarBrand>
+      <CarModel>Model8</CarModel>
+      <ManufactureYear>1950</ManufactureYear>
+      <TransmissionType>Механическая</TransmissionType>
+      <EnginePower>250</EnginePower>
+      <TaskName>Осмотр</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>16428</Price>
+    </Order>
+    <Order>
+      <OrderId>20</OrderId>
+      <CustomerId>31</CustomerId>
+      <CarBrand>BMW</CarBrand>
+      <CarModel>Model8</CarModel>
+      <ManufactureYear>2008</ManufactureYear>
+      <TransmissionType>Автомат</TransmissionType>
+      <EnginePower>158</EnginePower>
+      <TaskName>Замена колеса</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>7896</Price>
+    </Order>
+    <Order>
+      <OrderId>21</OrderId>
+      <CustomerId>44</CustomerId>
+      <CarBrand>Honda</CarBrand>
+      <CarModel>Model3</CarModel>
+      <ManufactureYear>2007</ManufactureYear>
+      <TransmissionType>Вариатор</TransmissionType>
+      <EnginePower>216</EnginePower>
       <TaskName>Ремонт двигателя</TaskName>
-      <TaskStarted>2017-07-02T16:46:03.9892081+03:00</TaskStarted>
-      <TaskFinished>2017-07-02T16:46:03.9892081+03:00</TaskFinished>
-      <Price>5943</Price>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>17251</Price>
+    </Order>
+    <Order>
+      <OrderId>22</OrderId>
+      <CustomerId>38</CustomerId>
+      <CarBrand>Toyota</CarBrand>
+      <CarModel>Model4</CarModel>
+      <ManufactureYear>1985</ManufactureYear>
+      <TransmissionType>Механическая</TransmissionType>
+      <EnginePower>197</EnginePower>
+      <TaskName>Ремонт трансмиссии</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>15053</Price>
+    </Order>
+    <Order>
+      <OrderId>23</OrderId>
+      <CustomerId>50</CustomerId>
+      <CarBrand>Volkswagen</CarBrand>
+      <CarModel>Model2</CarModel>
+      <ManufactureYear>1984</ManufactureYear>
+      <TransmissionType>Автомат</TransmissionType>
+      <EnginePower>267</EnginePower>
+      <TaskName>Замена колеса</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>19773</Price>
+    </Order>
+    <Order>
+      <OrderId>24</OrderId>
+      <CustomerId>47</CustomerId>
+      <CarBrand>Mitsubishi</CarBrand>
+      <CarModel>Model4</CarModel>
+      <ManufactureYear>1993</ManufactureYear>
+      <TransmissionType>Автомат</TransmissionType>
+      <EnginePower>266</EnginePower>
+      <TaskName>Осмотр</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>16706</Price>
+    </Order>
+    <Order>
+      <OrderId>25</OrderId>
+      <CustomerId>29</CustomerId>
+      <CarBrand>Mercedes-Benz</CarBrand>
+      <CarModel>Model8</CarModel>
+      <ManufactureYear>1964</ManufactureYear>
+      <TransmissionType>Автомат</TransmissionType>
+      <EnginePower>297</EnginePower>
+      <TaskName>Ремонт двигателя</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>9354</Price>
+    </Order>
+    <Order>
+      <OrderId>26</OrderId>
+      <CustomerId>45</CustomerId>
+      <CarBrand>Porsche</CarBrand>
+      <CarModel>Model9</CarModel>
+      <ManufactureYear>1954</ManufactureYear>
+      <TransmissionType>Автомат</TransmissionType>
+      <EnginePower>189</EnginePower>
+      <TaskName>Ремонт трансмиссии</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>4433</Price>
+    </Order>
+    <Order>
+      <OrderId>27</OrderId>
+      <CustomerId>7</CustomerId>
+      <CarBrand>Subaru</CarBrand>
+      <CarModel>Model1</CarModel>
+      <ManufactureYear>1974</ManufactureYear>
+      <TransmissionType>Автомат</TransmissionType>
+      <EnginePower>209</EnginePower>
+      <TaskName>Ремонт подвески</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>8743</Price>
+    </Order>
+    <Order>
+      <OrderId>28</OrderId>
+      <CustomerId>47</CustomerId>
+      <CarBrand>Porsche</CarBrand>
+      <CarModel>Model1</CarModel>
+      <ManufactureYear>2011</ManufactureYear>
+      <TransmissionType>Вариатор</TransmissionType>
+      <EnginePower>155</EnginePower>
+      <TaskName>Замена масла</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>15482</Price>
+    </Order>
+    <Order>
+      <OrderId>29</OrderId>
+      <CustomerId>22</CustomerId>
+      <CarBrand>Porsche</CarBrand>
+      <CarModel>Model8</CarModel>
+      <ManufactureYear>1960</ManufactureYear>
+      <TransmissionType>Автомат</TransmissionType>
+      <EnginePower>225</EnginePower>
+      <TaskName>Осмотр</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>16815</Price>
+    </Order>
+    <Order>
+      <OrderId>30</OrderId>
+      <CustomerId>32</CustomerId>
+      <CarBrand>Subaru</CarBrand>
+      <CarModel>Model6</CarModel>
+      <ManufactureYear>1955</ManufactureYear>
+      <TransmissionType>Вариатор</TransmissionType>
+      <EnginePower>191</EnginePower>
+      <TaskName>Ремонт подвески</TaskName>
+      <TaskStarted>2017-07-08T17:40:30.7384587+03:00</TaskStarted>
+      <TaskFinished>2017-07-08T17:40:30.7384587+03:00</TaskFinished>
+      <Price>11077</Price>
     </Order>
   </Orders>
 </CustomersOrdersObject>
