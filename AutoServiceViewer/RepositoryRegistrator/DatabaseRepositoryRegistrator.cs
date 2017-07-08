@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Configuration;
+using DataAccess.Repository;
 using DataAccess.Repository.RepositoryDb;
+using DataAccess.Repository.RepositoryFile;
 using Microsoft.Practices.Unity;
 
 namespace AutoServiceViewer.RepositoryRegistrator
@@ -12,8 +15,15 @@ namespace AutoServiceViewer.RepositoryRegistrator
         {
             if (string.IsNullOrEmpty(ConnectionString))
                 throw new ArgumentException("Connection string must not be null");
-            DatabaseRepositorySettings settings = new DatabaseRepositorySettings(ConnectionString);
-            container.RegisterInstance(settings);
+            //DatabaseRepositorySettings settings = new DatabaseRepositorySettings(ConnectionString);
+            //container.RegisterInstance(settings);
+            container.RegisterType<DatabaseRepositorySettings>(new InjectionConstructor(ConnectionString));
+        }
+
+        protected override void RegisterRepository(IUnityContainer container)
+        {
+            string name = ConfigurationManager.AppSettings["dbRepository"];
+            container.RegisterType<IRepository, DatabaseRepository>(name);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{9F889037-E826-419E-92DF-4845AFB1A9D9}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E91E9D15-9091-4588-8CD4-73E1864E70B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM.Test", "MVVM.Test\MVVM.Test.csproj", "{0F3FAE63-A132-4507-AB5D-BBAF9011CC3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoServiceViewer.Test", "AutoServiceViewer.Test\AutoServiceViewer.Test.csproj", "{C296B6BB-F738-4EB5-9544-D456713E2232}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,11 +49,16 @@ Global
 		{0F3FAE63-A132-4507-AB5D-BBAF9011CC3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F3FAE63-A132-4507-AB5D-BBAF9011CC3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F3FAE63-A132-4507-AB5D-BBAF9011CC3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C296B6BB-F738-4EB5-9544-D456713E2232}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C296B6BB-F738-4EB5-9544-D456713E2232}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C296B6BB-F738-4EB5-9544-D456713E2232}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C296B6BB-F738-4EB5-9544-D456713E2232}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0F3FAE63-A132-4507-AB5D-BBAF9011CC3A} = {E91E9D15-9091-4588-8CD4-73E1864E70B7}
+		{C296B6BB-F738-4EB5-9544-D456713E2232} = {E91E9D15-9091-4588-8CD4-73E1864E70B7}
 	EndGlobalSection
 EndGlobal

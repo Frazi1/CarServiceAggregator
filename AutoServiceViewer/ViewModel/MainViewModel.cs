@@ -3,7 +3,6 @@ using System.Linq;
 using System.Windows.Input;
 using DataAccess.Model;
 using DataAccess.Repository;
-using Microsoft.Practices.Unity;
 using MVVM;
 
 namespace AutoServiceViewer.ViewModel
@@ -64,14 +63,7 @@ namespace AutoServiceViewer.ViewModel
             }
         }
 
-        public ICommand GetDataCommand => new RelayCommand(o => GetData(), o => IsRepositoryRegistered());
-
-        private bool IsRepositoryRegistered()
-        {
-            //TODO: Придумать что-то получше
-            var name = RepositoryType + "Repository";
-            return IocApp.Container.IsRegistered<IRepository>(name);
-        }
+        public ICommand GetDataCommand => new RelayCommand(o => GetData(), o => IocApp.IsRegistered(RepositoryType));
 
         private void GetData()
         {

@@ -25,7 +25,7 @@ namespace AutoServiceViewer
         private static void Initialize()
         {
             _container = new UnityContainer();
-            var connectionString = ConfigurationSettings.AppSettings.Get("connectionString");
+            var connectionString = ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
             DatabaseRepositoryRegistrator configurator = new DatabaseRepositoryRegistrator
             {
                 ConnectionString = connectionString
@@ -45,6 +45,21 @@ namespace AutoServiceViewer
                     return Container.Resolve<BinaryRepository>();
                 default:
                     return null;
+            }
+        }
+
+        public static bool IsRegistered(RepositoryType repositoryType)
+        {
+            switch (repositoryType)
+            {
+                case RepositoryType.Xml:
+                    return Container.IsRegistered<IRepository>(ConfigurationManager.AppSettings["xmlRepository"]);
+                case RepositoryType.Binary:
+                    return Container.IsRegistered<IRepository>(ConfigurationManager.AppSettings["binaryRepository"]);
+                case RepositoryType.Database:
+                    return Container.IsRegistered<IRepository>(ConfigurationManager.AppSettings["dbRepository"]);
+                default:
+                    return false;
             }
         }
     }
