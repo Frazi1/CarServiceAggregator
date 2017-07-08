@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
 using DataAccess.Model;
 using DataAccess.Repository;
@@ -13,7 +12,6 @@ namespace AutoServiceViewer.ViewModel
         private ObservableCollection<Order> _orders;
         private IRepository _repository;
         private RepositoryType _repositoryType;
-        private Customer _selectedCustomer;
         private Order _selectedOrder;
 
         public MainViewModel()
@@ -30,20 +28,11 @@ namespace AutoServiceViewer.ViewModel
             }
         }
 
-        public Customer SelectedCustomer {
-            get => _selectedCustomer;
-            set {
-                _selectedCustomer = value;
-                NotifyPropertyChanged();
-            }
-        }
-
         public Order SelectedOrder {
             get => _selectedOrder;
             set {
                 _selectedOrder = value;
                 NotifyPropertyChanged();
-                SetSelectedCustomer();
             }
         }
 
@@ -71,11 +60,6 @@ namespace AutoServiceViewer.ViewModel
             _repository = IocApp.GetRepository(RepositoryType);
             Orders = new ObservableCollection<Order>(_repository.Orders);
             Customers = new ObservableCollection<Customer>(_repository.Customers);
-        }
-
-        private void SetSelectedCustomer()
-        {
-            SelectedCustomer = Customers.FirstOrDefault(c => c.CustomerId == SelectedOrder?.CustomerId);
         }
     }
 }

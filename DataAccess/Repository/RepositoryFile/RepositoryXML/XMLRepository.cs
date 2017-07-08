@@ -14,6 +14,8 @@ namespace DataAccess.Repository.RepositoryFile
                 CustomersOrdersObject data = XMLHelper.Load(settings.FilePath);
                 CustomersList = data.Customers.ToList();
                 OrdersList = data.Orders.ToList();
+                foreach (Order order in OrdersList)
+                    order.Customer = CustomersList.FirstOrDefault(c => c.CustomerId == order.CustomerId);
             }
         }
 
