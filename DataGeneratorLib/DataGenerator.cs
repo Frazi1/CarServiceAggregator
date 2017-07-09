@@ -4,24 +4,37 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using DataAccess.Model;
+using DataGeneratorLib.ExtensionMethods;
 
 namespace DataGeneratorLib
 {
     public class DataGenerator
     {
-        public List<Customer> Customers = new List<Customer>();
 
-        protected Dictionary<string, string> FilePaths = new Dictionary<string, string>();
+        //TODO: Несколько заказов с одной машиной. Несколько машин у одного заказчика.
+
+        const int CarsAddtition = 30;
+
+        public List<Customer> Customers = new List<Customer>();
         public List<Order> Orders = new List<Order>();
 
-        public DataGenerator(bool setId)
+        protected Dictionary<string, string> FilePaths = new Dictionary<string, string>();
+
+        public DataGenerator(bool setId, int customersCount, int ordersCount, Random r)
         {
             InitializePaths();
             Initialize();
             SetId = setId;
+
+            GenerateCars(customersCount + CarsAddtition, r);
+            GenerateCustomers(customersCount, r);
+            GenerateOrders(ordersCount, r);
         }
 
+
         public bool SetId { get; set; }
+
+        protected List<Car> Cars { get; set; } = new List<Car>();
 
         protected List<string> Surnames { get; set; }
         protected List<string> Firstnames { get; set; }
@@ -40,33 +53,41 @@ namespace DataGeneratorLib
             FilePaths.Add("tasks", @"Data/tasks.txt");
         }
 
-        public void Initialize()
+        private void Initialize()
         {
-            ReadSurnames();
-            ReadFirstNames();
-            ReadPatronymics();
-            ReadCarBrands();
-            ReadCarModels();
-            ReadTaskNames();
-            ReadTransmissions();
+            Surnames = Parser.ReadSurnames(FilePaths["surname"]);
+            Firstnames = Parser.ReadFirstNames(FilePaths["firstname"]);
+            Patronymics = Parser.ReadPatronymics(FilePaths["patronymic"]);
+            CarBrands = Parser.ReadCarBrands(FilePaths["brands"]);
+            CarModels = Parser.ReadCarModels(null);
+            TaskNames = Parser.ReadTaskNames(FilePaths["tasks"]);
+            Transmissions = Parser.ReadTransmissions(null);
         }
 
-        public void GenerateOrder(int count, Random r)
+        protected void GenerateOrders(int count, Random r)
         {
             for (var i = 0; i < count; i++)
             {
+                var selectedCar = Cars[r.Next(Cars.Count)];
+                var customerId = Customers[r.Next(Customers.Count)].CustomerId;
+                Customer customer = Customers.First(c => c.CustomerId == customerId);
+                var manufactureYear = (short)r.Next(1950, 2017);
+
+                GenerateTaskStartedAndFinished(r, customer, manufactureYear, out DateTime taskStarted,
+                    out DateTime? taskFinished);
+
                 Order order = new Order
                 {
-                    CarBrand = CarBrands[r.Next(CarBrands.Count)],
-                    CarModel = CarModels[r.Next(CarModels.Count)],
-                    CustomerId = Customers[r.Next(Customers.Count)].CustomerId,
-                    EnginePower = r.Next(50, 300),
-                    ManufactureYear = (short) r.Next(1950, 2017),
+                    CustomerId = customerId,
+                    CarBrand = selectedCar.CarBrand,
+                    CarModel = selectedCar.CarModel,
+                    EnginePower = selectedCar.EnginePower,
+                    ManufactureYear = selectedCar.ManufactureYear,
+                    TransmissionType = selectedCar.TransmissionType,
                     Price = r.Next(1000, 20000),
-                    TransmissionType = Transmissions[r.Next(Transmissions.Count)],
                     TaskName = TaskNames[r.Next(TaskNames.Count)],
-                    TaskStarted = DateTime.Now,
-                    TaskFinished = DateTime.Now
+                    TaskStarted = taskStarted,
+                    TaskFinished = taskFinished
                 };
                 if (SetId)
                     order.OrderId = i + 1;
@@ -74,7 +95,7 @@ namespace DataGeneratorLib
             }
         }
 
-        public void GenerateCustomer(int count, Random r)
+        protected void GenerateCustomers(int count, Random r)
         {
             for (var j = 0; j < count; j++)
             {
@@ -87,7 +108,7 @@ namespace DataGeneratorLib
                     Surname = Surnames[r.Next(Surnames.Count)],
                     FirstName = Firstnames[r.Next(Firstnames.Count)],
                     Patronymic = Patronymics[r.Next(Patronymics.Count)],
-                    BirthYear = (short) r.Next(1950, 1998),
+                    BirthYear = (short)r.Next(DateTime.Now.Year - 80, DateTime.Now.Year - 18),
                     PhoneNumber = phone.ToString()
                 };
 
@@ -97,72 +118,52 @@ namespace DataGeneratorLib
             }
         }
 
-        protected void ReadPatronymics()
+        protected void GenerateCars(int count, Random r)
         {
-            using (StreamReader s = new StreamReader(FilePaths["patronymic"], Encoding.GetEncoding(1251)))
+            for (int i = 0; i < count; i++)
             {
-                Patronymics = s.ReadToEnd()
-                    .Replace('\r', ' ')
-                    .Split(new[] {'\n'}, StringSplitOptions.RemoveEmptyEntries)
-                    .Select(str => str.Trim())
-                    .ToList();
+                Cars.Add(new Car
+                {
+                    CarModel = CarModels[r.Next(CarModels.Count)],
+                    CarBrand = CarBrands[r.Next(CarBrands.Count)],
+                    ManufactureYear = (short) r.Next(1950, DateTime.Now.Year),
+                    TransmissionType = Transmissions[r.Next(Transmissions.Count)],
+                    EnginePower = r.Next(50, 300)
+                });
             }
         }
 
-        protected void ReadFirstNames()
+        private static void GenerateTaskStartedAndFinished(Random r, Customer customer, short manufactureYear,
+            out DateTime taskStarted, out DateTime? taskFinished)
         {
-            using (StreamReader s = new StreamReader(FilePaths["firstname"], Encoding.GetEncoding(1251)))
+            var isFinished = r.Next(0, 1000) > 200;
+            taskFinished = null;
+            if (isFinished)
             {
-                Firstnames = s.ReadToEnd().Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries).ToList();
+                taskStarted = r.NextDateTime(new DateTime(Math.Max(customer.BirthYear + 18, manufactureYear), 1, 1),
+                    DateTime.Now);
+                taskFinished = taskStarted.AddDays(r.Next(0, 14))
+                    .AddHours(r.Next(2, 12))
+                    .AddMinutes(r.Next(0, 59))
+                    .AddSeconds(r.Next(0, 59));
+            }
+            else
+            {
+                taskStarted = DateTime.Now.AddDays(-r.Next(0, 14))
+                    .AddHours(-r.Next(2, 12))
+                    .AddMinutes(-r.Next(0, 59))
+                    .AddSeconds(-r.Next(0, 59));
             }
         }
 
-        protected void ReadSurnames()
-        {
-            using (StreamReader s = new StreamReader(FilePaths["surname"], Encoding.GetEncoding(1251)))
-            {
-                Surnames = s.ReadToEnd()
-                    .Replace('\r', ' ')
-                    .Split(new[] {'\n'}, StringSplitOptions.RemoveEmptyEntries)
-                    .Select(str => str.Trim())
-                    .ToList();
-            }
-        }
+    }
 
-        protected void ReadCarBrands()
-        {
-            using (StreamReader s = new StreamReader(FilePaths["brands"], Encoding.GetEncoding(1251)))
-            {
-                CarBrands = s.ReadToEnd()
-                    .Replace('\r', ' ')
-                    .Split(new[] {'\n'}, StringSplitOptions.RemoveEmptyEntries)
-                    .Select(str => str.Trim())
-                    .ToList();
-            }
-        }
-
-        protected void ReadCarModels()
-        {
-            CarModels = new List<string>();
-            for (var i = 0; i < 10; i++)
-                CarModels.Add($"Model{i}");
-        }
-
-        protected void ReadTransmissions()
-        {
-            Transmissions = new List<string> {"Автомат", "Вариатор", "Механическая"};
-        }
-
-        protected void ReadTaskNames()
-        {
-            using (StreamReader s = new StreamReader(FilePaths["tasks"], Encoding.GetEncoding(1251)))
-            {
-                TaskNames = s.ReadToEnd()
-                    .Replace('\r', ' ')
-                    .Split(new[] {'\n'}, StringSplitOptions.RemoveEmptyEntries)
-                    .Select(str => str.Trim())
-                    .ToList();
-            }
-        }
+    public class Car
+    {
+        public string CarModel { get; set; }
+        public string CarBrand { get; set; }
+        public short ManufactureYear { get; set; }
+        public string TransmissionType { get; set; }
+        public int EnginePower { get; set; }
     }
 }

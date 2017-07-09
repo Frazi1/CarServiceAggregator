@@ -39,9 +39,8 @@ namespace DataGeneratorConsole
 
             foreach (IRepository repo in repositories)
             {
-                generator = new DataGenerator(true);
-                generator.GenerateCustomer(countCustomers, r);
-                generator.GenerateOrder(countOrders, r);
+                generator = new DataGenerator(true, countCustomers, countOrders, r);
+
                 foreach (Customer item in generator.Customers)
                     repo.AddCustomer(item);
                 foreach (Order item in generator.Orders)
