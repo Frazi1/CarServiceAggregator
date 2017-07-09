@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using DataAccess.Model;
 using DataAccess.Repository;
-using MVVM;
+using Mvvm;
 
 namespace AutoServiceViewer.ViewModel
 {

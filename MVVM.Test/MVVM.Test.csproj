@@ -7,8 +7,8 @@
     <ProjectGuid>{0F3FAE63-A132-4507-AB5D-BBAF9011CC3A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MVVM.Test</RootNamespace>
-    <AssemblyName>MVVM.Test</AssemblyName>
+    <RootNamespace>Mvvm.Test</RootNamespace>
+    <AssemblyName>Mvvm.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -48,19 +48,19 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseMVVMTest.cs" />
-    <Compile Include="CommandTests.cs" />
-    <Compile Include="StubViewModel.cs" />
-    <Compile Include="ViewModelTests.cs" />
+    <Compile Include="Base\BaseMVVMTest.cs" />
+    <Compile Include="Tests\CommandTests.cs" />
+    <Compile Include="Base\StubViewModel.cs" />
+    <Compile Include="Tests\ViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MVVM\MVVM.csproj">
+    <ProjectReference Include="..\MVVM\Mvvm.csproj">
       <Project>{e2a35874-0421-4e40-adb6-96677a382efe}</Project>
-      <Name>MVVM</Name>
+      <Name>Mvvm</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

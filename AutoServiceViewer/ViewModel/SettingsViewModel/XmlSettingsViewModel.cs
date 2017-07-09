@@ -1,7 +1,7 @@
 ﻿using System.Windows.Input;
 using AutoServiceViewer.RepositoryRegistrator;
 using Microsoft.Win32;
-using MVVM;
+using Mvvm;
 
 namespace AutoServiceViewer.ViewModel
 {

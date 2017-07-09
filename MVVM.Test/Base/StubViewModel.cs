@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace MVVM.Test
+namespace Mvvm.Test.Base
 {
     public class StubViewModel : ViewModelBase
     {

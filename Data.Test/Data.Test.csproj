@@ -48,9 +48,14 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDataModelTest.cs" />
-    <Compile Include="DataModelTests.cs" />
+    <Compile Include="Base\BaseBinaryDataModelTest.cs" />
+    <Compile Include="Base\BaseDatabaseDataModelTest.cs" />
+    <Compile Include="Base\BaseDataModelTest.cs" />
+    <Compile Include="Base\BaseXmlDataModelTest.cs" />
+    <Compile Include="Tests\BinaryDataModelTests.cs" />
+    <Compile Include="Tests\DatabaseDataModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\XmlDataModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

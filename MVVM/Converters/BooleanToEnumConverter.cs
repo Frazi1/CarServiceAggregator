@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace MVVM.Converters
+namespace Mvvm.Converters
 {
     public class BooleanToEnumConverter : IValueConverter
     {
