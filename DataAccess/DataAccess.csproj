@@ -54,10 +54,10 @@
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Repository\RepositoryFile\RepositoryBinary\BinaryRepositorySettings.cs" />
-    <Compile Include="Repository\RepositoryFile\RepositoryXML\XmlRepositorySettings.cs" />
+    <Compile Include="Repository\RepositoryFile\RepositoryXml\XmlRepositorySettings.cs" />
     <Compile Include="Repository\RepositorySettings.cs" />
-    <Compile Include="Repository\RepositoryFile\RepositoryXML\XmlHelper.cs" />
-    <Compile Include="Repository\RepositoryFile\RepositoryXML\XmlRepository.cs" />
+    <Compile Include="Repository\RepositoryFile\RepositoryXml\XmlHelper.cs" />
+    <Compile Include="Repository\RepositoryFile\RepositoryXml\XmlRepository.cs" />
     <Compile Include="Repository\RepositoryType.cs" />
   </ItemGroup>
   <ItemGroup>
