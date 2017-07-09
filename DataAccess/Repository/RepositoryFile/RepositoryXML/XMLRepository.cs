@@ -11,7 +11,7 @@ namespace DataAccess.Repository.RepositoryFile
         {
             if (settings.FileMode == FileMode.Open)
             {
-                CustomersOrdersObject data = XMLHelper.Load(settings.FilePath);
+                CustomersOrdersObject data = XmlHelper.Load(settings.FilePath);
                 CustomersList = data.Customers.ToList();
                 OrdersList = data.Orders.ToList();
             }
@@ -24,7 +24,7 @@ namespace DataAccess.Repository.RepositoryFile
                 Customers = CustomersList.ToArray(),
                 Orders = OrdersList.ToArray()
             };
-            XMLHelper.Save(FilePath, coo);
+            XmlHelper.Save(FilePath, coo);
         }
     }
 }
