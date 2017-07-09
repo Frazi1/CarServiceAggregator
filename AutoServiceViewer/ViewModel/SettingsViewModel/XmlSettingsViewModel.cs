@@ -20,7 +20,7 @@ namespace AutoServiceViewer.ViewModel
         {
             OpenFileDialog ofd = new OpenFileDialog
             {
-                Filter = "xml | *.xml"
+                Filter = "Xml файлы (*.xml, *.xmlns)|*.xml;*.xmlns|Все файлы (*.*)|*.*"
             };
             if (ofd.ShowDialog() != true) return;
             _registrator.FileName = ofd.FileName;

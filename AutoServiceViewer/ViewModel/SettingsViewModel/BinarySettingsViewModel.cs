@@ -21,7 +21,7 @@ namespace AutoServiceViewer.ViewModel
         {
             OpenFileDialog ofd = new OpenFileDialog
             {
-                Filter = "dat | *.dat"
+                Filter = "Бинарный файл (*.dat)|*.dat|Все файлы (*.*)|*.*"
             };
             if (ofd.ShowDialog() != true) return;
             _registrator.FileName = ofd.FileName;
