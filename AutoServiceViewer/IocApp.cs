@@ -7,13 +7,9 @@ using Microsoft.Practices.Unity;
 
 namespace AutoServiceViewer
 {
-    public class IocApp
+    public static class IocApp
     {
         private static IUnityContainer _container;
-
-        protected IocApp()
-        {
-        }
 
         public static IUnityContainer Container {
             get {
