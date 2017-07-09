@@ -4,7 +4,7 @@ using DataAccess.Model;
 
 namespace DataAccess.Repository.RepositoryFile
 {
-    public static class XMLHelper
+    public static class XmlHelper
     {
         public static CustomersOrdersObject Load(string filePath)
         {

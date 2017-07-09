@@ -19,7 +19,7 @@ namespace DataGeneratorConsole
         private static void Main(string[] args)
         {
             Initialize();
-            DataGenerator generator = new DataGenerator(true);
+            DataGenerator generator;
             Random r = new Random();
 
             Console.WriteLine("Number Customers");
@@ -27,8 +27,7 @@ namespace DataGeneratorConsole
             Console.WriteLine("Number orders");
             var countOrders = int.Parse(Console.ReadLine());
 
-            generator.GenerateCustomer(countCustomers, r);
-            generator.GenerateOrder(countOrders, r);
+            
 
             var repositories = new List<IRepository>
             {
@@ -40,6 +39,9 @@ namespace DataGeneratorConsole
 
             foreach (IRepository repo in repositories)
             {
+                generator = new DataGenerator(true);
+                generator.GenerateCustomer(countCustomers, r);
+                generator.GenerateOrder(countOrders, r);
                 foreach (Customer item in generator.Customers)
                     repo.AddCustomer(item);
                 foreach (Order item in generator.Orders)
@@ -57,6 +59,8 @@ namespace DataGeneratorConsole
             {
                 var oldPath = sourcePath.Value;
                 var newPath = prefixNewPath + sourcePath.Value;
+                if(File.Exists(newPath))
+                    File.Delete(newPath);
                 File.Copy(oldPath, newPath);
             }
         }
