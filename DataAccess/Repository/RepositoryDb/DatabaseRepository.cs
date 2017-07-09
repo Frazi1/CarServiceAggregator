@@ -44,6 +44,8 @@ namespace DataAccess.Repository.RepositoryDb
                     _db.Database.CreateIfNotExists();
                     break;
                 case DatabaseConnectionAction.Connect:
+                    if (!_db.Database.Exists())
+                        throw new DatabaseMissingException();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
