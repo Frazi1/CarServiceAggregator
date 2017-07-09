@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using DataAccess.CarServiceAggregatorRepositories;
 using DataAccess.Repository.RepositoryFile;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -25,13 +24,13 @@ namespace Data.Test.Base
 
         public override void SaveData()
         {
-            Repository = new XmlCustomersOrdersRepository(new XmlRepositorySettings(XmlFilePath, FileMode.Create));
+            Repository = new XmlRepository(new XmlRepositorySettings(XmlFilePath, FileMode.Create));
             base.SaveData();
         }
 
         public override void LoadData()
         {
-            Repository = new XmlCustomersOrdersRepository(new XmlRepositorySettings(XmlFilePath, FileMode.Open));
+            Repository = new XmlRepository(new XmlRepositorySettings(XmlFilePath, FileMode.Open));
         }
     }
 }

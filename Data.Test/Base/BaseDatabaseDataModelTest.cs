@@ -1,5 +1,4 @@
-﻿using DataAccess.CarServiceAggregatorRepositories;
-using DataAccess.Repository.RepositoryDb;
+﻿using DataAccess.Repository.RepositoryDb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Data.Test.Base
@@ -18,13 +17,13 @@ namespace Data.Test.Base
 
         public override void SaveData()
         {
-            Repository = new DatabaseCustomersOrdersRepository(new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create));
+            Repository = new DatabaseRepository(new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create));
             base.SaveData();
         }
 
         public override void LoadData()
         {
-            Repository = new DatabaseCustomersOrdersRepository(new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Connect));
+            Repository = new DatabaseRepository(new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Connect));
         }
     }
 }

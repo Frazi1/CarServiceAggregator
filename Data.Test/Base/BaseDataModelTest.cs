@@ -1,6 +1,6 @@
 ﻿using System;
-using DataAccess.CarServiceAggregatorRepositories;
 using DataAccess.Model;
+using DataAccess.Repository;
 using DataGeneratorLib;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -10,7 +10,7 @@ namespace Data.Test.Base
     {
         protected DataGenerator DataGenerator { get; private set; }
         protected Random Random { get; private set; }
-        protected ICustomersOrdersRepository Repository { get; set; }
+        protected IRepository Repository { get; set; }
 
         [TestInitialize]
         public virtual void Initialize()

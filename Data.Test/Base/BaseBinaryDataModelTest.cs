@@ -1,5 +1,4 @@
 using System.IO;
-using DataAccess.CarServiceAggregatorRepositories;
 using DataAccess.Repository.RepositoryFile;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -13,7 +12,7 @@ namespace Data.Test.Base
         public override void Initialize()
         {
             BinaryFilePath = "test.dat";
-            Repository = new BinaryCustomersOrdersRepository(new BinaryRepositorySettings(BinaryFilePath, FileMode.Create));
+            Repository = new BinaryRepository(new BinaryRepositorySettings(BinaryFilePath, FileMode.Create));
             base.Initialize();
         }
 
@@ -25,13 +24,13 @@ namespace Data.Test.Base
 
         public override void SaveData()
         {
-            Repository = new BinaryCustomersOrdersRepository(new BinaryRepositorySettings(BinaryFilePath, FileMode.Create));
+            Repository = new BinaryRepository(new BinaryRepositorySettings(BinaryFilePath, FileMode.Create));
             base.SaveData();
         }
 
         public override void LoadData()
         {
-            Repository = new BinaryCustomersOrdersRepository(new BinaryRepositorySettings(BinaryFilePath, FileMode.Open));
+            Repository = new BinaryRepository(new BinaryRepositorySettings(BinaryFilePath, FileMode.Open));
         }
     }
 }
