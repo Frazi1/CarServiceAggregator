@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using AutoServiceViewer.RepositoryRegistrator;
 using DataAccess.Repository;
 using DataAccess.Repository.RepositoryDb;
@@ -40,7 +41,7 @@ namespace AutoServiceViewer
                 case RepositoryType.Binary:
                     return Container.Resolve<BinaryRepository>();
                 default:
-                    return null;
+                    throw new ArgumentOutOfRangeException(nameof(repositoryType), repositoryType, null);
             }
         }
 
@@ -55,7 +56,7 @@ namespace AutoServiceViewer
                 case RepositoryType.Database:
                     return Container.IsRegistered<IRepository>(ConfigurationManager.AppSettings["dbRepository"]);
                 default:
-                    return false;
+                    throw new ArgumentOutOfRangeException(nameof(repositoryType), repositoryType, null);
             }
         }
     }
