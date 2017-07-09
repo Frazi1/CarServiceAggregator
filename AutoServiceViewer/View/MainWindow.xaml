@@ -6,15 +6,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodels="clr-namespace:AutoServiceViewer.ViewModel"
     xmlns:settingsCreator="clr-namespace:AutoServiceViewer.View.SettingsCreator"
-    xmlns:mvvm="clr-namespace:MVVM.Converters;assembly=MVVM"
     xmlns:repository="clr-namespace:DataAccess.Repository;assembly=DataAccess"
+    xmlns:converters="clr-namespace:Mvvm.Converters;assembly=Mvvm"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance {x:Type viewmodels:MainViewModel}}"
     Title="MainWindow" Height="443.432" Width="881.619"
     DataContext="{Binding MainViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <mvvm:BooleanToEnumConverter x:Key="BooleanToEnumConverter" />
+        <converters:BooleanToEnumConverter x:Key="BooleanToEnumConverter" />
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>

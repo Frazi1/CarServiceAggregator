@@ -1,10 +1,10 @@
-﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Mvvm.Test.Base;
 
-namespace MVVM.Test
+namespace Mvvm.Test.Tests
 {
     [TestClass]
-    public class ViewModelTests : BaseMVVMTest
+    public class ViewModelTests : BaseMvvmTest
     {
         [TestMethod]
         public void NotificationExecutionTest()

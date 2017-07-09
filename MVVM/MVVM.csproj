@@ -7,8 +7,8 @@
     <ProjectGuid>{E2A35874-0421-4E40-ADB6-96677A382EFE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MVVM</RootNamespace>
-    <AssemblyName>MVVM</AssemblyName>
+    <RootNamespace>Mvvm</RootNamespace>
+    <AssemblyName>Mvvm</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

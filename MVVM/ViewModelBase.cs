@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace MVVM
+namespace Mvvm
 {
     public class ViewModelBase : INotifyPropertyChanged
     {

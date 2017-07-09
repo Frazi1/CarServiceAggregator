@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVVM.Test
+namespace Mvvm.Test.Base
 {
-    public abstract class BaseMVVMTest
+    public abstract class BaseMvvmTest
     {
         protected StubViewModel StubViewModel { get; set; }
 
