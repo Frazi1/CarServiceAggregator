@@ -160,13 +160,4 @@ namespace DataGeneratorLib
         }
 
     }
-
-    public class Car
-    {
-        public string CarModel { get; set; }
-        public string CarBrand { get; set; }
-        public short ManufactureYear { get; set; }
-        public string TransmissionType { get; set; }
-        public int EnginePower { get; set; }
-    }
 }
