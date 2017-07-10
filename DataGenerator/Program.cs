@@ -19,13 +19,12 @@ namespace DataGeneratorConsole
         private static void Main(string[] args)
         {
             Initialize();
-            DataGenerator generator;
             Random r = new Random();
 
             Console.WriteLine("Number Customers");
             var countCustomers = int.Parse(Console.ReadLine());
-            Console.WriteLine("Number orders");
-            var countOrders = int.Parse(Console.ReadLine());
+            //Console.WriteLine("Number orders");
+            //var countOrders = int.Parse(Console.ReadLine());
 
             
 
@@ -39,7 +38,7 @@ namespace DataGeneratorConsole
 
             foreach (IRepository repo in repositories)
             {
-                generator = new DataGenerator(true, countCustomers, countOrders, r);
+                DataGenerator generator = new DataGenerator(true, countCustomers, r);
 
                 foreach (Customer item in generator.Customers)
                     repo.AddCustomer(item);

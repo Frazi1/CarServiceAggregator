@@ -19,7 +19,7 @@ namespace Data.Test.Base
             const int ordersCount = 50;
             Random = new Random();
 
-            DataGenerator = new DataGenerator(true, customersCount, ordersCount, Random);
+            DataGenerator = new DataGenerator(true, customersCount, Random);
         }
 
         public virtual void SaveData()

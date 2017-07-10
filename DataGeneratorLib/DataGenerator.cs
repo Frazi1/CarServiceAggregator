@@ -9,22 +9,21 @@ namespace DataGeneratorLib
 {
     public class DataGenerator
     {
-
-        //TODO: Несколько заказов с одной машиной. Несколько машин у одного заказчика.
+        private const int CustomerMaxOrdersNumber = 10;
 
         public readonly List<Customer> Customers = new List<Customer>();
         public readonly List<Order> Orders = new List<Order>();
 
         private readonly Dictionary<string, string> _filePaths = new Dictionary<string, string>();
 
-        public DataGenerator(bool setId, int customersCount, int ordersCount, Random r)
+        public DataGenerator(bool setId, int customersCount, Random r)
         {
             InitializePaths();
             Initialize();
             SetId = setId;
 
             GenerateCustomers(customersCount, r);
-            GenerateOrders(ordersCount, r);
+            GenerateOrders(r);
         }
 
 
@@ -63,30 +62,34 @@ namespace DataGeneratorLib
             Transmissions = new List<string> { "Автомат", "Вариатор", "Механическая" };
         }
 
-        private void GenerateOrders(int count, Random r)
+        private void GenerateOrders(Random r)
         {
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < Customers.Count; i++)
             {
-                int customerId = Customers[r.Next(Customers.Count)].CustomerId;
+                int customerId = Customers[i].CustomerId;
                 Customer customer = Customers.First(c => c.CustomerId == customerId);
                 var customerCars = CustomersCars[customer];
-                Car selectedCar = customerCars[r.Next(customerCars.Count)];
 
-                GenerateTaskStartedAndFinished(r, customer, selectedCar.ManufactureYear, out DateTime taskStarted,
-                    out DateTime? taskFinished);
-
-                Order order = new Order
+                for (int j = 0; j < r.Next(CustomerMaxOrdersNumber); j++)
                 {
-                    CustomerId = customerId,
-                    Car = selectedCar,
-                    Price = r.Next(1000, 20000),
-                    TaskName = TaskNames[r.Next(TaskNames.Count)],
-                    TaskStarted = taskStarted,
-                    TaskFinished = taskFinished
-                };
-                if (SetId)
-                    order.OrderId = i + 1;
-                Orders.Add(order);
+                    Car selectedCar = customerCars[r.Next(customerCars.Count)];
+
+                    GenerateTaskStartedAndFinished(r, customer, selectedCar.ManufactureYear, out DateTime taskStarted,
+                        out DateTime? taskFinished);
+
+                    Order order = new Order
+                    {
+                        CustomerId = customerId,
+                        Car = selectedCar,
+                        Price = r.Next(1000, 20000),
+                        TaskName = TaskNames[r.Next(TaskNames.Count)],
+                        TaskStarted = taskStarted,
+                        TaskFinished = taskFinished
+                    };
+                    if (SetId)
+                        order.OrderId = i + 1;
+                    Orders.Add(order);
+                }
             }
         }
 
@@ -126,7 +129,7 @@ namespace DataGeneratorLib
             {
                 CarModel = CarModels[r.Next(CarModels.Count)],
                 CarBrand = CarBrands[r.Next(CarBrands.Count)],
-                ManufactureYear = (short) r.Next(1950, DateTime.Now.Year),
+                ManufactureYear = (short)r.Next(1950, DateTime.Now.Year),
                 TransmissionType = Transmissions[r.Next(Transmissions.Count)],
                 EnginePower = r.Next(50, 300)
             };
