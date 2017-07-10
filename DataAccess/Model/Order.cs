@@ -8,16 +8,23 @@ namespace DataAccess.Model
     [Serializable]
     public class Order
     {
-        [XmlIgnore, NonSerialized]
+        [NonSerialized]
         private Customer _customer;
 
         private Car _car;
+
+        [NonSerialized]
+        private int _carId;
 
         public int OrderId { get; set; }
 
         public int CustomerId { get; set; }
 
-        public int CarId { get; set; }
+        [XmlIgnore]
+        public int CarId {
+            get => _carId;
+            set => _carId =value;
+        }
 
 
         [StringLength(45)]

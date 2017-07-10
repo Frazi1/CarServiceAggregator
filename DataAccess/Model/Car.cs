@@ -1,14 +1,21 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
 
 namespace DataAccess.Model
 {
     [Serializable]
     public class Car
     {
-        //[Key]
-        public int CarId { get; set; }
+        [NonSerialized]
+        private int _carId;
+
+        [XmlIgnore]
+        public int CarId {
+            get => _carId;
+            set => _carId = value;
+        }
 
         [Required]
         [StringLength(20)]
