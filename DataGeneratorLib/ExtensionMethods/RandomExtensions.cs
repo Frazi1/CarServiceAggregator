@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DataGeneratorLib.ExtensionMethods
 {
@@ -40,6 +42,12 @@ namespace DataGeneratorLib.ExtensionMethods
         public static DateTime NextDateTime(this Random r, DateTime minDateTime, DateTime maxDateTime)
         {
             return DateTime.FromBinary(r.NextInt64(minDateTime.Ticks, maxDateTime.Ticks));
+        }
+
+        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> list)
+        {
+            Random r = new Random();
+            return list.OrderBy(item => r.Next());
         }
     }
 }
