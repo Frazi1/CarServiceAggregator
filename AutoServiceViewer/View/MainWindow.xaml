@@ -50,11 +50,11 @@
                       SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" IsReadOnly="True" ColumnWidth="Auto" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding OrderId}"/>
-                    <DataGridTextColumn Header="Марка" Binding="{Binding CarBrand}"/>
-                    <DataGridTextColumn Header="Модель" Binding="{Binding CarModel}"/>
-                    <DataGridTextColumn Header="Год выпуска" Binding="{Binding ManufactureYear}"/>
-                    <DataGridTextColumn Header="Тип трансмиссии" Binding="{Binding TransmissionType}"/>
-                    <DataGridTextColumn Header="Мощность двигателя" Binding="{Binding EnginePower, StringFormat={}{0} л.с.}"/>
+                    <DataGridTextColumn Header="Марка" Binding="{Binding Car.CarBrand}"/>
+                    <DataGridTextColumn Header="Модель" Binding="{Binding Car.CarModel}"/>
+                    <DataGridTextColumn Header="Год выпуска" Binding="{Binding Car.ManufactureYear}"/>
+                    <DataGridTextColumn Header="Тип трансмиссии" Binding="{Binding Car.TransmissionType}"/>
+                    <DataGridTextColumn Header="Мощность двигателя" Binding="{Binding Car.EnginePower, StringFormat={}{0} л.с.}"/>
                     <DataGridTextColumn Header="Наименование работ" Binding="{Binding TaskName}"/>
                     <DataGridTextColumn Header="Время начала работ" Binding="{Binding TaskStarted}"/>
                     <DataGridTextColumn Header="Время окончания работ" Binding="{Binding TaskFinished}"/>
