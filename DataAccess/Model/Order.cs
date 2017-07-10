@@ -11,12 +11,14 @@ namespace DataAccess.Model
         [XmlIgnore, NonSerialized]
         private Customer _customer;
 
+        private Car _car;
+
         public int OrderId { get; set; }
 
         public int CustomerId { get; set; }
 
-        [Required]
-        public Car Car { get; set; }
+        public int CarId { get; set; }
+
 
         [StringLength(45)]
         public string TaskName { get; set; }
@@ -34,37 +36,10 @@ namespace DataAccess.Model
             set => _customer = value;
         }
 
-
-        ////TODO: Убрать эти поля
-        //[XmlIgnore][value:NonSerialized]
-        //public string CarBrand {
-        //    get => Car.CarBrand;
-        //    set => Car.CarBrand = value;
-        //}
-
-        //[XmlIgnore]
-        //public string CarModel {
-        //    get => Car.CarModel;
-        //    set => Car.CarModel = value;
-        //}
-
-        //[XmlIgnore]
-        //public string TransmissionType {
-        //    get => Car.TransmissionType;
-        //    set => Car.TransmissionType = value;
-        //}
-
-        //[XmlIgnore]
-        //public int EnginePower {
-        //    get => Car.EnginePower;
-        //    set => Car.EnginePower = value;
-        //}
-
-        //[XmlIgnore]
-        //public short ManufactureYear {
-        //    get => Car.ManufactureYear;
-        //    set => Car.ManufactureYear = value;
-        //}
-
+        [ForeignKey("CarId")]
+        public Car Car {
+            get => _car;
+            set => _car = value;
+        }
     }
 }

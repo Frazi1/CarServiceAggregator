@@ -9,10 +9,6 @@ namespace DataAccess.Model
     [Serializable]
     public class Customer
     {
-        //[NonSerialized]
-        //[XmlIgnore]
-        //private ICollection<Car> _cars = new List<Car>();
-
         public int CustomerId { get; set; }
 
         [Required]
@@ -32,11 +28,5 @@ namespace DataAccess.Model
 
         [StringLength(12)]
         public string PhoneNumber { get; set; }
-
-        //[Required]
-        //public ICollection<Car> CarsCollection {
-        //    get => _cars;
-        //    set => _cars = value;
-        //}
     }
 }

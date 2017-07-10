@@ -5,8 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace DataAccess.Model
 {
     [Serializable]
-    public struct Car
+    public class Car
     {
+        //[Key]
+        public int CarId { get; set; }
+
         [Required]
         [StringLength(20)]
         public string CarBrand { get; set; }
