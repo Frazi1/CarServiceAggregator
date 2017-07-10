@@ -8,7 +8,8 @@ namespace DataAccess.Model
     [Serializable]
     public class Order
     {
-        [XmlIgnore] [NonSerialized] private Customer _customer;
+        [XmlIgnore, NonSerialized]
+        private Customer _customer;
 
         public int OrderId { get; set; }
 
@@ -32,5 +33,38 @@ namespace DataAccess.Model
             get => _customer;
             set => _customer = value;
         }
+
+
+        ////TODO: Убрать эти поля
+        //[XmlIgnore][value:NonSerialized]
+        //public string CarBrand {
+        //    get => Car.CarBrand;
+        //    set => Car.CarBrand = value;
+        //}
+
+        //[XmlIgnore]
+        //public string CarModel {
+        //    get => Car.CarModel;
+        //    set => Car.CarModel = value;
+        //}
+
+        //[XmlIgnore]
+        //public string TransmissionType {
+        //    get => Car.TransmissionType;
+        //    set => Car.TransmissionType = value;
+        //}
+
+        //[XmlIgnore]
+        //public int EnginePower {
+        //    get => Car.EnginePower;
+        //    set => Car.EnginePower = value;
+        //}
+
+        //[XmlIgnore]
+        //public short ManufactureYear {
+        //    get => Car.ManufactureYear;
+        //    set => Car.ManufactureYear = value;
+        //}
+
     }
 }
