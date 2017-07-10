@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using DataAccess.Model;
@@ -13,8 +12,6 @@ namespace DataGeneratorLib
 
         //TODO: Несколько заказов с одной машиной. Несколько машин у одного заказчика.
 
-        private const int CarsAddtition = 30;
-
         public readonly List<Customer> Customers = new List<Customer>();
         public readonly List<Order> Orders = new List<Order>();
 
@@ -26,7 +23,6 @@ namespace DataGeneratorLib
             Initialize();
             SetId = setId;
 
-            GenerateCars(customersCount + CarsAddtition, r);
             GenerateCustomers(customersCount, r);
             GenerateOrders(ordersCount, r);
         }
@@ -34,7 +30,7 @@ namespace DataGeneratorLib
 
         public bool SetId { get; set; }
 
-        private List<Car> Cars { get; set; } = new List<Car>();
+        private Dictionary<Customer, List<Car>> CustomersCars { get; set; } = new Dictionary<Customer, List<Car>>();
 
         private List<string> Surnames { get; set; }
         private List<string> Firstnames { get; set; }
@@ -69,24 +65,20 @@ namespace DataGeneratorLib
 
         private void GenerateOrders(int count, Random r)
         {
-            for (var i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
-                var selectedCar = Cars[r.Next(Cars.Count)];
-                var customerId = Customers[r.Next(Customers.Count)].CustomerId;
+                int customerId = Customers[r.Next(Customers.Count)].CustomerId;
                 Customer customer = Customers.First(c => c.CustomerId == customerId);
-                var manufactureYear = (short)r.Next(1950, 2017);
+                var customerCars = CustomersCars[customer];
+                Car selectedCar = customerCars[r.Next(customerCars.Count)];
 
-                GenerateTaskStartedAndFinished(r, customer, manufactureYear, out DateTime taskStarted,
+                GenerateTaskStartedAndFinished(r, customer, selectedCar.ManufactureYear, out DateTime taskStarted,
                     out DateTime? taskFinished);
 
                 Order order = new Order
                 {
                     CustomerId = customerId,
-                    CarBrand = selectedCar.CarBrand,
-                    CarModel = selectedCar.CarModel,
-                    EnginePower = selectedCar.EnginePower,
-                    ManufactureYear = selectedCar.ManufactureYear,
-                    TransmissionType = selectedCar.TransmissionType,
+                    Car = selectedCar,
                     Price = r.Next(1000, 20000),
                     TaskName = TaskNames[r.Next(TaskNames.Count)],
                     TaskStarted = taskStarted,
@@ -118,22 +110,26 @@ namespace DataGeneratorLib
                 if (SetId)
                     customer.CustomerId = j + 1;
                 Customers.Add(customer);
+
+                int carNumber = r.Next(1, 3);
+                var cars = new List<Car>();
+                for (int i = 0; i < carNumber; i++)
+                    cars.Add(GenerateCar(r));
+                CustomersCars.Add(customer, cars);
             }
         }
 
-        private void GenerateCars(int count, Random r)
+        private Car GenerateCar(Random r)
         {
-            for (int i = 0; i < count; i++)
+
+            return new Car
             {
-                Cars.Add(new Car
-                {
-                    CarModel = CarModels[r.Next(CarModels.Count)],
-                    CarBrand = CarBrands[r.Next(CarBrands.Count)],
-                    ManufactureYear = (short) r.Next(1950, DateTime.Now.Year),
-                    TransmissionType = Transmissions[r.Next(Transmissions.Count)],
-                    EnginePower = r.Next(50, 300)
-                });
-            }
+                CarModel = CarModels[r.Next(CarModels.Count)],
+                CarBrand = CarBrands[r.Next(CarBrands.Count)],
+                ManufactureYear = (short) r.Next(1950, DateTime.Now.Year),
+                TransmissionType = Transmissions[r.Next(Transmissions.Count)],
+                EnginePower = r.Next(50, 300)
+            };
         }
 
         private static void GenerateTaskStartedAndFinished(Random r, Customer customer, short manufactureYear,
