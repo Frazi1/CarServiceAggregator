@@ -13,12 +13,12 @@ namespace DataGeneratorLib
 
         //TODO: Несколько заказов с одной машиной. Несколько машин у одного заказчика.
 
-        const int CarsAddtition = 30;
+        private const int CarsAddtition = 30;
 
-        public List<Customer> Customers = new List<Customer>();
-        public List<Order> Orders = new List<Order>();
+        public readonly List<Customer> Customers = new List<Customer>();
+        public readonly List<Order> Orders = new List<Order>();
 
-        protected Dictionary<string, string> FilePaths = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> _filePaths = new Dictionary<string, string>();
 
         public DataGenerator(bool setId, int customersCount, int ordersCount, Random r)
         {
@@ -34,37 +34,40 @@ namespace DataGeneratorLib
 
         public bool SetId { get; set; }
 
-        protected List<Car> Cars { get; set; } = new List<Car>();
+        private List<Car> Cars { get; set; } = new List<Car>();
 
-        protected List<string> Surnames { get; set; }
-        protected List<string> Firstnames { get; set; }
-        protected List<string> Patronymics { get; set; }
-        protected List<string> CarBrands { get; set; }
-        protected List<string> CarModels { get; set; }
-        protected List<string> Transmissions { get; set; }
-        protected List<string> TaskNames { get; set; }
+        private List<string> Surnames { get; set; }
+        private List<string> Firstnames { get; set; }
+        private List<string> Patronymics { get; set; }
+        private List<string> CarBrands { get; set; }
+        private List<string> CarModels { get; set; }
+        private List<string> Transmissions { get; set; }
+        private List<string> TaskNames { get; set; }
 
         private void InitializePaths()
         {
-            FilePaths.Add("surname", @"Data/surname.txt");
-            FilePaths.Add("firstname", @"Data/firstname.txt");
-            FilePaths.Add("patronymic", @"Data/patronymic.txt");
-            FilePaths.Add("brands", @"Data/brands.txt");
-            FilePaths.Add("tasks", @"Data/tasks.txt");
+            _filePaths.Add("surname", @"Data/surname.txt");
+            _filePaths.Add("firstname", @"Data/firstname.txt");
+            _filePaths.Add("patronymic", @"Data/patronymic.txt");
+            _filePaths.Add("brands", @"Data/brands.txt");
+            _filePaths.Add("tasks", @"Data/tasks.txt");
         }
 
         private void Initialize()
         {
-            Surnames = Parser.ReadSurnames(FilePaths["surname"]);
-            Firstnames = Parser.ReadFirstNames(FilePaths["firstname"]);
-            Patronymics = Parser.ReadPatronymics(FilePaths["patronymic"]);
-            CarBrands = Parser.ReadCarBrands(FilePaths["brands"]);
-            CarModels = Parser.ReadCarModels(null);
-            TaskNames = Parser.ReadTaskNames(FilePaths["tasks"]);
-            Transmissions = Parser.ReadTransmissions(null);
+            Surnames = Parser.ParseLines(_filePaths["surname"]);
+            Firstnames = Parser.ParseAllTextWithCommas(_filePaths["firstname"]);
+            Patronymics = Parser.ParseLines(_filePaths["patronymic"]);
+            CarBrands = Parser.ParseLines(_filePaths["brands"]);
+            CarModels = new List<string>();
+            for (var i = 0; i < 10; i++)
+                CarModels.Add($"Model{i}");
+
+            TaskNames = Parser.ParseLines(_filePaths["tasks"]);
+            Transmissions = new List<string> { "Автомат", "Вариатор", "Механическая" };
         }
 
-        protected void GenerateOrders(int count, Random r)
+        private void GenerateOrders(int count, Random r)
         {
             for (var i = 0; i < count; i++)
             {
@@ -95,7 +98,7 @@ namespace DataGeneratorLib
             }
         }
 
-        protected void GenerateCustomers(int count, Random r)
+        private void GenerateCustomers(int count, Random r)
         {
             for (var j = 0; j < count; j++)
             {
@@ -118,7 +121,7 @@ namespace DataGeneratorLib
             }
         }
 
-        protected void GenerateCars(int count, Random r)
+        private void GenerateCars(int count, Random r)
         {
             for (int i = 0; i < count; i++)
             {
