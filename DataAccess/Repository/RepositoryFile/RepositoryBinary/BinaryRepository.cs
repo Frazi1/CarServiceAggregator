@@ -12,43 +12,28 @@ namespace DataAccess.Repository.RepositoryFile
         {
             if (settings.FileMode == FileMode.Open)
             {
-                CustomersOrdersObject data = BinaryHelper.Load(FilePath);
-                CustomersList = data.Customers.ToList();
-                OrdersList = data.Orders.ToList();
-                CarsList = data.Cars.ToList();
-
-                foreach (Order order in OrdersList)
-                {
-                    order.Customer = CustomersList.FirstOrDefault(c => c.CustomerId == order.CustomerId);
-                    order.Car = CarsList.FirstOrDefault(c => c.CarId == order.CarId);
-                }
+                var data = BinaryHelper.Load(settings.FilePath);
+                SetData(data);
             }
         }
 
         public override void SaveChanges()
         {
-            try
+            CarsList = new List<Car>();
+            foreach (Order order in OrdersList)
             {
-                CarsList = new List<Car>();
-                foreach (Order order in OrdersList)
-                {
-                    if (!CarsList.Contains(order.Car))
-                        CarsList.Add(order.Car);
-                }
-
-                CustomersOrdersObject coo = new CustomersOrdersObject
-                {
-                    Customers = CustomersList.ToArray(),
-                    Orders = OrdersList.ToArray(),
-                    Cars = CarsList.ToArray()
-                };
-
-                BinaryHelper.Save(FilePath, coo);
+                if (!CarsList.Contains(order.Car))
+                    CarsList.Add(order.Car);
             }
-            catch
+
+            CustomersOrdersObject coo = new CustomersOrdersObject
             {
-                throw;
-            }
+                Customers = CustomersList.ToArray(),
+                Orders = OrdersList.ToArray(),
+                Cars = CarsList.ToArray()
+            };
+
+            BinaryHelper.Save(FilePath, coo);
         }
     }
 }

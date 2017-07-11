@@ -12,15 +12,8 @@ namespace DataAccess.Repository.RepositoryFile
         {
             if (settings.FileMode == FileMode.Open)
             {
-                CustomersOrdersObject data = XmlHelper.Load(settings.FilePath);
-                CustomersList = data.Customers.ToList();
-                OrdersList = data.Orders.ToList();
-                CarsList = data.Cars.ToList();
-                foreach (Order order in OrdersList)
-                {
-                    order.Customer = CustomersList.FirstOrDefault(c => c.CustomerId == order.CustomerId);
-                    order.Car = CarsList.FirstOrDefault(c => c.CarId == order.CarId);
-                }
+                var data = XmlHelper.Load(settings.FilePath);
+                SetData(data);
             }
         }
 
@@ -29,7 +22,7 @@ namespace DataAccess.Repository.RepositoryFile
             CarsList = new List<Car>();
             foreach (Order order in OrdersList)
             {
-                if(!CarsList.Contains(order.Car))
+                if (!CarsList.Contains(order.Car))
                     CarsList.Add(order.Car);
             }
             CustomersOrdersObject coo = new CustomersOrdersObject
@@ -40,5 +33,6 @@ namespace DataAccess.Repository.RepositoryFile
             };
             XmlHelper.Save(FilePath, coo);
         }
+
     }
 }
