@@ -3,7 +3,6 @@ using System.Runtime.Serialization;
 
 namespace DataAccess.Repository.RepositoryDb
 {
-
     [Serializable]
     public class DatabaseRepositoryException : Exception
     {

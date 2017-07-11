@@ -12,7 +12,7 @@ namespace DataAccess.Repository.RepositoryFile
         {
             if (settings.FileMode == FileMode.Open)
             {
-                var data = BinaryHelper.Load(settings.FilePath);
+                CustomersOrdersObject data = BinaryHelper.Load(settings.FilePath);
                 SetData(data);
             }
         }
@@ -21,10 +21,8 @@ namespace DataAccess.Repository.RepositoryFile
         {
             CarsList = new List<Car>();
             foreach (Order order in OrdersList)
-            {
                 if (!CarsList.Contains(order.Car))
                     CarsList.Add(order.Car);
-            }
 
             CustomersOrdersObject coo = new CustomersOrdersObject
             {

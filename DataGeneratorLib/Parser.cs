@@ -8,14 +8,13 @@ namespace DataGeneratorLib
 {
     public static class Parser
     {
-
         public static List<string> ParseLines(string path)
         {
             using (StreamReader s = new StreamReader(path, Encoding.GetEncoding(1251)))
             {
                 return s.ReadToEnd()
                     .Replace('\r', ' ')
-                    .Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                    .Split(new[] {'\n'}, StringSplitOptions.RemoveEmptyEntries)
                     .Select(str => str.Trim())
                     .ToList();
             }
@@ -26,14 +25,14 @@ namespace DataGeneratorLib
             using (StreamReader s = new StreamReader(path, Encoding.GetEncoding(1251)))
             {
                 return s.ReadToEnd()
-                    .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                    .Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries)
                     .Select(str => str.Trim())
                     .ToList();
             }
         }
+        //{
 
         //public static List<string> ReadPatronymics(string path)
-        //{
         //    using (StreamReader s = new StreamReader(path, Encoding.GetEncoding(1251)))
         //    {
         //        return s.ReadToEnd()

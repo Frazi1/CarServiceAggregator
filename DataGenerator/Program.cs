@@ -26,7 +26,6 @@ namespace DataGeneratorConsole
             //Console.WriteLine("Number orders");
             //var countOrders = int.Parse(Console.ReadLine());
 
-            
 
             var repositories = new List<IRepository>
             {
@@ -56,7 +55,7 @@ namespace DataGeneratorConsole
             {
                 var oldPath = sourcePath.Value;
                 var newPath = prefixNewPath + sourcePath.Value;
-                if(File.Exists(newPath))
+                if (File.Exists(newPath))
                     File.Delete(newPath);
                 File.Copy(oldPath, newPath);
             }

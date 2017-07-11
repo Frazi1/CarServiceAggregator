@@ -8,13 +8,11 @@ namespace DataAccess.Model
     [Serializable]
     public class Order
     {
-        [NonSerialized]
-        private Customer _customer;
-
-        [NonSerialized]
-        private Car _car;
+        [NonSerialized] private Car _car;
 
         private int _carId;
+
+        [NonSerialized] private Customer _customer;
 
         public int OrderId { get; set; }
 
@@ -22,7 +20,7 @@ namespace DataAccess.Model
 
         public int CarId {
             get => _carId;
-            set => _carId =value;
+            set => _carId = value;
         }
 
 
