@@ -9,12 +9,32 @@ namespace DataGeneratorLib
 {
     public class DataGenerator
     {
-        private const int CustomerMaxOrdersNumber = 10;
+        private const int MaxCustomerOrdersNumber = 10;
+        private const int MinCarManufactureYear = 1950;
+        private const int MinCustomerAge = 18;
+        private const short MinTaskStartedYear = 2010;
+        private const int MinOrderPrice = 1000;
+        private const int MaxOrderPrice = 20000;
+        private const int MaxOrderDays = 14;
+        private const int MinEnginePower = 50;
+        private const int MaxEnginePower = 300;
 
         private readonly Dictionary<string, string> _filePaths = new Dictionary<string, string>();
 
+        private List<string> Surnames { get; set; }
+        private List<string> Firstnames { get; set; }
+        private List<string> Patronymics { get; set; }
+        private List<string> CarBrands { get; set; }
+        private List<string> CarModels { get; set; }
+        private List<string> Transmissions { get; set; }
+        private List<string> TaskNames { get; set; }
+
         public readonly List<Customer> Customers = new List<Customer>();
         public readonly List<Order> Orders = new List<Order>();
+
+        private static int _carsGeneratedCount = 1;
+        private Dictionary<Customer, List<Car>> CustomersCars { get; } = new Dictionary<Customer, List<Car>>();
+
 
         public DataGenerator(bool setId, int customersCount, Random r)
         {
@@ -40,28 +60,25 @@ namespace DataGeneratorLib
             //        TaskStarted = o.TaskStarted
             //    })
             //    .ToList();
-            Orders = Orders.Shuffle()
+            //Orders = Orders.Shuffle()
+            //    .Select(o =>
+            //    {
+            //        o.OrderId = id++;
+            //        return o;
+            //    })
+            //    .ToList();
+            Orders = Orders.OrderBy(o => o.TaskStarted)
                 .Select(o =>
-                {
-                    o.OrderId = id++;
-                    return o;
-                })
+                    {
+                        o.OrderId = id++;
+                        return o;
+                    })
                 .ToList();
             Customers = Customers.Shuffle().ToList();
         }
 
-
         public bool SetId { get; set; }
 
-        private Dictionary<Customer, List<Car>> CustomersCars { get; } = new Dictionary<Customer, List<Car>>();
-
-        private List<string> Surnames { get; set; }
-        private List<string> Firstnames { get; set; }
-        private List<string> Patronymics { get; set; }
-        private List<string> CarBrands { get; set; }
-        private List<string> CarModels { get; set; }
-        private List<string> Transmissions { get; set; }
-        private List<string> TaskNames { get; set; }
 
         private void InitializePaths()
         {
@@ -83,7 +100,7 @@ namespace DataGeneratorLib
                 CarModels.Add($"Model{i}");
 
             TaskNames = Parser.ParseLines(_filePaths["tasks"]);
-            Transmissions = new List<string> {"Автомат", "Вариатор", "Механическая"};
+            Transmissions = new List<string> { "Автомат", "Вариатор", "Механическая" };
         }
 
         private void GenerateOrders(Random r)
@@ -96,7 +113,7 @@ namespace DataGeneratorLib
                 //Customer customer = Customers.First(c => c.CustomerId == customerId);
                 var customerCars = CustomersCars[customer];
 
-                for (var j = 0; j < r.Next(CustomerMaxOrdersNumber); j++)
+                for (var j = 0; j < r.Next(MaxCustomerOrdersNumber); j++)
                 {
                     Car selectedCar = customerCars[r.Next(customerCars.Count)];
 
@@ -108,7 +125,8 @@ namespace DataGeneratorLib
                         OrderId = currentId++,
                         CustomerId = customerId,
                         Car = selectedCar,
-                        Price = r.Next(1000, 20000),
+                        CarId = selectedCar.CarId,
+                        Price = r.Next(MinOrderPrice, MaxOrderPrice),
                         TaskName = TaskNames[r.Next(TaskNames.Count)],
                         TaskStarted = taskStarted,
                         TaskFinished = taskFinished
@@ -133,7 +151,7 @@ namespace DataGeneratorLib
                     Surname = Surnames[r.Next(Surnames.Count)],
                     FirstName = Firstnames[r.Next(Firstnames.Count)],
                     Patronymic = Patronymics[r.Next(Patronymics.Count)],
-                    BirthYear = (short) r.Next(DateTime.Now.Year - 80, DateTime.Now.Year - 18),
+                    BirthYear = (short)r.Next(DateTime.Now.Year - 80, DateTime.Now.Year - 18),
                     PhoneNumber = phone.ToString()
                 };
 
@@ -153,11 +171,12 @@ namespace DataGeneratorLib
         {
             return new Car
             {
+                CarId = _carsGeneratedCount++,
                 CarModel = CarModels[r.Next(CarModels.Count)],
                 CarBrand = CarBrands[r.Next(CarBrands.Count)],
-                ManufactureYear = (short) r.Next(1950, DateTime.Now.Year),
+                ManufactureYear = (short)r.Next(MinCarManufactureYear, DateTime.Now.Year),
                 TransmissionType = Transmissions[r.Next(Transmissions.Count)],
-                EnginePower = r.Next(50, 300)
+                EnginePower = r.Next(MinEnginePower, MaxEnginePower)
             };
         }
 
@@ -168,9 +187,11 @@ namespace DataGeneratorLib
             taskFinished = null;
             if (isFinished)
             {
-                taskStarted = r.NextDateTime(new DateTime(Math.Max(customer.BirthYear + 18, manufactureYear), 1, 1),
+                taskStarted = r.NextDateTime(new DateTime(
+                    year: Math.Max(customer.BirthYear + MinCustomerAge, Math.Max(MinTaskStartedYear, manufactureYear)),
+                    month: 1, day: 1),
                     DateTime.Now);
-                taskFinished = taskStarted.AddDays(r.Next(0, 14))
+                taskFinished = taskStarted.AddDays(r.Next(0, MaxOrderDays))
                     .AddHours(r.Next(2, 12))
                     .AddMinutes(r.Next(0, 59))
                     .AddSeconds(r.Next(0, 59));
