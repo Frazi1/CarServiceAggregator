@@ -12,7 +12,7 @@ namespace ExceptionHandling
 
         public void Log(string message)
         {
-            MessageBox.Show(message);
+            MessageBox.Show(message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
