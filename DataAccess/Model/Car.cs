@@ -8,10 +8,8 @@ namespace DataAccess.Model
     [Serializable]
     public class Car
     {
-        [NonSerialized]
         private int _carId;
 
-        [XmlIgnore]
         public int CarId {
             get => _carId;
             set => _carId = value;

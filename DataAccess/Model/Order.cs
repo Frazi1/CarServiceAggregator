@@ -11,16 +11,15 @@ namespace DataAccess.Model
         [NonSerialized]
         private Customer _customer;
 
+        [NonSerialized]
         private Car _car;
 
-        [NonSerialized]
         private int _carId;
 
         public int OrderId { get; set; }
 
         public int CustomerId { get; set; }
 
-        [XmlIgnore]
         public int CarId {
             get => _carId;
             set => _carId =value;
@@ -38,12 +37,14 @@ namespace DataAccess.Model
         public double Price { get; set; }
 
         [ForeignKey("CustomerId")]
+        [XmlIgnore]
         public Customer Customer {
             get => _customer;
             set => _customer = value;
         }
 
         [ForeignKey("CarId")]
+        [XmlIgnore]
         public Car Car {
             get => _car;
             set => _car = value;
