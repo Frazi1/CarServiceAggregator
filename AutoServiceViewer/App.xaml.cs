@@ -11,7 +11,7 @@ namespace AutoServiceViewer
     {
         public App()
         {
-            Current.Dispatcher.UnhandledException += Dispatcher_UnhandledException;
+            //Current.Dispatcher.UnhandledException += Dispatcher_UnhandledException;
         }
 
         private static void Dispatcher_UnhandledException(object sender,

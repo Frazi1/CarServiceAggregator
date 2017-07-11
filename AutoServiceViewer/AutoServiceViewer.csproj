@@ -136,6 +136,10 @@
       <Project>{9F889037-E826-419E-92DF-4845AFB1A9D9}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExceptionHandling\ExceptionHandling.csproj">
+      <Project>{70B4C67F-A8EC-4DBB-877C-7E12700716DD}</Project>
+      <Name>ExceptionHandling</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MVVM\Mvvm.csproj">
       <Project>{E2A35874-0421-4E40-ADB6-96677A382EFE}</Project>
       <Name>Mvvm</Name>
