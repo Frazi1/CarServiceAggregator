@@ -69,6 +69,10 @@
       <Project>{AED59192-1E57-4963-A153-3E095555F134}</Project>
       <Name>DataGeneratorLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExceptionHandling\ExceptionHandling.csproj">
+      <Project>{70B4C67F-A8EC-4DBB-877C-7E12700716DD}</Project>
+      <Name>ExceptionHandling</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

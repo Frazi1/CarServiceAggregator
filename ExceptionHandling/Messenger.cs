@@ -3,16 +3,27 @@ using System.Windows;
 
 namespace ExceptionHandling
 {
-    public class Messenger : IExceptionHandler, ILogger
+    public class Messenger : BasicExceptionHandler
     {
-        public void Handle(Exception e)
+        public override void Handle(Exception e)
         {
             Log(e.Message);
         }
 
-        public void Log(string message)
+        public override void Handle(Exception e, IErrorReporter errorReporter)
+        {
+            Handle(e);
+            SetError(errorReporter);
+        }
+
+        public override void Log(string message)
         {
             MessageBox.Show(message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        public override void SetError(IErrorReporter errorReporter)
+        {
+            errorReporter.ErrorHappened = true;
         }
     }
 }

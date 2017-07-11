@@ -41,8 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IExceptionHandler.cs" />
-    <Compile Include="ILogger.cs" />
+    <Compile Include="BasicExceptionHandler.cs" />
+    <Compile Include="Interfaces\IErrorHandler.cs" />
+    <Compile Include="Interfaces\IErrorReporter.cs" />
+    <Compile Include="Interfaces\IExceptionHandler.cs" />
+    <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="Messenger.cs" />
     <Compile Include="Null\NullHandler.cs" />
     <Compile Include="Null\NullLogger.cs" />

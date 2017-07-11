@@ -7,5 +7,14 @@ namespace ExceptionHandling.Null
         public void Handle(Exception e)
         {
         }
+
+        public void Handle(Exception e, IErrorReporter errorReporter)
+        {
+            
+        }
+
+        public void SetError(IErrorReporter errorReporter)
+        {     
+        }
     }
 }

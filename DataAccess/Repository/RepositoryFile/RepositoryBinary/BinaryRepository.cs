@@ -1,20 +1,39 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using DataAccess.Model;
+using ExceptionHandling;
+using ExceptionHandling.Null;
 
 namespace DataAccess.Repository.RepositoryFile
 {
     public sealed class BinaryRepository : FileRepository
     {
+        private readonly IExceptionHandler _handler;
+
         public BinaryRepository(BinaryRepositorySettings settings)
+            : this(settings, new NullHandler())
+        { }
+
+        public BinaryRepository(BinaryRepositorySettings settings, IExceptionHandler handler)
             : base(settings)
         {
-            if (settings.FileMode == FileMode.Open)
+            _handler = handler;
+            Initialize(settings.FileMode);
+        }
+
+        protected override CustomersOrdersObject Load(string filePath)
+        {
+            try
             {
-                CustomersOrdersObject data = BinaryHelper.Load(settings.FilePath);
-                SetData(data);
+                return BinaryHelper.Load(filePath);
             }
+            catch (Exception e)
+            {
+                _handler.Handle(e, this);
+            }
+            return null;
         }
 
         public override void SaveChanges()
@@ -31,7 +50,14 @@ namespace DataAccess.Repository.RepositoryFile
                 Cars = CarsList.ToArray()
             };
 
-            BinaryHelper.Save(FilePath, coo);
+            try
+            {
+                BinaryHelper.Save(FilePath, coo);
+            }
+            catch (Exception e)
+            {
+                _handler.Handle(e, this);
+            }
         }
     }
 }
