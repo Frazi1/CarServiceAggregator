@@ -36,10 +36,9 @@ namespace DataGeneratorConsole
                     new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create))
             };
 
+            DataGenerator generator = new DataGenerator(true, countCustomers, r);
             foreach (IRepository repo in repositories)
             {
-                DataGenerator generator = new DataGenerator(true, countCustomers, r);
-
                 foreach (Customer item in generator.Customers)
                     repo.AddCustomer(item);
                 foreach (Order item in generator.Orders)
