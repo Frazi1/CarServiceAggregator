@@ -7,6 +7,7 @@ namespace DataAccess.Repository
     {
         IEnumerable<Customer> Customers { get; }
         IEnumerable<Order> Orders { get; }
+        IEnumerable<Car> Cars { get; }
 
         void AddOrder(Order order);
 

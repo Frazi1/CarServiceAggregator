@@ -11,6 +11,7 @@ namespace DataAccess.Repository.RepositoryDb
         public AutoServiceDb(string connectionString)
             : base(connectionString)
         {
+            //Configuration.LazyLoadingEnabled = false;
         }
 
         public AutoServiceDb(DbConnection existingConnection, bool contextsOwnsConnection)
@@ -20,10 +21,6 @@ namespace DataAccess.Repository.RepositoryDb
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
+        public DbSet<Car> Cars { get; set; }
     }
 }

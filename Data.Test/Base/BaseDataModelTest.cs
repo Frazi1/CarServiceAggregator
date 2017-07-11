@@ -15,10 +15,11 @@ namespace Data.Test.Base
         [TestInitialize]
         public virtual void Initialize()
         {
-            DataGenerator = new DataGenerator(true);
+            const int customersCount = 30;
+            const int ordersCount = 50;
             Random = new Random();
-            DataGenerator.GenerateCustomer(30, Random);
-            DataGenerator.GenerateOrder(50, Random);
+
+            DataGenerator = new DataGenerator(true, customersCount, Random);
         }
 
         public virtual void SaveData()

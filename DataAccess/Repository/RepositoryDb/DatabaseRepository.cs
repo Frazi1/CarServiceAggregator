@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using DataAccess.Model;
 
 namespace DataAccess.Repository.RepositoryDb
@@ -11,11 +12,15 @@ namespace DataAccess.Repository.RepositoryDb
         public DatabaseRepository(DatabaseRepositorySettings settings)
         {
             _db = new AutoServiceDb(settings.ConnectionString);
+
             DbInitialize(settings);
         }
 
         public IEnumerable<Customer> Customers => _db.Customers;
+
         public IEnumerable<Order> Orders => _db.Orders;
+
+        public IEnumerable<Car> Cars => _db.Cars;
 
         public void AddCustomer(Customer customer)
         {
@@ -37,7 +42,8 @@ namespace DataAccess.Repository.RepositoryDb
             switch (settings.DatabaseConnectionAction)
             {
                 case DatabaseConnectionAction.Create:
-                    _db.Database.Delete();
+                    if (_db.Database.Exists())
+                        _db.Database.Delete();
                     _db.Database.Create();
                     break;
                 case DatabaseConnectionAction.CreateIfNotExists:
@@ -46,20 +52,12 @@ namespace DataAccess.Repository.RepositoryDb
                 case DatabaseConnectionAction.Connect:
                     if (!_db.Database.Exists())
                         throw new DatabaseMissingException();
+                    //Боремся с LazyLoading. Нужно подгрузить таблицу Cars из БД.
+                    _db.Cars.Load();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-        }
-
-        public Customer GetCustomer(int id)
-        {
-            return _db.Customers.Find(id);
-        }
-
-        public Order GetOrder(int id)
-        {
-            return _db.Orders.Find(id);
         }
     }
 }

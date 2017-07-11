@@ -7,5 +7,6 @@ namespace DataAccess.Model
     {
         public Customer[] Customers { get; set; }
         public Order[] Orders { get; set; }
+        public Car[] Cars { get; set; }
     }
 }
