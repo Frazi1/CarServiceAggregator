@@ -45,7 +45,7 @@ namespace DataAccess.Repository.RepositoryFile
                     CarsList.Add(order.Car);
 
             var tuple 
-                = new Tuple<Customer[], Order[], Car[]>(Customers.ToArray(), Orders.ToArray(), Cars.ToArray());
+                = new Tuple<Customer[], Order[], Car[]>(GetCustomers().ToArray(), GetOrders().ToArray(), GetCars().ToArray());
 
             try
             {

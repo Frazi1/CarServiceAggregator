@@ -60,8 +60,8 @@ namespace AutoServiceViewer.ViewModel
         {
             _repository = IocApp.GetRepository(RepositoryType);
             if (_repository.ErrorHappened) return;
-            Orders = new ObservableCollection<Order>(_repository.Orders);
-            Customers = new ObservableCollection<Customer>(_repository.Customers);
+            Orders = new ObservableCollection<Order>(_repository.GetOrders());
+            Customers = new ObservableCollection<Customer>(_repository.GetCustomers());
         }
     }
 }

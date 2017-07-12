@@ -18,8 +18,8 @@ namespace Data.Test.Tests
         {
             SaveData();
             LoadData();
-            Assert.IsTrue(Repository.Customers.Any());
-            Assert.IsTrue(Repository.Orders.Any());
+            Assert.IsTrue(Repository.GetCustomers().Any());
+            Assert.IsTrue(Repository.GetOrders().Any());
         }
     }
 }

@@ -6,9 +6,9 @@ namespace DataAccess.Repository
 {
     public interface IRepository : IErrorReporter
     {
-        IEnumerable<Customer> Customers { get; }
-        IEnumerable<Order> Orders { get; }
-        IEnumerable<Car> Cars { get; }
+        IEnumerable<Customer> GetCustomers();
+        IEnumerable<Order> GetOrders();
+        IEnumerable<Car> GetCars();
 
         void AddOrder(Order order);
         void AddCustomer(Customer customer);

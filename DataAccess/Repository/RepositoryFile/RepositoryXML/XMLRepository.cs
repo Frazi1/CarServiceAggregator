@@ -46,9 +46,9 @@ namespace DataAccess.Repository.RepositoryFile
             var tuple
                 = new MutableTuple<Customer[], Order[], Car[]>
                 {
-                    Item1 = Customers.ToArray(),
-                    Item2 = Orders.ToArray(),
-                    Item3 = Cars.ToArray()
+                    Item1 = GetCustomers().ToArray(),
+                    Item2 = GetOrders().ToArray(),
+                    Item3 = GetCars().ToArray()
                 };
             try
             {
