@@ -21,9 +21,17 @@ namespace DataAccess.Repository.RepositoryFile
         public string FilePath { get; protected set; }
         public bool ErrorHappened { get; set; }
 
-        public IEnumerable<Customer> Customers => CustomersList.AsEnumerable();
-        public IEnumerable<Order> Orders => OrdersList.AsEnumerable();
-        public IEnumerable<Car> Cars => CarsList.AsEnumerable();
+        public IEnumerable<Customer> Customers {
+            get { return CustomersList.AsEnumerable(); }
+        }
+
+        public IEnumerable<Order> Orders {
+            get { return OrdersList.AsEnumerable(); }
+        }
+
+        public IEnumerable<Car> Cars {
+            get { return CarsList.AsEnumerable(); }
+        }
 
         private void Create()
         {

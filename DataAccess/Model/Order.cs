@@ -19,8 +19,8 @@ namespace DataAccess.Model
         public int CustomerId { get; set; }
 
         public int CarId {
-            get => _carId;
-            set => _carId = value;
+            get { return _carId; }
+            set { _carId = value; }
         }
 
 
@@ -37,15 +37,15 @@ namespace DataAccess.Model
         [ForeignKey("CustomerId")]
         [XmlIgnore]
         public Customer Customer {
-            get => _customer;
-            set => _customer = value;
+            get { return _customer; }
+            set { _customer = value; }
         }
 
         [ForeignKey("CarId")]
         [XmlIgnore]
         public Car Car {
-            get => _car;
-            set => _car = value;
+            get { return _car; }
+            set { _car = value; }
         }
     }
 }

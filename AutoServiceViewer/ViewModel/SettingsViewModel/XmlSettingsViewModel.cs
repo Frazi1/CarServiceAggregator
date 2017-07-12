@@ -14,7 +14,9 @@ namespace AutoServiceViewer.ViewModel
             _registrator = new XmlRepositoryRegistrator();
         }
 
-        public ICommand OpenFileCommand => new RelayCommand(o => OpenFile());
+        public ICommand OpenFileCommand {
+            get { return new RelayCommand(o => OpenFile()); }
+        }
 
         private void OpenFile()
         {

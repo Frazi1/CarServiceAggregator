@@ -10,8 +10,8 @@ namespace DataAccess.Model
         private int _carId;
 
         public int CarId {
-            get => _carId;
-            set => _carId = value;
+            get { return _carId; }
+            set { _carId = value; }
         }
 
         [Required]

@@ -117,8 +117,10 @@ namespace DataGeneratorLib
                 {
                     Car selectedCar = customerCars[r.Next(customerCars.Count)];
 
-                    GenerateTaskStartedAndFinished(r, customer, selectedCar.ManufactureYear, out DateTime taskStarted,
-                        out DateTime? taskFinished);
+                    DateTime taskStarted;
+                    DateTime? taskFinished;
+                    GenerateTaskStartedAndFinished(r, customer, selectedCar.ManufactureYear, out taskStarted,
+                        out taskFinished);
 
                     Order order = new Order
                     {

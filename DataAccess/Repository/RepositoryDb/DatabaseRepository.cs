@@ -27,9 +27,17 @@ namespace DataAccess.Repository.RepositoryDb
 
         public bool ErrorHappened { get; set; }
 
-        public IEnumerable<Customer> Customers => _db.Customers;
-        public IEnumerable<Order> Orders => _db.Orders;
-        public IEnumerable<Car> Cars => _db.Cars;
+        public IEnumerable<Customer> Customers {
+            get { return _db.Customers; }
+        }
+
+        public IEnumerable<Order> Orders {
+            get { return _db.Orders; }
+        }
+
+        public IEnumerable<Car> Cars {
+            get { return _db.Cars; }
+        }
 
         public void AddCustomer(Customer customer)
         {
