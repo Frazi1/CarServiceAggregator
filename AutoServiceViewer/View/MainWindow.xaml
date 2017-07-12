@@ -60,6 +60,34 @@
                     <DataGridTextColumn Header="Время окончания работ" Binding="{Binding TaskFinished}"/>
                     <DataGridTextColumn Header="Стоимость работ" Binding="{Binding Price, StringFormat={}{0} руб.}"/>
                 </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="0" Padding="10">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="Фамилия" VerticalAlignment="Center" />
+                                    <TextBlock Text="{Binding Customer.Surname}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="Имя" VerticalAlignment="Center" />
+                                    <TextBlock Text="{Binding Customer.FirstName}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="Отчество" VerticalAlignment="Center" />
+                                    <TextBlock Text="{Binding Customer.Patronymic}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Год рождения" VerticalAlignment="Center" />
+                                    <TextBlock Text="{Binding Customer.BirthYear}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" Text="Телефон" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Customer.PhoneNumber}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
             </DataGrid>
         </DockPanel>
         <!--/Таблица-->
