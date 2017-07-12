@@ -72,6 +72,10 @@
       <Project>{9F889037-E826-419E-92DF-4845AFB1A9D9}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExceptionHandling\ExceptionHandling.csproj">
+      <Project>{70B4C67F-A8EC-4DBB-877C-7E12700716DD}</Project>
+      <Name>ExceptionHandling</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

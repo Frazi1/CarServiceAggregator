@@ -1,20 +1,39 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DataAccess.Model;
+using ExceptionHandling;
+using ExceptionHandling.Null;
 
 namespace DataAccess.Repository.RepositoryFile
 {
     public sealed class XmlRepository : FileRepository
     {
-        public XmlRepository(XmlRepositorySettings settings)
+        private readonly IExceptionHandler _handler;
+
+        public XmlRepository(XmlRepositorySettings settings) 
+            : this(settings, new NullHandler())
+        { }
+
+        public XmlRepository(XmlRepositorySettings settings, IExceptionHandler handler)
             : base(settings)
         {
-            if (settings.FileMode == FileMode.Open)
+            _handler = handler;
+            Initialize(settings.FileMode);
+        }
+
+        protected override CustomersOrdersObject Load(string filePath)
+        {
+            try
             {
-                CustomersOrdersObject data = XmlHelper.Load(settings.FilePath);
-                SetData(data);
+             return XmlHelper.Load(filePath);
             }
+            catch (Exception e)
+            {
+                _handler.Handle(e)
+                    .SetError(this);
+            }
+            return null;
         }
 
         public override void SaveChanges()
@@ -29,7 +48,15 @@ namespace DataAccess.Repository.RepositoryFile
                 Orders = OrdersList.ToArray(),
                 Cars = CarsList.ToArray()
             };
-            XmlHelper.Save(FilePath, coo);
+            try
+            {
+                XmlHelper.Save(FilePath, coo);
+            }
+            catch (Exception e)
+            {
+                _handler.Handle(e)
+                    .SetError(this);
+            }
         }
     }
 }

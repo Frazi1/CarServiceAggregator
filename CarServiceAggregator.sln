@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Test", "Data.Test\Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGeneratorLib", "DataGeneratorLib\DataGeneratorLib.csproj", "{AED59192-1E57-4963-A153-3E095555F134}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExceptionHandling", "ExceptionHandling\ExceptionHandling.csproj", "{70B4C67F-A8EC-4DBB-877C-7E12700716DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{AED59192-1E57-4963-A153-3E095555F134}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AED59192-1E57-4963-A153-3E095555F134}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AED59192-1E57-4963-A153-3E095555F134}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70B4C67F-A8EC-4DBB-877C-7E12700716DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70B4C67F-A8EC-4DBB-877C-7E12700716DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70B4C67F-A8EC-4DBB-877C-7E12700716DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70B4C67F-A8EC-4DBB-877C-7E12700716DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

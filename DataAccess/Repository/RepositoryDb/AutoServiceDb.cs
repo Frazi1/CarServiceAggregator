@@ -11,7 +11,7 @@ namespace DataAccess.Repository.RepositoryDb
         public AutoServiceDb(string connectionString)
             : base(connectionString)
         {
-            //Configuration.LazyLoadingEnabled = false;
+            Configuration.LazyLoadingEnabled = false;
         }
 
         public AutoServiceDb(DbConnection existingConnection, bool contextsOwnsConnection)

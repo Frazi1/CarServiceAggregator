@@ -4,6 +4,7 @@ using AutoServiceViewer.RepositoryRegistrator;
 using DataAccess.Repository;
 using DataAccess.Repository.RepositoryDb;
 using DataAccess.Repository.RepositoryFile;
+using ExceptionHandling;
 using Microsoft.Practices.Unity;
 
 namespace AutoServiceViewer
@@ -28,6 +29,8 @@ namespace AutoServiceViewer
                 ConnectionString = connectionString
             };
             configurator.Register(_container);
+
+            _container.RegisterType<IExceptionHandler, Messenger>();
         }
 
         public static IRepository GetRepository(RepositoryType repositoryType)

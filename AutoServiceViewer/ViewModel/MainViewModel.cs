@@ -56,8 +56,8 @@ namespace AutoServiceViewer.ViewModel
 
         private void GetData()
         {
-            //_repository = IocApp.Container.Resolve<IRepository>();
             _repository = IocApp.GetRepository(RepositoryType);
+            if (_repository.ErrorHappened) return;
             Orders = new ObservableCollection<Order>(_repository.Orders);
             Customers = new ObservableCollection<Customer>(_repository.Customers);
         }

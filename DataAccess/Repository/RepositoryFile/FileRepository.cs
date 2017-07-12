@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using DataAccess.Model;
 
@@ -8,11 +10,8 @@ namespace DataAccess.Repository.RepositoryFile
     {
         protected FileRepository(FileRepositorySettings settings)
         {
-            CustomersList = new List<Customer>();
-            OrdersList = new List<Order>();
-            CarsList = new List<Car>();
-
             FilePath = settings.FilePath;
+            ErrorHappened = false;
         }
 
         protected IList<Customer> CustomersList { get; set; }
@@ -20,10 +19,44 @@ namespace DataAccess.Repository.RepositoryFile
         protected IList<Car> CarsList { get; set; }
 
         public string FilePath { get; protected set; }
+        public bool ErrorHappened { get; set; }
 
         public IEnumerable<Customer> Customers => CustomersList.AsEnumerable();
         public IEnumerable<Order> Orders => OrdersList.AsEnumerable();
         public IEnumerable<Car> Cars => CarsList.AsEnumerable();
+
+        private void Create()
+        {
+            CustomersList = new List<Customer>();
+            OrdersList = new List<Order>();
+            CarsList = new List<Car>();
+        }
+
+        protected abstract CustomersOrdersObject Load(string filePath);
+
+        protected void Initialize(FileMode fileMode)
+        {
+            switch (fileMode)
+            {
+                case FileMode.CreateNew:
+                    throw new InvalidOperationException();
+                case FileMode.Create:
+                    Create();
+                    break;
+                case FileMode.Open:
+                    SetData(Load(FilePath));
+                    break;
+                case FileMode.OpenOrCreate:
+                    throw new InvalidOperationException();
+                case FileMode.Truncate:
+                    throw new InvalidOperationException();
+                case FileMode.Append:
+                    throw new InvalidOperationException();
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(fileMode), fileMode, null);
+            }
+        }
+
 
         public void AddCustomer(Customer customer)
         {
@@ -39,6 +72,7 @@ namespace DataAccess.Repository.RepositoryFile
 
         public virtual void SetData(CustomersOrdersObject data)
         {
+            if(data == null) return;
             CustomersList = data.Customers.ToList();
             OrdersList = data.Orders.ToList();
             CarsList = data.Cars.ToList();

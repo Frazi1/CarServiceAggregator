@@ -5,7 +5,7 @@ namespace DataAccess.Repository.RepositoryDb
 {
     public class DatabaseMissingException : DatabaseRepositoryException
     {
-        public DatabaseMissingException() : this("Базы данных не существует")
+        public DatabaseMissingException()
         {
         }
 
