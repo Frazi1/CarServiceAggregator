@@ -7,10 +7,8 @@
              xmlns:local="clr-namespace:AutoServiceViewer.View.SettingsCreator"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewmodels:XmlSettingsViewModel }"
-             d:DesignHeight="100" d:DesignWidth="300">
-    <Grid>
-        <DockPanel HorizontalAlignment="Left" Width="105">
-            <Button Command="{Binding OpenFileCommand}" Width="100" Height="20" Content="Выбрать файл" Margin="0,40" />
-        </DockPanel>
+             d:DesignHeight="20" d:DesignWidth="100">
+    <Grid Width="Auto" Height="Auto">
+        <Button Command="{Binding OpenFileCommand}" Width="100" Height="20" Content="Выбрать файл" Margin="0" />
     </Grid>
 </UserControl>
