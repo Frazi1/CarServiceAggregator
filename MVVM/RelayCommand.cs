@@ -8,12 +8,7 @@ namespace Mvvm
         private readonly Action<object> _action;
         private readonly Predicate<object> _predicate;
 
-        public RelayCommand(Action<object> action)
-            : this(action, null)
-        {
-        }
-
-        public RelayCommand(Action<object> action, Predicate<object> predicate)
+        public RelayCommand(Action<object> action, Predicate<object> predicate = null)
         {
             if (action == null) throw new ArgumentNullException(nameof(action));
             _action = action;
