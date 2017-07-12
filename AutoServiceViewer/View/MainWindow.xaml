@@ -50,7 +50,7 @@
             </StackPanel>
         </StackPanel>
         <DataGrid x:Name="GridOrders" Grid.Row="1" Height="Auto" ItemsSource="{Binding Orders}" AutoGenerateColumns="False"
-                      SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" IsReadOnly="True" ColumnWidth="Auto" Margin="0,0,0,0" d:LayoutOverrides="Width, LeftMargin, RightMargin, TopMargin, BottomMargin" >
+                      SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" IsReadOnly="True" ColumnWidth="Auto" Margin="0,0,0,0" d:LayoutOverrides="Width, LeftMargin, RightMargin, TopMargin, BottomMargin" SelectionMode="Single" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding OrderId}"/>
                 <DataGridTextColumn Header="Марка" Binding="{Binding Car.CarBrand}"/>
