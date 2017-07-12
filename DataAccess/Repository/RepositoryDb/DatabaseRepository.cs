@@ -27,7 +27,15 @@ namespace DataAccess.Repository.RepositoryDb
             _handler = handler;
             _connectionString = settings.ConnectionString;
             ErrorHappened = false;
-            DbAction(db => DbHelper.DbInitialize(db,settings.DatabaseConnectionAction));
+            DbAction(db => DbHelper.DbInitialize(db, settings.DatabaseConnectionAction));
+        }
+
+        private bool IsLoaded {
+            get {
+                return _customers != null
+                       && _orders != null
+                       && _cars != null;
+            }
         }
 
         public bool ErrorHappened { get; set; }
@@ -44,22 +52,19 @@ namespace DataAccess.Repository.RepositoryDb
 
         public IEnumerable<Customer> GetCustomers()
         {
-            if(_customers == null)
-                Load();
+            if (!IsLoaded) Load();
             return _customers;
         }
 
         public IEnumerable<Order> GetOrders()
         {
-            if(_orders == null)
-                Load();
+            if (!IsLoaded) Load();
             return _orders;
         }
 
         public IEnumerable<Car> GetCars()
         {
-            if(_cars == null)
-               Load();
+            if (!IsLoaded) Load();
             return _cars;
         }
 
