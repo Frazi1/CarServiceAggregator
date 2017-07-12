@@ -8,6 +8,7 @@
     xmlns:settingsCreator="clr-namespace:AutoServiceViewer.View.SettingsCreator"
     xmlns:repository="clr-namespace:DataAccess.Repository;assembly=DataAccess"
     xmlns:converters="clr-namespace:Mvvm.Converters;assembly=Mvvm"
+    xmlns:model="clr-namespace:DataAccess.Model;assembly=DataAccess"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance {x:Type viewmodels:MainViewModel}}"
     Title="MainWindow" Height="443.432" Width="881.619"
@@ -27,23 +28,6 @@
                     Content="Загрузить данные" />
         </DockPanel>
 
-        <!--Владелец автомобиля-->
-        <DockPanel Grid.Row="0" HorizontalAlignment="Right" Width="84">
-            <StackPanel>
-                <TextBlock FontWeight="Bold" Text="Фамилия" />
-                <TextBlock Text="{Binding SelectedOrder.Customer.Surname}" />
-                <TextBlock FontWeight="Bold" Text="Имя" />
-                <TextBlock Text="{Binding SelectedOrder.Customer.FirstName}" />
-                <TextBlock FontWeight="Bold" Text="Отчество" />
-                <TextBlock Text="{Binding SelectedOrder.Customer.Patronymic}" />
-                <TextBlock FontWeight="Bold" Text="Год рождения" />
-                <TextBlock Text="{Binding SelectedOrder.Customer.BirthYear}" />
-                <TextBlock FontWeight="Bold" Text="Телефон" />
-                <TextBlock Text="{Binding SelectedOrder.Customer.PhoneNumber}" />
-            </StackPanel>
-        </DockPanel>
-        <!--/Владелец автомобиля-->
-
         <!--Таблица-->
         <DockPanel Grid.Row="1" VerticalAlignment="Stretch" Height="Auto">
             <DataGrid x:Name="GridOrders" Height="Auto" ItemsSource="{Binding Orders}" AutoGenerateColumns="False"
@@ -61,26 +45,26 @@
                     <DataGridTextColumn Header="Стоимость работ" Binding="{Binding Price, StringFormat={}{0} руб.}"/>
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
-                    <DataTemplate>
-                        <Border BorderThickness="0" Padding="10">
-                            <StackPanel Orientation="Horizontal">
-                                <StackPanel Orientation="Horizontal">
+                    <DataTemplate DataType="model:Order">
+                        <Border Padding="0" BorderThickness="0">
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center" ClipToBounds="True">
                                     <TextBlock FontWeight="Bold" Text="Фамилия" VerticalAlignment="Center" />
                                     <TextBlock Text="{Binding Customer.Surname}" VerticalAlignment="Center" />
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center" ClipToBounds="True">
                                     <TextBlock FontWeight="Bold" Text="Имя" VerticalAlignment="Center" />
                                     <TextBlock Text="{Binding Customer.FirstName}" VerticalAlignment="Center"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center" ClipToBounds="True">
                                     <TextBlock FontWeight="Bold" Text="Отчество" VerticalAlignment="Center" />
                                     <TextBlock Text="{Binding Customer.Patronymic}" VerticalAlignment="Center" />
                                 </StackPanel>
-                                <StackPanel>
+                                <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center" ClipToBounds="True">
                                     <TextBlock FontWeight="Bold" Text="Год рождения" VerticalAlignment="Center" />
                                     <TextBlock Text="{Binding Customer.BirthYear}" VerticalAlignment="Center" />
                                 </StackPanel>
-                                <StackPanel>
+                                <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center" ClipToBounds="True">
                                     <TextBlock FontWeight="Bold" Text="Телефон" VerticalAlignment="Center"/>
                                     <TextBlock Text="{Binding Customer.PhoneNumber}" VerticalAlignment="Center" />
                                 </StackPanel>
