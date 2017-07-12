@@ -21,7 +21,7 @@ namespace AutoServiceViewer.ViewModel
         }
 
         public RepositoryType RepositoryType {
-            get => _repositoryType;
+            get { return _repositoryType; }
             set {
                 _repositoryType = value;
                 NotifyPropertyChanged();
@@ -29,7 +29,7 @@ namespace AutoServiceViewer.ViewModel
         }
 
         public Order SelectedOrder {
-            get => _selectedOrder;
+            get { return _selectedOrder; }
             set {
                 _selectedOrder = value;
                 NotifyPropertyChanged();
@@ -37,7 +37,7 @@ namespace AutoServiceViewer.ViewModel
         }
 
         public ObservableCollection<Customer> Customers {
-            get => _customers;
+            get { return _customers; }
             set {
                 _customers = value;
                 NotifyPropertyChanged();
@@ -45,21 +45,28 @@ namespace AutoServiceViewer.ViewModel
         }
 
         public ObservableCollection<Order> Orders {
-            get => _orders;
+            get { return _orders; }
             set {
                 _orders = value;
                 NotifyPropertyChanged();
             }
         }
 
-        public ICommand GetDataCommand => new RelayCommand(o => GetData(), o => IocApp.IsRegistered(RepositoryType));
+        public ICommand GetDataCommand {
+            get { return new RelayCommand(o => GetData(), o => IocApp.IsRegistered(RepositoryType)); }
+        }
 
         private void GetData()
         {
             _repository = IocApp.GetRepository(RepositoryType);
             if (_repository.ErrorHappened) return;
-            Orders = new ObservableCollection<Order>(_repository.Orders);
-            Customers = new ObservableCollection<Customer>(_repository.Customers);
+            var orders = _repository.GetOrders();
+            if(orders == null) return;
+            var customers = _repository.GetCustomers();
+            if (customers == null) return;
+            var cars = _repository.GetCars();
+            Orders = new ObservableCollection<Order>(orders);
+            Customers = new ObservableCollection<Customer>(customers);
         }
     }
 }

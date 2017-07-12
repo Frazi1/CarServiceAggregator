@@ -21,9 +21,20 @@ namespace DataAccess.Repository.RepositoryFile
         public string FilePath { get; protected set; }
         public bool ErrorHappened { get; set; }
 
-        public IEnumerable<Customer> Customers => CustomersList.AsEnumerable();
-        public IEnumerable<Order> Orders => OrdersList.AsEnumerable();
-        public IEnumerable<Car> Cars => CarsList.AsEnumerable();
+        public IEnumerable<Customer> GetCustomers()
+        {
+            return CustomersList.AsEnumerable();
+        }
+
+        public IEnumerable<Order> GetOrders()
+        {
+            return OrdersList.AsEnumerable();
+        }
+
+        public IEnumerable<Car> GetCars()
+        {
+            return CarsList.AsEnumerable();
+        }
 
         private void Create()
         {
@@ -32,7 +43,7 @@ namespace DataAccess.Repository.RepositoryFile
             CarsList = new List<Car>();
         }
 
-        protected abstract CustomersOrdersObject Load(string filePath);
+        protected abstract Tuple<Customer[], Order[], Car[]> Load(string filePath);
 
         protected void Initialize(FileMode fileMode)
         {
@@ -70,12 +81,12 @@ namespace DataAccess.Repository.RepositoryFile
 
         public abstract void SaveChanges();
 
-        public virtual void SetData(CustomersOrdersObject data)
+        public virtual void SetData(Tuple<Customer[], Order[], Car[]> data)
         {
             if(data == null) return;
-            CustomersList = data.Customers.ToList();
-            OrdersList = data.Orders.ToList();
-            CarsList = data.Cars.ToList();
+            CustomersList = data.Item1.ToList();
+            OrdersList = data.Item2.ToList();
+            CarsList = data.Item3.ToList();
             foreach (Order order in OrdersList)
             {
                 order.Customer = CustomersList.FirstOrDefault(c => c.CustomerId == order.CustomerId);

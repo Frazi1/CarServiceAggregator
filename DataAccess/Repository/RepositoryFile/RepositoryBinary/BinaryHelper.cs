@@ -1,12 +1,11 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using DataAccess.Model;
 
 namespace DataAccess.Repository.RepositoryFile
 {
     public static class BinaryHelper
     {
-        public static void Save(string fileName, CustomersOrdersObject data)
+        public static void Save<T>(string fileName, T data)
         {
             using (FileStream fs = new FileStream(fileName, FileMode.Create))
             {
@@ -15,14 +14,13 @@ namespace DataAccess.Repository.RepositoryFile
             }
         }
 
-        public static CustomersOrdersObject Load(string fileName)
+        public static T Load<T>(string fileName)
         {
-            //TODO: Добавить обработку исключений
-            CustomersOrdersObject result;
+            T result;
             using (FileStream fs = new FileStream(fileName, FileMode.Open))
             {
                 BinaryFormatter bf = new BinaryFormatter();
-                result = (CustomersOrdersObject) bf.Deserialize(fs);
+                result = (T) bf.Deserialize(fs);
             }
             return result;
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using DataAccess.Model;
 using ExceptionHandling;
 using ExceptionHandling.Null;
@@ -9,107 +10,123 @@ namespace DataAccess.Repository.RepositoryDb
 {
     public class DatabaseRepository : IRepository
     {
-        private readonly AutoServiceDb _db;
         private readonly IExceptionHandler _handler;
+        private readonly string _connectionString;
+
+        private IEnumerable<Customer> _customers;
+        private IEnumerable<Order> _orders;
+        private IEnumerable<Car> _cars;
 
         public DatabaseRepository(DatabaseRepositorySettings settings)
             : this(settings, new NullHandler())
-        { }
+        {
+        }
 
         public DatabaseRepository(DatabaseRepositorySettings settings, IExceptionHandler handler)
         {
             _handler = handler;
+            _connectionString = settings.ConnectionString;
             ErrorHappened = false;
-            _db = new AutoServiceDb(settings.ConnectionString);
-
-            DbInitialize(settings);
+            DbAction(db => DbHelper.DbInitialize(db,settings.DatabaseConnectionAction));
         }
 
         public bool ErrorHappened { get; set; }
 
-        public IEnumerable<Customer> Customers {
-            get {
-                return _db.Customers;
-            }
-        }
-
-        public IEnumerable<Order> Orders {
-            get {
-                return _db.Orders;
-            }
-        }
-
-        public IEnumerable<Car> Cars {
-            get {
-                return _db.Cars;
-            }
-        }
 
         public void AddCustomer(Customer customer)
         {
-            _db.Customers.Add(customer);
+            DbAction(db =>
+            {
+                db.Customers.Add(customer);
+                db.SaveChanges();
+            });
+        }
+
+        public IEnumerable<Customer> GetCustomers()
+        {
+            if(_customers == null)
+                Load();
+            return _customers;
+        }
+
+        public IEnumerable<Order> GetOrders()
+        {
+            if(_orders == null)
+                Load();
+            return _orders;
+        }
+
+        public IEnumerable<Car> GetCars()
+        {
+            if(_cars == null)
+               Load();
+            return _cars;
         }
 
         public void AddOrder(Order order)
         {
-            _db.Orders.Add(order);
+            DbAction(db =>
+            {
+                db.Orders.Add(order);
+                db.SaveChanges();
+            });
         }
 
         public void SaveChanges()
         {
-            try
-            {
-                _db.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                _handler.Handle(e, this);
-            }
+            //TODO : Что-то
+            //try
+            //{
+            //    _db.SaveChanges();
+            //}
+            //catch (Exception e)
+            //{
+            //    _handler.Handle(e).SetError(this);
+            //}
         }
 
-        private void DbInitialize(DatabaseRepositorySettings settings)
+        private void DbAction(Action<AutoServiceDb> action)
         {
-            try
+            using (var db = new AutoServiceDb(_connectionString))
             {
-                switch (settings.DatabaseConnectionAction)
+                try
                 {
-                    case DatabaseConnectionAction.Create:
-                        Create();
-                        break;
-                    case DatabaseConnectionAction.CreateIfNotExists:
-                        CreateIfNotExists();
-                        break;
-                    case DatabaseConnectionAction.Connect:
-                        Connect();
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
+                    //DbHelper.DbInitialize(db, connectionAction);
+                    action(db);
+                }
+                catch (Exception e)
+                {
+                    _handler.Handle(e).SetError(this);
                 }
             }
-            catch (Exception e)
+        }
+
+        private TResult DbFunc<TResult>(Func<AutoServiceDb, TResult> func)
+        {
+            using (var db = new AutoServiceDb(_connectionString))
             {
-                _handler.Handle(e, this);
+                TResult result = default(TResult);
+                try
+                {
+                    //DbHelper.DbInitialize(db, connectionAction);
+                    return func(db);
+                }
+                catch (Exception e)
+                {
+                    _handler.Handle(e).SetError(this);
+                }
+                return result;
             }
         }
 
-        private void Connect()
+        private void Load()
         {
-            if (!_db.Database.Exists())
-                throw new DatabaseMissingException("Не удалось подключится к базе данных");
-            //Боремся с LazyLoading. Нужно подгрузить таблицу Cars из БД.
-            _db.Cars.Load();
-        }
-
-        private void CreateIfNotExists()
-        {
-            _db.Database.CreateIfNotExists();
-        }
-
-        private void Create()
-        {
-            if (_db.Database.Exists())
-                _db.Database.Delete();
-            _db.Database.Create();
+            DbAction(db =>
+            {
+                _orders = db.Orders.ToList();
+                _customers = db.Customers.ToList();
+                _cars = db.Cars.ToList();
+            });
         }
     }
 }

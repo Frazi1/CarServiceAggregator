@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataAccess.Model;
+using DataAccess.MutableTuple;
 using ExceptionHandling;
 using ExceptionHandling.Null;
 
@@ -11,7 +12,7 @@ namespace DataAccess.Repository.RepositoryFile
     {
         private readonly IExceptionHandler _handler;
 
-        public XmlRepository(XmlRepositorySettings settings) 
+        public XmlRepository(XmlRepositorySettings settings)
             : this(settings, new NullHandler())
         { }
 
@@ -22,11 +23,11 @@ namespace DataAccess.Repository.RepositoryFile
             Initialize(settings.FileMode);
         }
 
-        protected override CustomersOrdersObject Load(string filePath)
+        protected override Tuple<Customer[], Order[], Car[]> Load(string filePath)
         {
             try
             {
-             return XmlHelper.Load(filePath);
+                return XmlHelper<MutableTuple<Customer[], Order[], Car[]>>.Load(filePath);
             }
             catch (Exception e)
             {
@@ -42,15 +43,16 @@ namespace DataAccess.Repository.RepositoryFile
             foreach (Order order in OrdersList)
                 if (!CarsList.Contains(order.Car))
                     CarsList.Add(order.Car);
-            CustomersOrdersObject coo = new CustomersOrdersObject
-            {
-                Customers = CustomersList.ToArray(),
-                Orders = OrdersList.ToArray(),
-                Cars = CarsList.ToArray()
-            };
+            var tuple
+                = new MutableTuple<Customer[], Order[], Car[]>
+                {
+                    Item1 = GetCustomers().ToArray(),
+                    Item2 = GetOrders().ToArray(),
+                    Item3 = GetCars().ToArray()
+                };
             try
             {
-                XmlHelper.Save(FilePath, coo);
+                XmlHelper<MutableTuple<Customer[], Order[], Car[]>>.Save(FilePath, tuple);
             }
             catch (Exception e)
             {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataAccess.Model;
+using DataAccess.MutableTuple;
 using ExceptionHandling;
 using ExceptionHandling.Null;
 
@@ -22,11 +23,11 @@ namespace DataAccess.Repository.RepositoryFile
             Initialize(settings.FileMode);
         }
 
-        protected override CustomersOrdersObject Load(string filePath)
+        protected override Tuple<Customer[], Order[], Car[]> Load(string filePath)
         {
             try
             {
-                return BinaryHelper.Load(filePath);
+                return BinaryHelper.Load<Tuple<Customer[], Order[], Car[]>>(filePath);
             }
             catch (Exception e)
             {
@@ -43,16 +44,12 @@ namespace DataAccess.Repository.RepositoryFile
                 if (!CarsList.Contains(order.Car))
                     CarsList.Add(order.Car);
 
-            CustomersOrdersObject coo = new CustomersOrdersObject
-            {
-                Customers = CustomersList.ToArray(),
-                Orders = OrdersList.ToArray(),
-                Cars = CarsList.ToArray()
-            };
+            var tuple 
+                = new Tuple<Customer[], Order[], Car[]>(GetCustomers().ToArray(), GetOrders().ToArray(), GetCars().ToArray());
 
             try
             {
-                BinaryHelper.Save(FilePath, coo);
+                BinaryHelper.Save(FilePath, tuple);
             }
             catch (Exception e)
             {
