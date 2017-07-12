@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using DataAccess.Model;
 using ExceptionHandling;
@@ -31,7 +30,8 @@ namespace DataAccess.Repository.RepositoryFile
             }
             catch (Exception e)
             {
-                _handler.Handle(e, this);
+                _handler.Handle(e)
+                    .SetError(this);
             }
             return null;
         }
@@ -56,7 +56,8 @@ namespace DataAccess.Repository.RepositoryFile
             }
             catch (Exception e)
             {
-                _handler.Handle(e, this);
+                _handler.Handle(e)
+                    .SetError(this);
             }
         }
     }

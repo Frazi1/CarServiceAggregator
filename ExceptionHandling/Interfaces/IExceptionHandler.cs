@@ -4,7 +4,6 @@ namespace ExceptionHandling
 {
     public interface IExceptionHandler : IErrorHandler
     {
-        void Handle(Exception e);
-        void Handle(Exception e, IErrorReporter errorReporter);
+        IExceptionHandler Handle(Exception e);
     }
 }

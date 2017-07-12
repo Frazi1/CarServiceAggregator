@@ -5,25 +5,28 @@ namespace ExceptionHandling
 {
     public class Messenger : BasicExceptionHandler
     {
-        public override void Handle(Exception e)
+        public override IExceptionHandler Handle(Exception e)
         {
             Log(e.Message);
+            return this;
         }
 
-        public override void Handle(Exception e, IErrorReporter errorReporter)
-        {
-            Handle(e);
-            SetError(errorReporter);
-        }
+        //public void Handle(Exception e, IErrorReporter errorReporter)
+        //{
+        //    Handle(e);
+        //    SetError(errorReporter);
+        //}
 
-        public override void Log(string message)
+        public override ILogger Log(string message)
         {
             MessageBox.Show(message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            return this;
         }
 
-        public override void SetError(IErrorReporter errorReporter)
+        public override IErrorHandler SetError(IErrorReporter errorReporter)
         {
             errorReporter.ErrorHappened = true;
+            return this;
         }
     }
 }

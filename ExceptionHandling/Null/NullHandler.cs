@@ -4,17 +4,14 @@ namespace ExceptionHandling.Null
 {
     public class NullHandler : IExceptionHandler
     {
-        public void Handle(Exception e)
+        public IErrorHandler SetError(IErrorReporter errorReporter)
         {
+            return this;
         }
 
-        public void Handle(Exception e, IErrorReporter errorReporter)
+        public IExceptionHandler Handle(Exception e)
         {
-            
-        }
-
-        public void SetError(IErrorReporter errorReporter)
-        {     
+            return this;
         }
     }
 }

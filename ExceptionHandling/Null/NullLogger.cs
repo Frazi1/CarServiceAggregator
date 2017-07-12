@@ -2,8 +2,9 @@
 {
     public class NullLogger : ILogger
     {
-        public void Log(string message)
+        public ILogger Log(string message)
         {
+            return this;
         }
     }
 }
