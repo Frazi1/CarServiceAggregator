@@ -22,11 +22,5 @@ namespace ExceptionHandling
             MessageBox.Show(message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             return this;
         }
-
-        public override IErrorHandler SetError(IErrorReporter errorReporter)
-        {
-            errorReporter.ErrorHappened = true;
-            return this;
-        }
     }
 }

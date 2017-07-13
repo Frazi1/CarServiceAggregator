@@ -32,7 +32,8 @@ namespace DataAccess.Repository.RepositoryFile
             catch (Exception e)
             {
                 _handler.Handle(e)
-                    .SetError(this);
+                    .SetError(this)
+                    .SetErrorMessage(this, e.Message);
             }
             return null;
         }
@@ -57,7 +58,8 @@ namespace DataAccess.Repository.RepositoryFile
             catch (Exception e)
             {
                 _handler.Handle(e)
-                    .SetError(this);
+                    .SetError(this)
+                    .SetErrorMessage(this, e.Message);
             }
         }
     }
