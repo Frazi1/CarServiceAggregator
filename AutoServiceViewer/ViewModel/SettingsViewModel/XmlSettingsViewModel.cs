@@ -7,7 +7,17 @@ namespace AutoServiceViewer.ViewModel
 {
     public class XmlSettingsViewModel : ViewModelBase
     {
+        private string _selectedFilePath;
         private readonly XmlRepositoryRegistrator _registrator;
+
+        public string SelectedFilePath {
+            get { return _registrator.FileName; }
+            set {
+                _selectedFilePath = value;
+                _registrator.FileName = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         public XmlSettingsViewModel()
         {
@@ -25,7 +35,7 @@ namespace AutoServiceViewer.ViewModel
                 Filter = "Xml файлы (*.xml, *.xmlns)|*.xml;*.xmlns|Все файлы (*.*)|*.*"
             };
             if (ofd.ShowDialog() != true) return;
-            _registrator.FileName = ofd.FileName;
+            SelectedFilePath = ofd.FileName;
             _registrator.Register(IocApp.Container);
         }
     }

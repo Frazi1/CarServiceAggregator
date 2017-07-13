@@ -7,7 +7,17 @@ namespace AutoServiceViewer.ViewModel
 {
     public class BinarySettingsViewModel : ViewModelBase
     {
+        private string _selectedFilePath;
         private readonly BinaryRepositoryRegistrator _registrator;
+
+        public string SelectedFilePath {
+            get { return _selectedFilePath; }
+            set {
+                _selectedFilePath = value;
+                _registrator.FileName = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         public BinarySettingsViewModel()
         {
@@ -26,7 +36,7 @@ namespace AutoServiceViewer.ViewModel
                 Filter = "Бинарный файл (*.dat)|*.dat|Все файлы (*.*)|*.*"
             };
             if (ofd.ShowDialog() != true) return;
-            _registrator.FileName = ofd.FileName;
+            SelectedFilePath = ofd.FileName;
             _registrator.Register(IocApp.Container);
         }
     }
