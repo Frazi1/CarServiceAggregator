@@ -71,7 +71,7 @@
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate DataType="model:Order">
                     <Border Padding="0" BorderThickness="0">
-                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
                             <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center"
                                         ClipToBounds="True">
                                 <TextBlock FontWeight="Bold" Text="Фамилия" VerticalAlignment="Center" />
