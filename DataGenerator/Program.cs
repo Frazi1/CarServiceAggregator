@@ -46,11 +46,12 @@ namespace DataGeneratorConsole
             }
 
             CopyFiles();
+            Console.ReadLine();
         }
 
         private static void CopyFiles()
         {
-            const string prefixNewPath = @"../../../DataForTest/";
+            const string prefixNewPath = @"../../../DataAccess/DataForTest/";
             foreach (var sourcePath in FilePaths)
             {
                 var oldPath = sourcePath.Value;
@@ -59,6 +60,7 @@ namespace DataGeneratorConsole
                     File.Delete(newPath);
                 File.Copy(oldPath, newPath);
             }
+            Console.WriteLine($"Copied to {prefixNewPath}");
         }
 
         private static void Initialize()

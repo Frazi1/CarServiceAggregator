@@ -65,7 +65,6 @@ namespace DataGeneratorLib
                     return o;
                 })
                 .ToList();
-            Customers = Customers.Shuffle().ToList();
         }
 
         private List<string> Surnames { get; set; }
