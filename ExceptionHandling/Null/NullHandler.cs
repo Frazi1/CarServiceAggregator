@@ -2,14 +2,14 @@
 
 namespace ExceptionHandling.Null
 {
-    public class NullHandler : IExceptionHandler
+    public class NullHandler : BasicExceptionHandler
     {
-        public IErrorHandler SetError(IErrorReporter errorReporter)
+        public override IExceptionHandler Handle(Exception e)
         {
             return this;
         }
 
-        public IExceptionHandler Handle(Exception e)
+        public override ILogger Log(string message)
         {
             return this;
         }
