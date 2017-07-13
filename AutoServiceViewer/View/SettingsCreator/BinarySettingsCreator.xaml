@@ -7,8 +7,11 @@
              xmlns:viewmodels="clr-namespace:AutoServiceViewer.ViewModel"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewmodels:BinarySettingsViewModel}"
-             d:DesignHeight="20" d:DesignWidth="100">
+             d:DesignHeight="20">
     <Grid Height="Auto" Width="Auto">
-        <Button Command="{Binding OpenFileCommand}" Width="100" Height="20" Content="Выбрать файл" Margin="0" />
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding OpenFileCommand}" Width="100" Height="20" Content="Выбрать файл" Margin="0" />
+            <TextBlock Text="{Binding SelectedFilePath}"></TextBlock>
+        </StackPanel>
     </Grid>
 </UserControl>
