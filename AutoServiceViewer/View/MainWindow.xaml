@@ -19,8 +19,8 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="45*" />
-            <RowDefinition Height="367*" />
+            <RowDefinition Height="40" />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <!--Переключалка-->
@@ -35,7 +35,7 @@
                 <Button Width="110" HorizontalAlignment="Left" Command="{Binding GetDataCommand}" Margin="5,0,0,0"
                         Content="Загрузить данные" Height="20" d:LayoutOverrides="LeftPosition, RightPosition" />
             </StackPanel>
-            <StackPanel Height="20" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1000"
+            <StackPanel Height="20" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto"
                         d:LayoutOverrides="Height">
                 <settingsCreator:XmlSettingsCreator x:Name="XmlSettings"
                                                     DataContext="{Binding XmlSettingsViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
