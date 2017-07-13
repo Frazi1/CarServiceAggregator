@@ -58,15 +58,20 @@ namespace AutoServiceViewer.ViewModel
 
         private void GetData()
         {
+            ClearData();
             _repository = IocApp.GetRepository(RepositoryType);
             if (_repository.ErrorHappened) return;
             var orders = _repository.GetOrders();
-            if(orders == null) return;
             var customers = _repository.GetCustomers();
-            if (customers == null) return;
-            var cars = _repository.GetCars();
+            if (orders == null || customers == null) return;
             Orders = new ObservableCollection<Order>(orders);
             Customers = new ObservableCollection<Customer>(customers);
+        }
+
+        private void ClearData()
+        {
+            Orders.Clear();
+            Customers.Clear();
         }
     }
 }
