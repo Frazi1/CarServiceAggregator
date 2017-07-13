@@ -73,27 +73,27 @@
                     <Border Padding="0" BorderThickness="0">
                         <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
                             <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center"
-                                        ClipToBounds="True">
+                                        ClipToBounds="True" MinWidth="60">
                                 <TextBlock FontWeight="Bold" Text="Фамилия" VerticalAlignment="Center" />
                                 <TextBlock Text="{Binding Customer.Surname}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center"
-                                        ClipToBounds="True">
+                                        ClipToBounds="True" MinWidth="60">
                                 <TextBlock FontWeight="Bold" Text="Имя" VerticalAlignment="Center" />
                                 <TextBlock Text="{Binding Customer.FirstName}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center"
-                                        ClipToBounds="True">
+                                        ClipToBounds="True" MinWidth="60">
                                 <TextBlock FontWeight="Bold" Text="Отчество" VerticalAlignment="Center" />
                                 <TextBlock Text="{Binding Customer.Patronymic}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center"
-                                        ClipToBounds="True">
+                                        ClipToBounds="True" MinWidth="60">
                                 <TextBlock FontWeight="Bold" Text="Год рождения" VerticalAlignment="Center" />
                                 <TextBlock Text="{Binding Customer.BirthYear}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center"
-                                        ClipToBounds="True">
+                                        ClipToBounds="True" MinWidth="60">
                                 <TextBlock FontWeight="Bold" Text="Телефон" VerticalAlignment="Center" />
                                 <TextBlock Text="{Binding Customer.PhoneNumber}" VerticalAlignment="Center" />
                             </StackPanel>
