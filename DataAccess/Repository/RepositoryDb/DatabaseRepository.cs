@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using DataAccess.Model;
 using ExceptionHandling;
@@ -12,6 +11,9 @@ namespace DataAccess.Repository.RepositoryDb
     {
         private readonly IExceptionHandler _handler;
         private readonly string _connectionString;
+
+        private readonly ICollection<Customer> _customersStash;
+        private readonly ICollection<Order> _ordersStash;
 
         private IEnumerable<Customer> _customers;
         private IEnumerable<Order> _orders;
@@ -26,6 +28,8 @@ namespace DataAccess.Repository.RepositoryDb
         {
             _handler = handler;
             _connectionString = settings.ConnectionString;
+            _customersStash = new List<Customer>();
+            _ordersStash = new List<Order>();
             ErrorHappened = false;
             DbAction(db => DbHelper.DbInitialize(db, settings.DatabaseConnectionAction));
         }
@@ -39,55 +43,62 @@ namespace DataAccess.Repository.RepositoryDb
         }
 
         public bool ErrorHappened { get; set; }
+        public string ErrorMessage { get; set; }
 
+        //TODO: Remove
+        public ICollection<Order> OrdersStash {
+            get { return _ordersStash; }
+        }
+
+        //TODO: Remove
+        public ICollection<Customer> CustomersStash {
+            get { return _customersStash; }
+        }
 
         public void AddCustomer(Customer customer)
         {
-            DbAction(db =>
-            {
-                db.Customers.Add(customer);
-                db.SaveChanges();
-            });
+            _customersStash.Add(customer);
+        }
+
+        public void AddOrder(Order order)
+        {
+            _ordersStash.Add(order);
         }
 
         public IEnumerable<Customer> GetCustomers()
         {
-            if (!IsLoaded) Load();
+            /*if (!IsLoaded) */
+            Load();
             return _customers;
         }
 
         public IEnumerable<Order> GetOrders()
         {
-            if (!IsLoaded) Load();
+            //if (!IsLoaded)
+            Load();
             return _orders;
         }
 
         public IEnumerable<Car> GetCars()
         {
-            if (!IsLoaded) Load();
+            //if (!IsLoaded)
+            Load();
             return _cars;
-        }
-
-        public void AddOrder(Order order)
-        {
-            DbAction(db =>
-            {
-                db.Orders.Add(order);
-                db.SaveChanges();
-            });
         }
 
         public void SaveChanges()
         {
-            //TODO : Что-то
-            //try
-            //{
-            //    _db.SaveChanges();
-            //}
-            //catch (Exception e)
-            //{
-            //    _handler.Handle(e).SetError(this);
-            //}
+            DbAction(db =>
+            {
+                if (_ordersStash.Any())
+                    db.Orders.AddRange(_ordersStash);
+                if (_customersStash.Any())
+                    db.Customers.AddRange(_customersStash);
+                db.SaveChanges();
+            });
+
+            _ordersStash.Clear();
+            _customersStash.Clear();
         }
 
         private void DbAction(Action<AutoServiceDb> action)
@@ -101,7 +112,9 @@ namespace DataAccess.Repository.RepositoryDb
                 }
                 catch (Exception e)
                 {
-                    _handler.Handle(e).SetError(this);
+                    _handler.Handle(e)
+                        .SetError(this)
+                        .SetErrorMessage(this, e.Message);
                 }
             }
         }
@@ -110,7 +123,6 @@ namespace DataAccess.Repository.RepositoryDb
         {
             using (var db = new AutoServiceDb(_connectionString))
             {
-                TResult result = default(TResult);
                 try
                 {
                     //DbHelper.DbInitialize(db, connectionAction);
@@ -118,9 +130,11 @@ namespace DataAccess.Repository.RepositoryDb
                 }
                 catch (Exception e)
                 {
-                    _handler.Handle(e).SetError(this);
+                    _handler.Handle(e)
+                        .SetError(this)
+                        .SetErrorMessage(this, e.Message);
                 }
-                return result;
+                return default(TResult);
             }
         }
 
