@@ -88,20 +88,24 @@ namespace DataAccess.Repository.RepositoryDb
 
         public void SaveChanges()
         {
-            DbAction(db =>
+            DbAction(action: db =>
             {
                 if (_ordersStash.Any())
                     db.Orders.AddRange(_ordersStash);
                 if (_customersStash.Any())
                     db.Customers.AddRange(_customersStash);
                 db.SaveChanges();
-            });
+            },
+            finallyAction: db =>
+                {
+                    _ordersStash.Clear();
+                    _customersStash.Clear();
+                });
 
-            _ordersStash.Clear();
-            _customersStash.Clear();
+
         }
 
-        private void DbAction(Action<AutoServiceDb> action)
+        private void DbAction(Action<AutoServiceDb> action, Action<AutoServiceDb> finallyAction = null)
         {
             using (var db = new AutoServiceDb(_connectionString))
             {
@@ -116,10 +120,14 @@ namespace DataAccess.Repository.RepositoryDb
                         .SetError(this)
                         .SetErrorMessage(this, e.Message);
                 }
+                finally
+                {
+                    finallyAction?.Invoke(db);
+                }
             }
         }
 
-        private TResult DbFunc<TResult>(Func<AutoServiceDb, TResult> func)
+        private TResult DbFunc<TResult>(Func<AutoServiceDb, TResult> func, Action<AutoServiceDb> finallyAction = null)
         {
             using (var db = new AutoServiceDb(_connectionString))
             {
@@ -133,6 +141,10 @@ namespace DataAccess.Repository.RepositoryDb
                     _handler.Handle(e)
                         .SetError(this)
                         .SetErrorMessage(this, e.Message);
+                }
+                finally
+                {
+                    finallyAction?.Invoke(db);
                 }
                 return default(TResult);
             }

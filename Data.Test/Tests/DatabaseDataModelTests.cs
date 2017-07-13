@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Data.Entity.Validation;
+using System.Linq;
 using Data.Test.Base;
 using DataAccess.Model;
 using DataAccess.Repository.RepositoryDb;
@@ -25,6 +27,7 @@ namespace Data.Test.Tests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(DbEntityValidationException))]
         public void DatabaseRepositoryAddingIncorrentCustomerTest()
         {
             Repository = new DatabaseRepository(new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create));
@@ -42,10 +45,16 @@ namespace Data.Test.Tests
             var incorrectOrder = new Order();
             dbRepository.AddCustomer(incorrectCustomer);
             dbRepository.AddOrder(incorrectOrder);
-            dbRepository.SaveChanges();
+            try
+            {
+                dbRepository.SaveChanges();
+            }
+            catch
+            {
+                // ignored
+            }
             Assert.IsFalse(dbRepository.CustomersStash.Any());
             Assert.IsFalse(dbRepository.OrdersStash.Any());
-
         }
     }
 }
