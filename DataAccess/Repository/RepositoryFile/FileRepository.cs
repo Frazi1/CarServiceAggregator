@@ -20,6 +20,7 @@ namespace DataAccess.Repository.RepositoryFile
 
         public string FilePath { get; protected set; }
         public bool ErrorHappened { get; set; }
+        public string ErrorMessage { get; set; }
 
         public IEnumerable<Customer> GetCustomers()
         {
