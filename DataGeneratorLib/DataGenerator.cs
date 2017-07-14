@@ -19,51 +19,32 @@ namespace DataGeneratorLib
         private const int MinEnginePower = 50;
         private const int MaxEnginePower = 300;
 
-        private static int _carsGeneratedCount = 1;
+        //private static int _carsGeneratedCount = 1;
 
         private readonly Dictionary<string, string> _filePaths = new Dictionary<string, string>();
 
-        public readonly List<Customer> Customers = new List<Customer>();
-        public readonly List<Order> Orders = new List<Order>();
+        public List<Customer> Customers { get; } = new List<Customer>();
+        public List<Order> Orders { get; } = new List<Order>();
+        public List<Car> Cars { get; } = new List<Car>();
 
 
-        public DataGenerator(bool setId, int customersCount, Random r)
+        public DataGenerator(/*bool setId,*/ int customersCount, Random r)
         {
             InitializePaths();
             Initialize();
-            SetId = setId;
+            //SetId = setId;
 
             GenerateCustomers(customersCount, r);
             GenerateOrders(r);
 
-            var id = 1;
-            //Orders = Orders.Shuffle()
-            //    .Select(o => new Order
-            //    {
-            //        OrderId = id++,
-            //        Car = o.Car,
-            //        Customer = o.Customer,
-            //        CustomerId = o.CustomerId,
-            //        CarId = o.CarId,
-            //        Price = o.Price,
-            //        TaskFinished = o.TaskFinished,
-            //        TaskName = o.TaskName,
-            //        TaskStarted = o.TaskStarted
-            //    })
-            //    .ToList();
-            //Orders = Orders.Shuffle()
-            //    .Select(o =>
-            //    {
-            //        o.OrderId = id++;
-            //        return o;
-            //    })
-            //    .ToList();
+            //var id = 1;
+
             Orders = Orders.OrderBy(o => o.TaskStarted)
-                .Select(o =>
-                {
-                    o.OrderId = id++;
-                    return o;
-                })
+                //.Select(o =>
+                //{
+                //    o.OrderId = id++;
+                //    return o;
+                //})
                 .ToList();
         }
 
@@ -76,7 +57,7 @@ namespace DataGeneratorLib
         private List<string> TaskNames { get; set; }
         private Dictionary<Customer, List<Car>> CustomersCars { get; } = new Dictionary<Customer, List<Car>>();
 
-        public bool SetId { get; set; }
+        //public bool SetId { get; set; }
 
 
         private void InitializePaths()
@@ -104,7 +85,7 @@ namespace DataGeneratorLib
 
         private void GenerateOrders(Random r)
         {
-            var currentId = 1;
+            //var currentId = 1;
 
             foreach (Customer customer in Customers)
             {
@@ -123,18 +104,18 @@ namespace DataGeneratorLib
 
                     Order order = new Order
                     {
-                        OrderId = currentId++,
-                        CustomerId = customerId,
+                        //OrderId = currentId++,
+                        //CustomerId = customerId,
+                        Customer = customer,
                         Car = selectedCar,
-                        CarId = selectedCar.CarId,
+                        //CarId = selectedCar.CarId,
                         Price = r.Next(MinOrderPrice, MaxOrderPrice),
                         TaskName = TaskNames[r.Next(TaskNames.Count)],
                         TaskStarted = taskStarted,
                         TaskFinished = taskFinished
                     };
-                    //if (SetId)
-                    //order.OrderId = i + 1;
                     Orders.Add(order);
+                    Cars.Add(selectedCar);
                 }
             }
         }
@@ -156,14 +137,18 @@ namespace DataGeneratorLib
                     PhoneNumber = phone.ToString()
                 };
 
-                if (SetId)
-                    customer.CustomerId = j + 1;
+                //if (SetId)
+                //    customer.CustomerId = j + 1;
                 Customers.Add(customer);
 
                 var carNumber = r.Next(1, 3);
                 var cars = new List<Car>();
                 for (var i = 0; i < carNumber; i++)
-                    cars.Add(GenerateCar(r));
+                {
+                    Car car = GenerateCar(r);
+                    car.Customer = customer;
+                    cars.Add(car);
+                }
                 CustomersCars.Add(customer, cars);
             }
         }
@@ -172,7 +157,7 @@ namespace DataGeneratorLib
         {
             return new Car
             {
-                CarId = _carsGeneratedCount++,
+                //CarId = _carsGeneratedCount++,
                 CarModel = CarModels[r.Next(CarModels.Count)],
                 CarBrand = CarBrands[r.Next(CarBrands.Count)],
                 ManufactureYear = (short) r.Next(MinCarManufactureYear, DateTime.Now.Year),

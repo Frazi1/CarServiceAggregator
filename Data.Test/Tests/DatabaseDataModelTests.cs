@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.Entity.Validation;
+﻿using System.Data.Entity.Validation;
 using System.Linq;
 using Data.Test.Base;
 using DataAccess.Model;
@@ -14,14 +13,25 @@ namespace Data.Test.Tests
         [TestMethod]
         public void DatabaseRepositoryModelCreationTest()
         {
-            SaveData();
+            Repository = new DatabaseRepository(
+                new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create));
+
+            AddTestDataToRepository();
+            Repository.SaveChanges();
         }
 
         [TestMethod]
         public void DatabaseRepositoryModelLoadTest()
         {
-            SaveData();
-            LoadData();
+            Repository = new DatabaseRepository(
+                new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create));
+
+            AddTestDataToRepository();
+            Repository.SaveChanges();
+
+            Repository = new DatabaseRepository(
+                new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Connect));
+
             Assert.IsTrue(Repository.GetOrders().Any());
             Assert.IsTrue(Repository.GetCustomers().Any());
         }
@@ -30,7 +40,8 @@ namespace Data.Test.Tests
         [ExpectedException(typeof(DbEntityValidationException))]
         public void DatabaseRepositoryAddingIncorrentCustomerTest()
         {
-            Repository = new DatabaseRepository(new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create));
+            Repository = new DatabaseRepository(
+                new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create));
             var incorrectCustomer = new Customer();
             Repository.AddCustomer(incorrectCustomer);
             Repository.SaveChanges();
@@ -40,7 +51,8 @@ namespace Data.Test.Tests
         [TestMethod]
         public void DatabaseRepositoryStashClearingWhenErrorTest()
         {
-            var dbRepository = new DatabaseRepository(new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create));
+            var dbRepository = new DatabaseRepository(
+                new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create));
             var incorrectCustomer = new Customer();
             var incorrectOrder = new Order();
             dbRepository.AddCustomer(incorrectCustomer);
@@ -55,6 +67,7 @@ namespace Data.Test.Tests
             }
             Assert.IsFalse(dbRepository.CustomersStash.Any());
             Assert.IsFalse(dbRepository.OrdersStash.Any());
+            Assert.IsFalse(dbRepository.CarsStash.Any());
         }
     }
 }

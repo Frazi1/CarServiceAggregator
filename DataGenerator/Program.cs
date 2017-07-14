@@ -35,13 +35,15 @@ namespace DataGeneratorConsole
                     new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create))
             };
 
-            DataGenerator generator = new DataGenerator(true, countCustomers, r);
+            DataGenerator generator = new DataGenerator(/*true,*/ countCustomers, r);
             foreach (IRepository repo in repositories)
             {
                 foreach (Customer item in generator.Customers)
                     repo.AddCustomer(item);
                 foreach (Order item in generator.Orders)
                     repo.AddOrder(item);
+                foreach (Car car in generator.Cars)
+                    repo.AddCar(car);
                 repo.SaveChanges();
             }
 
