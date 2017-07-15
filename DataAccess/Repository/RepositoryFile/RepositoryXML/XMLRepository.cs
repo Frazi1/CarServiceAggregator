@@ -9,16 +9,16 @@ namespace DataAccess.Repository.RepositoryFile
 {
     public sealed class XmlRepository : FileRepository
     {
-        private readonly IExceptionHandler _handler;
+        private readonly ILogger _logger;
 
         public XmlRepository(XmlRepositorySettings settings)
-            : this(settings, new NullHandler())
+            : this(settings, new NullLogger())
         { }
 
-        public XmlRepository(XmlRepositorySettings settings, IExceptionHandler handler)
+        public XmlRepository(XmlRepositorySettings settings, ILogger logger)
             : base(settings)
         {
-            _handler = handler;
+            _logger = logger;
             Initialize(settings.FileMode);
         }
 
@@ -30,9 +30,8 @@ namespace DataAccess.Repository.RepositoryFile
             }
             catch (Exception e)
             {
-                _handler.Handle(e)
-                    .SetError(this)
-                    .SetErrorMessage(this, e.Message);
+                _logger.Log(e);
+                _logger.SetError(this);
             }
             return null;
         }
@@ -54,9 +53,8 @@ namespace DataAccess.Repository.RepositoryFile
             }
             catch (Exception e)
             {
-                _handler.Handle(e)
-                    .SetError(this)
-                    .SetErrorMessage(this, e.Message);
+                _logger.Log(e);
+                _logger.SetError(this);
             }
         }
     }

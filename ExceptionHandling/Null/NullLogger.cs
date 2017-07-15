@@ -1,10 +1,17 @@
-﻿namespace ExceptionHandling.Null
+﻿using System;
+
+namespace ExceptionHandling.Null
 {
     public class NullLogger : ILogger
     {
-        public ILogger Log(string message)
+        public void Log(Exception e)
         {
-            return this;
+            throw e;
+        }
+
+        public void SetError(IErrorReporter errorReporter)
+        {
+            errorReporter.ErrorHappened = true;
         }
     }
 }

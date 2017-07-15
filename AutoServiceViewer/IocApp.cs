@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.IO;
 using AutoServiceViewer.RepositoryRegistrator;
 using DataAccess.Repository;
 using DataAccess.Repository.RepositoryDb;
@@ -30,7 +31,13 @@ namespace AutoServiceViewer
             };
             configurator.Register(_container);
 
-            _container.RegisterType<IExceptionHandler, Messenger>();
+            RegisterLogger();
+        }
+
+        private static void RegisterLogger()
+        {
+            string appPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
+            _container.RegisterType<ILogger, Messenger>(new InjectionConstructor(appPath));
         }
 
         public static IRepository GetRepository(RepositoryType repositoryType)

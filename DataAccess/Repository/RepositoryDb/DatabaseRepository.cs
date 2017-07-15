@@ -9,7 +9,7 @@ namespace DataAccess.Repository.RepositoryDb
 {
     public class DatabaseRepository : IRepository
     {
-        private readonly IExceptionHandler _handler;
+        private readonly ILogger _logger;
         private readonly string _connectionString;
 
         private readonly ICollection<Customer> _customersStash;
@@ -21,13 +21,13 @@ namespace DataAccess.Repository.RepositoryDb
         private IEnumerable<Car> _cars;
 
         public DatabaseRepository(DatabaseRepositorySettings settings)
-            : this(settings, new NullHandler())
+            : this(settings, new NullLogger())
         {
         }
 
-        public DatabaseRepository(DatabaseRepositorySettings settings, IExceptionHandler handler)
+        public DatabaseRepository(DatabaseRepositorySettings settings, ILogger logger)
         {
-            _handler = handler;
+            _logger = logger;
             _connectionString = settings.ConnectionString;
             _customersStash = new List<Customer>();
             _carsStash = new List<Car>();
@@ -121,9 +121,8 @@ namespace DataAccess.Repository.RepositoryDb
                 }
                 catch (Exception e)
                 {
-                    _handler.Handle(e)
-                        .SetError(this)
-                        .SetErrorMessage(this, e.Message);
+                    _logger.Log(e);
+                    _logger.SetError(this);
                 }
                 finally
                 {
@@ -143,9 +142,8 @@ namespace DataAccess.Repository.RepositoryDb
                 }
                 catch (Exception e)
                 {
-                    _handler.Handle(e)
-                        .SetError(this)
-                        .SetErrorMessage(this, e.Message);
+                    _logger.Log(e);
+                    _logger.SetError(this);
                 }
                 finally
                 {

@@ -3,24 +3,17 @@ using System.Windows;
 
 namespace ExceptionHandling
 {
-    public class Messenger : BasicExceptionHandler
+    public class Messenger : FileLogger
     {
-        public override IExceptionHandler Handle(Exception e)
+        public Messenger(string logDirectoryPath)
+            : base(logDirectoryPath)
         {
-            Log(e.Message);
-            return this;
         }
 
-        //public void Handle(Exception e, IErrorReporter errorReporter)
-        //{
-        //    Handle(e);
-        //    SetError(errorReporter);
-        //}
-
-        public override ILogger Log(string message)
+        public override void Log(Exception e)
         {
-            MessageBox.Show(message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            return this;
+            base.Log(e);
+            MessageBox.Show(e.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
