@@ -14,16 +14,5 @@ namespace Data.Test.Base
                 "server=localhost;port=3306;userid=testuser;password=testpassword;initial catalog=test_db_auto_data";
             base.Initialize();
         }
-
-        public override void SaveData()
-        {
-            Repository = new DatabaseRepository(new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create));
-            base.SaveData();
-        }
-
-        public override void LoadData()
-        {
-            Repository = new DatabaseRepository(new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Connect));
-        }
     }
 }

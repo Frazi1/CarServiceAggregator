@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using DataAccess.Model;
 using DataAccess.MutableTuple;
@@ -40,16 +39,14 @@ namespace DataAccess.Repository.RepositoryFile
 
         public override void SaveChanges()
         {
-            CarsList = new List<Car>();
-            foreach (Order order in OrdersList)
-                if (!CarsList.Contains(order.Car))
-                    CarsList.Add(order.Car);
+            AssignIds();
+            SaveReferencesIds();
             var tuple
                 = new MutableTuple<Customer[], Order[], Car[]>
                 {
-                    Item1 = GetCustomers().ToArray(),
-                    Item2 = GetOrders().ToArray(),
-                    Item3 = GetCars().ToArray()
+                    Item1 = GetCustomers().OrderBy(c=>c.CustomerId).ToArray(),
+                    Item2 = GetOrders().OrderBy(o=>o.OrderId).ToArray(),
+                    Item3 = GetCars().OrderBy(c=>c.CarId).ToArray()
                 };
             try
             {

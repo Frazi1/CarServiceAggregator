@@ -56,7 +56,7 @@ namespace DataAccess.Repository.RepositoryFile
                     Create();
                     break;
                 case FileMode.Open:
-                    SetData(Load(FilePath));
+                    SetLoadedData(Load(FilePath));
                     break;
                 case FileMode.OpenOrCreate:
                     throw new InvalidOperationException();
@@ -80,19 +80,63 @@ namespace DataAccess.Repository.RepositoryFile
             OrdersList.Add(order);
         }
 
+        public void AddCar(Car car)
+        {
+            CarsList.Add(car);
+        }
+
         public abstract void SaveChanges();
 
-        public virtual void SetData(Tuple<Customer[], Order[], Car[]> data)
+        private void SetLoadedData(Tuple<Customer[], Order[], Car[]> data)
         {
-            if(data == null) return;
+            if (data == null) return;
             CustomersList = data.Item1.ToList();
             OrdersList = data.Item2.ToList();
             CarsList = data.Item3.ToList();
+
+            LoadReferences();
+        }
+
+        protected void AssignIds()
+        {
+            for (int i = 0; i < CustomersList.Count; i++)
+                CustomersList[i].CustomerId = i + 1;
+
+            for (int i = 0; i < OrdersList.Count; i++)
+                OrdersList[i].OrderId = i + 1;
+
+            for (int i = 0; i < CarsList.Count; i++)
+                CarsList[i].CarId = i + 1;
+        }
+
+        protected void SaveReferencesIds()
+        {
             foreach (Order order in OrdersList)
             {
-                order.Customer = CustomersList.FirstOrDefault(c => c.CustomerId == order.CustomerId);
-                order.Car = CarsList.FirstOrDefault(c => c.CarId == order.CarId);
+                order.CarId = CarsList.First(c => order.Car == c).CarId;
+                order.CustomerId = CustomersList.First(c => order.Customer == c).CustomerId;
+            }
+
+            foreach (Car car in CarsList)
+            {
+                car.CustomerId = CustomersList.First(c => car.Customer == c).CustomerId;
             }
         }
+
+        private void LoadReferences()
+        {
+            foreach (Order order in OrdersList)
+            {
+                order.Customer = CustomersList.First(c => c.CustomerId == order.CustomerId);
+                order.Car = CarsList.First(c => c.CarId == order.CarId);
+            }
+
+            foreach (Car car in CarsList)
+            {
+                car.Customer = CustomersList.First(c => c.CustomerId == car.CustomerId);
+            }
+        }
+
+
     }
 }

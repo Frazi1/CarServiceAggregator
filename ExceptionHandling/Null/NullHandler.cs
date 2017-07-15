@@ -6,7 +6,7 @@ namespace ExceptionHandling.Null
     {
         public override IExceptionHandler Handle(Exception e)
         {
-            return this;
+            throw e;
         }
 
         public override ILogger Log(string message)

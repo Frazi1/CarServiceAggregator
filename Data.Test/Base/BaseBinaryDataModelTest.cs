@@ -21,16 +21,5 @@ namespace Data.Test.Base
         {
             File.Delete(BinaryFilePath);
         }
-
-        public override void SaveData()
-        {
-            Repository = new BinaryRepository(new BinaryRepositorySettings(BinaryFilePath, FileMode.Create));
-            base.SaveData();
-        }
-
-        public override void LoadData()
-        {
-            Repository = new BinaryRepository(new BinaryRepositorySettings(BinaryFilePath, FileMode.Open));
-        }
     }
 }

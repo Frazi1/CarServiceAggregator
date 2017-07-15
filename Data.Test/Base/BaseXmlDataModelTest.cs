@@ -20,17 +20,5 @@ namespace Data.Test.Base
         {
             File.Delete(XmlFilePath);
         }
-
-
-        public override void SaveData()
-        {
-            Repository = new XmlRepository(new XmlRepositorySettings(XmlFilePath, FileMode.Create));
-            base.SaveData();
-        }
-
-        public override void LoadData()
-        {
-            Repository = new XmlRepository(new XmlRepositorySettings(XmlFilePath, FileMode.Open));
-        }
     }
 }

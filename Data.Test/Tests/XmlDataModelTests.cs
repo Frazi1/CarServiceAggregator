@@ -1,5 +1,10 @@
+using System;
+using System.IO;
 using System.Linq;
 using Data.Test.Base;
+using DataAccess.Model;
+using DataAccess.Repository.RepositoryFile;
+using DataGeneratorLib;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Data.Test.Tests
@@ -10,14 +15,21 @@ namespace Data.Test.Tests
         [TestMethod]
         public void XmlRepositoryModelCreationTest()
         {
-            SaveData();
+            Repository = new XmlRepository(new XmlRepositorySettings(XmlFilePath, FileMode.Create));
+            AddTestDataToRepository();
+            Repository.SaveChanges();
         }
 
         [TestMethod]
         public void XmlRepositoryModelLoadTest()
         {
-            SaveData();
-            LoadData();
+            Repository = new XmlRepository(new XmlRepositorySettings(XmlFilePath, FileMode.Create));
+
+            AddTestDataToRepository();
+            Repository.SaveChanges();
+
+            Repository = new XmlRepository(new XmlRepositorySettings(XmlFilePath, FileMode.Open));
+
             Assert.IsTrue(Repository.GetOrders().Any());
             Assert.IsTrue(Repository.GetCustomers().Any());
         }
