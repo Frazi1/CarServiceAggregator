@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 
 namespace ExceptionHandling
 {
@@ -27,12 +28,18 @@ namespace ExceptionHandling
         {
             try
             {
-                string info =
-                    $"[{DateTime.Now:F}] \r\n [{e.TargetSite.DeclaringType}.{e.TargetSite.Name}] {e.Message} \r\n";
-                if (StackTrace)
-                    info = string.Concat(info, $"[StackTrace] \r\n [{e.StackTrace}] \r\n");
+                StringBuilder s = new StringBuilder();
 
-                Write(info);
+                s.Append(
+                    $"[{DateTime.Now:F}]\r\n[{e.TargetSite.DeclaringType}.{e.TargetSite.Name}]\r\n");
+
+                s.Append($"[Message]\r\n{e.Message} \r\n");
+
+                if (StackTrace)
+                    s.Append($"[StackTrace] \r\n [{e.StackTrace}] \r\n");
+
+                s.Append(Environment.NewLine);
+                Write(s.ToString());
             }
             catch
             {
