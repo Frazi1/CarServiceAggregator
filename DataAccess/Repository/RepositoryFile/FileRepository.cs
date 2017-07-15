@@ -8,6 +8,8 @@ namespace DataAccess.Repository.RepositoryFile
 {
     public abstract class FileRepository : IRepository
     {
+        //TODO: Сделать кэширование данных
+
         protected FileRepository(FileRepositorySettings settings)
         {
             FilePath = settings.FilePath;

@@ -10,6 +10,9 @@ namespace DataAccess.Repository.RepositoryDb
 {
     public class DatabaseRepository : IRepository
     {
+
+        //TODO: Сделать кэширование данных
+
         #region Private fields
 
         private readonly ILogger _logger;
