@@ -13,6 +13,12 @@ namespace DataAccess.Repository.RepositoryDb
             Configuration.LazyLoadingEnabled = false;
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            //TODO: Fluent API
+        }
+
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Car> Cars { get; set; }

@@ -10,7 +10,6 @@ namespace DataAccess.Repository.RepositoryDb
 {
     public class DatabaseRepository : IRepository
     {
-
         //TODO: Сделать кэширование данных
 
         #region Private fields
@@ -25,6 +24,7 @@ namespace DataAccess.Repository.RepositoryDb
         private IEnumerable<Customer> _customers;
         private IEnumerable<Order> _orders;
         private IEnumerable<Car> _cars;
+
         #endregion
 
         #region Constructors
@@ -44,7 +44,8 @@ namespace DataAccess.Repository.RepositoryDb
             ErrorHappened = false;
             Database.SetInitializer(new DbInitializer(this, settings.DatabaseConnectionAction));
             DbAction(context => context.Database.Initialize(force: true));
-        } 
+        }
+
         #endregion
 
         #region IErrorReporter interface implementation
@@ -66,6 +67,7 @@ namespace DataAccess.Repository.RepositoryDb
         }
 
         #region IRepository interface implementation
+
         public void AddCustomer(Customer customer)
         {
             _customersStash.Add(customer);
@@ -114,6 +116,7 @@ namespace DataAccess.Repository.RepositoryDb
                     _carsStash.Clear();
                 });
         }
+
         #endregion
 
         #region DbActions
@@ -170,6 +173,7 @@ namespace DataAccess.Repository.RepositoryDb
             }
             return default(TResult);
         }
+
         #endregion
 
         #region Internal Methods
@@ -194,10 +198,7 @@ namespace DataAccess.Repository.RepositoryDb
 
         internal void CreateIfNotExists(AutoServiceDb inputContext)
         {
-            DbAction(inputContext, context =>
-            {
-                context.Database.CreateIfNotExists();
-            });
+            DbAction(inputContext, context => { context.Database.CreateIfNotExists(); });
         }
 
         internal void Create(AutoServiceDb inputContext)
@@ -208,7 +209,8 @@ namespace DataAccess.Repository.RepositoryDb
                     context.Database.Delete();
                 context.Database.Create();
             });
-        } 
+        }
+
         #endregion
     }
 }
