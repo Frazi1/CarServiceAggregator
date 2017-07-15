@@ -47,7 +47,7 @@ namespace DataAccess.Repository.RepositoryDb
         #region IErrorReporter interface implementation
 
         public bool ErrorHappened { get; set; }
-        public string ErrorMessage { get; set; } 
+
         #endregion
 
         public IEnumerable<Order> OrdersStash {
