@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using DataAccess.Model;
 using ExceptionHandling;
@@ -9,6 +10,8 @@ namespace DataAccess.Repository.RepositoryDb
 {
     public class DatabaseRepository : IRepository
     {
+        #region Private fields
+
         private readonly ILogger _logger;
         private readonly string _connectionString;
 
@@ -19,6 +22,9 @@ namespace DataAccess.Repository.RepositoryDb
         private IEnumerable<Customer> _customers;
         private IEnumerable<Order> _orders;
         private IEnumerable<Car> _cars;
+        #endregion
+
+        #region Constructors
 
         public DatabaseRepository(DatabaseRepositorySettings settings)
             : this(settings, new NullLogger())
@@ -33,27 +39,30 @@ namespace DataAccess.Repository.RepositoryDb
             _carsStash = new List<Car>();
             _ordersStash = new List<Order>();
             ErrorHappened = false;
-            DbAction(db => DbHelper.DbInitialize(db, settings.DatabaseConnectionAction));
-        }
+            Database.SetInitializer(new DbInitializer(this, settings.DatabaseConnectionAction));
+            DbAction(context => context.Database.Initialize(force: true));
+        } 
+        #endregion
+
+        #region IErrorReporter interface implementation
 
         public bool ErrorHappened { get; set; }
-        public string ErrorMessage { get; set; }
+        public string ErrorMessage { get; set; } 
+        #endregion
 
-        //TODO: Remove
-        public ICollection<Order> OrdersStash {
+        public IEnumerable<Order> OrdersStash {
             get { return _ordersStash; }
         }
 
-        //TODO: Remove
-        public ICollection<Customer> CustomersStash {
+        public IEnumerable<Customer> CustomersStash {
             get { return _customersStash; }
         }
 
-        //TODO: Remove
-        public ICollection<Car> CarsStash {
+        public IEnumerable<Car> CarsStash {
             get { return _carsStash; }
         }
 
+        #region IRepository interface implementation
         public void AddCustomer(Customer customer)
         {
             _customersStash.Add(customer);
@@ -71,22 +80,17 @@ namespace DataAccess.Repository.RepositoryDb
 
         public IEnumerable<Customer> GetCustomers()
         {
-            /*if (!IsLoaded) */
-            Load();
             return _customers;
         }
 
         public IEnumerable<Order> GetOrders()
         {
-            //if (!IsLoaded)
-            Load();
             return _orders;
         }
 
+
         public IEnumerable<Car> GetCars()
         {
-            //if (!IsLoaded)
-            Load();
             return _cars;
         }
 
@@ -107,58 +111,101 @@ namespace DataAccess.Repository.RepositoryDb
                     _carsStash.Clear();
                 });
         }
+        #endregion
+
+        #region DbActions
 
         private void DbAction(Action<AutoServiceDb> action, Action<AutoServiceDb> finallyAction = null)
         {
-            using (var db = new AutoServiceDb(_connectionString))
+            using (var context = new AutoServiceDb(_connectionString))
             {
-                try
-                {
-                    //DbHelper.DbInitialize(db, connectionAction);
-                    action(db);
-                }
-                catch (Exception e)
-                {
-                    _logger.Log(e);
-                    _logger.SetError(this);
-                }
-                finally
-                {
-                    finallyAction?.Invoke(db);
-                }
+                DbAction(context, action, finallyAction);
+            }
+        }
+
+        private void DbAction(AutoServiceDb context, Action<AutoServiceDb> action,
+            Action<AutoServiceDb> finallyAction = null)
+        {
+            try
+            {
+                action(context);
+            }
+            catch (Exception e)
+            {
+                _logger.Log(e);
+                _logger.SetError(this);
+            }
+            finally
+            {
+                finallyAction?.Invoke(context);
             }
         }
 
         private TResult DbFunc<TResult>(Func<AutoServiceDb, TResult> func, Action<AutoServiceDb> finallyAction = null)
         {
-            using (var db = new AutoServiceDb(_connectionString))
+            using (var context = new AutoServiceDb(_connectionString))
             {
-                try
-                {
-                    //DbHelper.DbInitialize(db, connectionAction);
-                    return func(db);
-                }
-                catch (Exception e)
-                {
-                    _logger.Log(e);
-                    _logger.SetError(this);
-                }
-                finally
-                {
-                    finallyAction?.Invoke(db);
-                }
-                return default(TResult);
+                return DbFunc(context, func, finallyAction);
             }
         }
 
-        private void Load()
+        private TResult DbFunc<TResult>(AutoServiceDb context, Func<AutoServiceDb, TResult> func,
+            Action<AutoServiceDb> finallyAction = null)
         {
-            DbAction(db =>
+            try
             {
-                _orders = db.Orders.ToList();
-                _customers = db.Customers.ToList();
-                _cars = db.Cars.ToList();
+                return func(context);
+            }
+            catch (Exception e)
+            {
+                _logger.Log(e);
+                _logger.SetError(this);
+            }
+            finally
+            {
+                finallyAction?.Invoke(context);
+            }
+            return default(TResult);
+        }
+        #endregion
+
+        #region Internal Methods
+
+        internal void Load(AutoServiceDb context)
+        {
+            _orders = context.Orders.ToList();
+            _customers = context.Customers.ToList();
+            _cars = context.Cars.ToList();
+        }
+
+        internal void Connect(AutoServiceDb inputContext)
+        {
+            DbAction(inputContext, context =>
+            {
+                if (!context.Database.Exists())
+                    throw new DatabaseMissingException("Базы данных не существует");
+                Load(context);
             });
         }
+
+
+        internal void CreateIfNotExists(AutoServiceDb inputContext)
+        {
+            DbAction(inputContext, context =>
+            {
+                context.Database.CreateIfNotExists();
+            });
+        }
+
+        internal void Create(AutoServiceDb inputContext)
+        {
+            DbAction(inputContext, context =>
+            {
+                if (context.Database.Exists())
+                    context.Database.Delete();
+                context.Database.Create();
+            });
+        } 
+        #endregion
     }
 }
