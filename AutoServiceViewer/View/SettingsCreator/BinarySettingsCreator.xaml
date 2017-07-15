@@ -11,7 +11,7 @@
     <Grid Height="Auto" Width="Auto">
         <StackPanel Orientation="Horizontal">
             <Button Command="{Binding OpenFileCommand}" Width="100" Height="20" Content="Выбрать файл" Margin="0" />
-            <TextBlock Text="{Binding SelectedFilePath}"></TextBlock>
+            <TextBlock Text="{Binding SelectedFilePath}" />
         </StackPanel>
     </Grid>
 </UserControl>

@@ -16,7 +16,8 @@ namespace AutoServiceViewer.RepositoryRegistrator
                 throw new ArgumentException("Connection string must not be null");
             //DatabaseRepositorySettings settings = new DatabaseRepositorySettings(ConnectionString);
             //container.RegisterInstance(settings);
-            container.RegisterType<DatabaseRepositorySettings>(new InjectionConstructor(ConnectionString, DatabaseConnectionAction.Connect));
+            container.RegisterType<DatabaseRepositorySettings>(
+                new InjectionConstructor(ConnectionString, DatabaseConnectionAction.Connect));
         }
 
         protected override void RegisterRepository(IUnityContainer container)

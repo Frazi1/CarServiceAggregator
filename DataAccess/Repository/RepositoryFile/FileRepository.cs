@@ -136,7 +136,5 @@ namespace DataAccess.Repository.RepositoryFile
                 car.Customer = CustomersList.First(c => c.CustomerId == car.CustomerId);
             }
         }
-
-
     }
 }

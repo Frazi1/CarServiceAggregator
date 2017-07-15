@@ -93,21 +93,19 @@ namespace DataAccess.Repository.RepositoryDb
         public void SaveChanges()
         {
             DbAction(action: db =>
-            {
-                if (_ordersStash.Any())
-                    db.Orders.AddRange(_ordersStash);
-                if (_customersStash.Any())
-                    db.Customers.AddRange(_customersStash);
-                db.SaveChanges();
-            },
-            finallyAction: db =>
+                {
+                    if (_ordersStash.Any())
+                        db.Orders.AddRange(_ordersStash);
+                    if (_customersStash.Any())
+                        db.Customers.AddRange(_customersStash);
+                    db.SaveChanges();
+                },
+                finallyAction: db =>
                 {
                     _ordersStash.Clear();
                     _customersStash.Clear();
                     _carsStash.Clear();
                 });
-
-
         }
 
         private void DbAction(Action<AutoServiceDb> action, Action<AutoServiceDb> finallyAction = null)

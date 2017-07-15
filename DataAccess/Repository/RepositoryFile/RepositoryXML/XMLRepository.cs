@@ -13,7 +13,8 @@ namespace DataAccess.Repository.RepositoryFile
 
         public XmlRepository(XmlRepositorySettings settings)
             : this(settings, new NullLogger())
-        { }
+        {
+        }
 
         public XmlRepository(XmlRepositorySettings settings, ILogger logger)
             : base(settings)
@@ -43,9 +44,9 @@ namespace DataAccess.Repository.RepositoryFile
             var tuple
                 = new MutableTuple<Customer[], Order[], Car[]>
                 {
-                    Item1 = GetCustomers().OrderBy(c=>c.CustomerId).ToArray(),
-                    Item2 = GetOrders().OrderBy(o=>o.OrderId).ToArray(),
-                    Item3 = GetCars().OrderBy(c=>c.CarId).ToArray()
+                    Item1 = GetCustomers().OrderBy(c => c.CustomerId).ToArray(),
+                    Item2 = GetOrders().OrderBy(o => o.OrderId).ToArray(),
+                    Item3 = GetCars().OrderBy(c => c.CarId).ToArray()
                 };
             try
             {

@@ -12,7 +12,7 @@ namespace DataAccess.Repository.RepositoryFile
             using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
             {
                 XmlSerializer x = new XmlSerializer(typeof(T));
-                result = (T)x.Deserialize(fs);
+                result = (T) x.Deserialize(fs);
             }
             return result;
         }

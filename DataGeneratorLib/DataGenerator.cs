@@ -28,7 +28,7 @@ namespace DataGeneratorLib
         public List<Car> Cars { get; } = new List<Car>();
 
 
-        public DataGenerator(/*bool setId,*/ int customersCount, Random r)
+        public DataGenerator( /*bool setId,*/ int customersCount, Random r)
         {
             InitializePaths();
             Initialize();

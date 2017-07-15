@@ -12,7 +12,8 @@ namespace DataAccess.Repository.RepositoryFile
 
         public BinaryRepository(BinaryRepositorySettings settings)
             : this(settings, new NullLogger())
-        { }
+        {
+        }
 
         public BinaryRepository(BinaryRepositorySettings settings, ILogger logger)
             : base(settings)
@@ -40,8 +41,9 @@ namespace DataAccess.Repository.RepositoryFile
             AssignIds();
             SaveReferencesIds();
 
-            var tuple 
-                = new Tuple<Customer[], Order[], Car[]>(GetCustomers().ToArray(), GetOrders().ToArray(), GetCars().ToArray());
+            var tuple
+                = new Tuple<Customer[], Order[], Car[]>(GetCustomers().ToArray(), GetOrders().ToArray(),
+                    GetCars().ToArray());
 
             try
             {
