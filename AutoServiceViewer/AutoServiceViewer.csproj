@@ -87,10 +87,9 @@
     </Compile>
     <Compile Include="UnityExtensions\UnityBinaryRepositoryExtension.cs" />
     <Compile Include="UnityExtensions\UnityDatabaseRepositoryExtension.cs" />
-    <Compile Include="UnityExtensions\UnityRepositoryExtension.cs" />
+    <Compile Include="UnityExtensions\Base\UnityRepositoryExtension.cs" />
     <Compile Include="UnityExtensions\UnityXmlRepositoryExtension.cs" />
     <Compile Include="IocApp.cs" />
-    <Compile Include="RepositoryRegistrator\RepositoryRegistrator.cs" />
     <Compile Include="ViewModel\SettingsViewModel\BinarySettingsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\SettingsViewModel\XmlSettingsViewModel.cs" />
