@@ -16,20 +16,19 @@ namespace AutoServiceViewer
         /// </summary>
         public static IUnityContainer Container {
             get {
-                if (_container == null) Initialize();
+                if (_container == null)
+                    _container = new UnityContainer();
                 return _container;
             }
-        }
-
-        private static void Initialize()
-        {
-            _container = new UnityContainer();
         }
 
         /// <summary>
         /// Запрашивает реализацию репозитория из контейнера.
         /// </summary>
         /// <param name="repositoryType"></param>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="repositoryType"/>
+        /// </exception>
         /// <returns>Реализацию репозитория, соответствующую указанному типу репозитория</returns>
         public static IRepository GetRepository(RepositoryType repositoryType)
         {
@@ -51,6 +50,9 @@ namespace AutoServiceViewer
         /// Проверяет, зарегистрирован ли репозиторий указанного типа.
         /// </summary>
         /// <param name="repositoryType"></param>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="repositoryType"/>
+        /// </exception>
         /// <returns>True, если репозиторий зарегистрирован; иначе - false</returns>
         public static bool IsRegistered(RepositoryType repositoryType)
         {

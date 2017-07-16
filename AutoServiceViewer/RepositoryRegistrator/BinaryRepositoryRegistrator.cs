@@ -7,18 +7,31 @@ using Microsoft.Practices.Unity;
 
 namespace AutoServiceViewer.RepositoryRegistrator
 {
+    /// <summary>
+    /// Регистратор Binary репозитория.
+    /// </summary>
     public class BinaryRepositoryRegistrator : RepositoryRegistrator<BinaryRepository>
     {
+        /// <summary>
+        /// Дает доступ к пути файла, из которого репозиторий загружает данные.
+        /// </summary>
         public string FileName { get; set; }
 
+        /// <summary>
+        /// Регистрирует Binary репозиторий в контейнере.
+        /// </summary>
+        /// <exception cref="ArgumentNullException"/>
+        /// <param name="container">контейнер</param>
         protected override void RegisterSettings(IUnityContainer container)
         {
             if (string.IsNullOrEmpty(FileName)) throw new ArgumentException("Filename must not be null");
-            //BinaryRepositorySettings settings = new BinaryRepositorySettings(FileName, FileMode.Open);
-            //container.RegisterInstance(settings);
             container.RegisterType<BinaryRepositorySettings>(new InjectionConstructor(FileName, FileMode.Open));
         }
 
+        /// <summary>
+        /// Выполняет все действия, необходимые для регистрации Binary репозитория.
+        /// </summary>
+        /// <param name="container"></param>
         protected override void RegisterRepository(IUnityContainer container)
         {
             string name = ConfigurationManager.AppSettings["binaryRepository"];
