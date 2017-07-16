@@ -8,6 +8,8 @@ namespace DataAccess.Repository.RepositoryFile
 {
     public abstract class FileRepository : IRepository
     {
+        //TODO: Сделать кэширование данных
+
         protected FileRepository(FileRepositorySettings settings)
         {
             FilePath = settings.FilePath;
@@ -20,7 +22,6 @@ namespace DataAccess.Repository.RepositoryFile
 
         public string FilePath { get; protected set; }
         public bool ErrorHappened { get; set; }
-        public string ErrorMessage { get; set; }
 
         public IEnumerable<Customer> GetCustomers()
         {
@@ -136,7 +137,5 @@ namespace DataAccess.Repository.RepositoryFile
                 car.Customer = CustomersList.First(c => c.CustomerId == car.CustomerId);
             }
         }
-
-
     }
 }

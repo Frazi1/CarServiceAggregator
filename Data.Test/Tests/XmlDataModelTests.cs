@@ -1,10 +1,7 @@
-using System;
 using System.IO;
 using System.Linq;
 using Data.Test.Base;
-using DataAccess.Model;
 using DataAccess.Repository.RepositoryFile;
-using DataGeneratorLib;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Data.Test.Tests

@@ -21,8 +21,8 @@ namespace DataAccess.MutableTuple
         public static implicit operator Tuple<T1, T2, T3>(MutableTuple<T1, T2, T3> mutableTuple)
         {
             return new Tuple<T1, T2, T3>(mutableTuple.Item1,
-               mutableTuple.Item2,
-               mutableTuple.Item3);
+                mutableTuple.Item2,
+                mutableTuple.Item3);
         }
     }
 }

@@ -10,8 +10,7 @@ namespace DataAccess.Model
     {
         private int _carId;
 
-        [NonSerialized]
-        private Customer _customer;
+        [NonSerialized] private Customer _customer;
 
         public int CarId {
             get { return _carId; }

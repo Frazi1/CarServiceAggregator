@@ -1,7 +1,9 @@
-﻿namespace ExceptionHandling
+﻿using System;
+
+namespace ExceptionHandling
 {
-    public interface ILogger
+    public interface ILogger : IErrorHandler
     {
-        ILogger Log(string message);
+        void Log(Exception e);
     }
 }

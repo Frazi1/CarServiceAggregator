@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using DataAccess.Repository.RepositoryFile;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Data.Test.Base

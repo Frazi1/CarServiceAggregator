@@ -1,5 +1,4 @@
-﻿using DataAccess.Repository.RepositoryDb;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Data.Test.Base
 {

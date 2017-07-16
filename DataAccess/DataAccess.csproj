@@ -46,8 +46,8 @@
   <ItemGroup>
     <Compile Include="Model\Car.cs" />
     <Compile Include="MutableTuple\MutableTuple.cs" />
+    <Compile Include="Repository\RepositoryDb\DbInitializer.cs" />
     <Compile Include="Repository\RepositoryDb\DatabaseConnectionAction.cs" />
-    <Compile Include="Repository\RepositoryDb\DbHelper.cs" />
     <Compile Include="Repository\RepositoryDb\Exceptions\DatabaseMissingException.cs" />
     <Compile Include="Repository\RepositoryDb\Exceptions\DatabaseRepositoryException.cs" />
     <Compile Include="Repository\RepositoryFile\FileRepository.cs" />
