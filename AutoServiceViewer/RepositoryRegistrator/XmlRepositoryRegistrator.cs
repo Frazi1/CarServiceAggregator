@@ -7,18 +7,31 @@ using Microsoft.Practices.Unity;
 
 namespace AutoServiceViewer.RepositoryRegistrator
 {
+    /// <summary>
+    /// Регистратор Xml репозитория.
+    /// </summary>
     public class XmlRepositoryRegistrator : RepositoryRegistrator<XmlRepository>
     {
+        /// <summary>
+        /// Дает доступ к пути файла, из которого репозиторий загружает данные.
+        /// </summary>
         public string FileName { get; set; }
 
+        /// <summary>
+        /// Регистрирует Xml репозиторий в контейнере
+        /// </summary>
+        /// <exception cref="ArgumentNullException"/>
+        /// <param name="container">контейнер</param>
         protected override void RegisterSettings(IUnityContainer container)
         {
             if (string.IsNullOrEmpty(FileName)) throw new ArgumentException("Filename must not be null");
-            //XmlRepositorySettings settings = new XmlRepositorySettings(FileName, FileMode.Open);
-            //container.RegisterInstance(settings);
             container.RegisterType<XmlRepositorySettings>(new InjectionConstructor(FileName, FileMode.Open));
         }
 
+        /// <summary>
+        /// Выполняет все действия, необходимые для регистрации Xml репозитория/>
+        /// </summary>
+        /// <param name="container"></param>
         protected override void RegisterRepository(IUnityContainer container)
         {
             string name = ConfigurationManager.AppSettings["xmlRepository"];

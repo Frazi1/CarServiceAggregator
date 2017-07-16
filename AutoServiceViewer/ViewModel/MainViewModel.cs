@@ -63,7 +63,6 @@ namespace AutoServiceViewer.ViewModel
             if (_repository.ErrorHappened) return;
             var orders = _repository.GetOrders();
             var customers = _repository.GetCustomers();
-            if (orders == null || customers == null) return;
             Orders = new ObservableCollection<Order>(orders);
             Customers = new ObservableCollection<Customer>(customers);
         }

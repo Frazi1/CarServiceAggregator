@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
 using Data.Test.Base;
-using DataAccess.Model;
 using DataAccess.Repository.RepositoryFile;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

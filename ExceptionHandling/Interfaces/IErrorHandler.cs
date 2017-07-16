@@ -2,7 +2,6 @@
 {
     public interface IErrorHandler
     {
-        IErrorHandler SetError(IErrorReporter errorReporter);
-        IErrorHandler SetErrorMessage(IErrorReporter errorReporter, string message);
+        void SetError(IErrorReporter errorReporter);
     }
 }

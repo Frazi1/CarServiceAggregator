@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Configuration;
-using AutoServiceViewer.RepositoryRegistrator;
 using DataAccess.Repository;
 using DataAccess.Repository.RepositoryDb;
 using DataAccess.Repository.RepositoryFile;
-using ExceptionHandling;
 using Microsoft.Practices.Unity;
 
 namespace AutoServiceViewer
@@ -13,26 +11,25 @@ namespace AutoServiceViewer
     {
         private static IUnityContainer _container;
 
+        /// <summary>
+        /// Позволяет получить доступ к контейнеру.
+        /// </summary>
         public static IUnityContainer Container {
             get {
-                if (_container == null) Initialize();
+                if (_container == null)
+                    _container = new UnityContainer();
                 return _container;
             }
         }
 
-        private static void Initialize()
-        {
-            _container = new UnityContainer();
-            var connectionString = ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
-            DatabaseRepositoryRegistrator configurator = new DatabaseRepositoryRegistrator
-            {
-                ConnectionString = connectionString
-            };
-            configurator.Register(_container);
-
-            _container.RegisterType<IExceptionHandler, Messenger>();
-        }
-
+        /// <summary>
+        /// Запрашивает реализацию репозитория из контейнера.
+        /// </summary>
+        /// <param name="repositoryType"></param>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="repositoryType"/>
+        /// </exception>
+        /// <returns>Реализацию репозитория, соответствующую указанному типу репозитория</returns>
         public static IRepository GetRepository(RepositoryType repositoryType)
         {
             switch (repositoryType)
@@ -48,6 +45,15 @@ namespace AutoServiceViewer
             }
         }
 
+
+        /// <summary>
+        /// Проверяет, зарегистрирован ли репозиторий указанного типа.
+        /// </summary>
+        /// <param name="repositoryType"></param>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="repositoryType"/>
+        /// </exception>
+        /// <returns>True, если репозиторий зарегистрирован; иначе - false</returns>
         public static bool IsRegistered(RepositoryType repositoryType)
         {
             switch (repositoryType)

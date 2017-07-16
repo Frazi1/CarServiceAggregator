@@ -1,4 +1,3 @@
-using System.Data.Common;
 using System.Data.Entity;
 using DataAccess.Model;
 using MySql.Data.Entity;
@@ -14,9 +13,10 @@ namespace DataAccess.Repository.RepositoryDb
             Configuration.LazyLoadingEnabled = false;
         }
 
-        public AutoServiceDb(DbConnection existingConnection, bool contextsOwnsConnection)
-            : base(existingConnection, contextsOwnsConnection)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            //TODO: Fluent API
         }
 
         public DbSet<Customer> Customers { get; set; }

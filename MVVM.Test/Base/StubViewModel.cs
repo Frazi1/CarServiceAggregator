@@ -13,6 +13,7 @@ namespace Mvvm.Test.Base
                 NotifyPropertyChanged();
             }
         }
+
         //public ICommand ChangePropertyCommand {
         //    get { return new RelayCommand(o => ChangeProperty(o)); }
         //}
@@ -20,8 +21,7 @@ namespace Mvvm.Test.Base
 
         private void ChangeProperty(object value)
         {
-            SomeProperty = (int)value;
+            SomeProperty = (int) value;
         }
-
     }
 }
