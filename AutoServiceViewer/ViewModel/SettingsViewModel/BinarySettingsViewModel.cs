@@ -1,5 +1,5 @@
 ﻿using System.Windows.Input;
-using AutoServiceViewer.RepositoryRegistrator;
+using AutoServiceViewer.UnityExtensions;
 using Microsoft.Win32;
 using Mvvm;
 
@@ -8,20 +8,14 @@ namespace AutoServiceViewer.ViewModel
     public class BinarySettingsViewModel : ViewModelBase
     {
         private string _selectedFilePath;
-        private readonly BinaryRepositoryRegistrator _registrator;
+        private UnityBinaryRepositoryExtension _binaryExtension;
 
         public string SelectedFilePath {
             get { return _selectedFilePath; }
             set {
                 _selectedFilePath = value;
-                _registrator.FileName = value;
                 NotifyPropertyChanged();
             }
-        }
-
-        public BinarySettingsViewModel()
-        {
-            _registrator = new BinaryRepositoryRegistrator();
         }
 
         public ICommand OpenFileCommand {
@@ -37,7 +31,13 @@ namespace AutoServiceViewer.ViewModel
             };
             if (ofd.ShowDialog() != true) return;
             SelectedFilePath = ofd.FileName;
-            _registrator.Register(IocApp.Container);
+            Register();
+        }
+
+        private void Register()
+        {
+            _binaryExtension = new UnityBinaryRepositoryExtension(SelectedFilePath);
+            IocApp.Container.AddExtension(_binaryExtension);
         }
     }
 }

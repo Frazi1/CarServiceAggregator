@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.IO;
-using System.Text;
-using System.Windows;
-using AutoServiceViewer.RepositoryRegistrator;
+using AutoServiceViewer.UnityExtensions;
 using ExceptionHandling;
 using Microsoft.Practices.Unity;
 
@@ -42,11 +40,11 @@ namespace AutoServiceViewer
 
         private static void RegisterDbRepository()
         {
-            DatabaseRepositoryRegistrator configurator = new DatabaseRepositoryRegistrator
-            {
-                ConnectionString = ConfigurationManager.ConnectionStrings["mysql"].ConnectionString
-            };
-            configurator.Register(IocApp.Container);
+
+            UnityDatabaseRepositoryExtension databaseExtension = new UnityDatabaseRepositoryExtension(ConfigurationManager
+                .ConnectionStrings["mysql"]
+                .ConnectionString);
+            IocApp.Container.AddExtension(databaseExtension);
         }
 
         private static void RegisterLogger()

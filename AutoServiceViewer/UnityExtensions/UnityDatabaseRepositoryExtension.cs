@@ -4,25 +4,25 @@ using DataAccess.Repository;
 using DataAccess.Repository.RepositoryDb;
 using Microsoft.Practices.Unity;
 
-namespace AutoServiceViewer.RepositoryRegistrator
+namespace AutoServiceViewer.UnityExtensions
 {
-    public class DatabaseRepositoryRegistrator : RepositoryRegistrator<DatabaseRepository>
+    public class UnityDatabaseRepositoryExtension : UnityRepositoryExtension
     {
         /// <summary>
         /// Дает доступ к строке соединения с базой данных.
         /// </summary>
         public string ConnectionString { get; set; }
 
-        /// <summary>
-        /// Регистрирует Database репозиторий в контейнере.
-        /// </summary>
-        /// <exception cref="ArgumentNullException"/>
-        /// <param name="container">контейнер</param>
-        protected override void RegisterSettings(IUnityContainer container)
+        public UnityDatabaseRepositoryExtension(string connectionString)
+        {
+            ConnectionString = connectionString;
+        }
+
+        protected override void RegisterSettings()
         {
             if (string.IsNullOrEmpty(ConnectionString))
                 throw new ArgumentException("Connection string must not be null");
-            container.RegisterType<DatabaseRepositorySettings>(
+            Container.RegisterType<DatabaseRepositorySettings>(
                 new InjectionConstructor(ConnectionString, DatabaseConnectionAction.Connect));
         }
 
@@ -30,10 +30,10 @@ namespace AutoServiceViewer.RepositoryRegistrator
         /// Регистрирует Database репозиторий в контейнере.
         /// </summary>
         /// <param name="container">контейнер</param>
-        protected override void RegisterRepository(IUnityContainer container)
+        protected override void RegisterRepository()
         {
             string name = ConfigurationManager.AppSettings["dbRepository"];
-            container.RegisterType<IRepository, DatabaseRepository>(name);
+            Container.RegisterType<IRepository, DatabaseRepository>(name);
         }
     }
 }
