@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Configuration;
-using System.IO;
-using AutoServiceViewer.RepositoryRegistrator;
 using DataAccess.Repository;
 using DataAccess.Repository.RepositoryDb;
 using DataAccess.Repository.RepositoryFile;
-using ExceptionHandling;
 using Microsoft.Practices.Unity;
 
 namespace AutoServiceViewer
@@ -14,6 +11,9 @@ namespace AutoServiceViewer
     {
         private static IUnityContainer _container;
 
+        /// <summary>
+        /// Позволяет получить доступ к контейнеру.
+        /// </summary>
         public static IUnityContainer Container {
             get {
                 if (_container == null) Initialize();
@@ -24,22 +24,13 @@ namespace AutoServiceViewer
         private static void Initialize()
         {
             _container = new UnityContainer();
-            var connectionString = ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
-            DatabaseRepositoryRegistrator configurator = new DatabaseRepositoryRegistrator
-            {
-                ConnectionString = connectionString
-            };
-            configurator.Register(_container);
-
-            RegisterLogger();
         }
 
-        private static void RegisterLogger()
-        {
-            string appPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
-            _container.RegisterType<ILogger, Messenger>(new InjectionConstructor(appPath));
-        }
-
+        /// <summary>
+        /// Запрашивает реализацию репозитория из контейнера.
+        /// </summary>
+        /// <param name="repositoryType"></param>
+        /// <returns>Реализацию репозитория, соответствующую указанному типу репозитория</returns>
         public static IRepository GetRepository(RepositoryType repositoryType)
         {
             switch (repositoryType)
@@ -55,6 +46,12 @@ namespace AutoServiceViewer
             }
         }
 
+
+        /// <summary>
+        /// Проверяет, зарегистрирован ли репозиторий указанного типа.
+        /// </summary>
+        /// <param name="repositoryType"></param>
+        /// <returns>True, если репозиторий зарегистрирован; иначе - false</returns>
         public static bool IsRegistered(RepositoryType repositoryType)
         {
             switch (repositoryType)
