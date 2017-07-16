@@ -85,9 +85,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="RepositoryRegistrator\BinaryRepositoryRegistrator.cs" />
-    <Compile Include="RepositoryRegistrator\DatabaseRepositoryRegistrator.cs" />
-    <Compile Include="RepositoryRegistrator\XmlRepositoryRegistrator.cs" />
+    <Compile Include="UnityExtensions\UnityBinaryRepositoryExtension.cs" />
+    <Compile Include="UnityExtensions\UnityDatabaseRepositoryExtension.cs" />
+    <Compile Include="UnityExtensions\UnityRepositoryExtension.cs" />
+    <Compile Include="UnityExtensions\UnityXmlRepositoryExtension.cs" />
     <Compile Include="IocApp.cs" />
     <Compile Include="RepositoryRegistrator\RepositoryRegistrator.cs" />
     <Compile Include="ViewModel\SettingsViewModel\BinarySettingsViewModel.cs" />

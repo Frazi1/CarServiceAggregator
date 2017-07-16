@@ -1,5 +1,5 @@
 ﻿using System.Windows.Input;
-using AutoServiceViewer.RepositoryRegistrator;
+using AutoServiceViewer.UnityExtensions;
 using Microsoft.Win32;
 using Mvvm;
 
@@ -8,20 +8,15 @@ namespace AutoServiceViewer.ViewModel
     public class XmlSettingsViewModel : ViewModelBase
     {
         private string _selectedFilePath;
-        private readonly XmlRepositoryRegistrator _registrator;
+        private UnityXmlRepositoryExtension _xmlExtension;
+
 
         public string SelectedFilePath {
-            get { return _registrator.FileName; }
+            get { return _selectedFilePath; }
             set {
                 _selectedFilePath = value;
-                _registrator.FileName = value;
                 NotifyPropertyChanged();
             }
-        }
-
-        public XmlSettingsViewModel()
-        {
-            _registrator = new XmlRepositoryRegistrator();
         }
 
         public ICommand OpenFileCommand {
@@ -36,7 +31,13 @@ namespace AutoServiceViewer.ViewModel
             };
             if (ofd.ShowDialog() != true) return;
             SelectedFilePath = ofd.FileName;
-            _registrator.Register(IocApp.Container);
+            Register();
+        }
+
+        private void Register()
+        {
+            _xmlExtension = new UnityXmlRepositoryExtension(SelectedFilePath);
+            IocApp.Container.AddExtension(_xmlExtension);
         }
     }
 }
