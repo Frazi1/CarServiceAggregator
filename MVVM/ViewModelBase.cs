@@ -7,7 +7,7 @@ namespace Mvvm
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void NotifyPropertyChanged([CallerMemberName] string properyName = "")
+        protected void NotifyPropertyChanged([CallerMemberName] string properyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(properyName));
         }

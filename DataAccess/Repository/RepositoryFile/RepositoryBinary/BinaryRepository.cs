@@ -10,6 +10,7 @@ namespace DataAccess.Repository.RepositoryFile
     {
         private readonly ILogger _logger;
 
+        #region Constructors
         public BinaryRepository(BinaryRepositorySettings settings)
             : this(settings, new NullLogger())
         {
@@ -20,7 +21,8 @@ namespace DataAccess.Repository.RepositoryFile
         {
             _logger = logger;
             Initialize(settings.FileMode);
-        }
+        } 
+        #endregion
 
         protected override Tuple<Customer[], Order[], Car[]> Load(string filePath)
         {

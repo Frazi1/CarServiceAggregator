@@ -10,19 +10,28 @@ namespace DataAccess.Repository.RepositoryFile
     {
         //TODO: Сделать кэширование данных
 
+        #region Constructors
         protected FileRepository(FileRepositorySettings settings)
         {
             FilePath = settings.FilePath;
             ErrorHappened = false;
         }
+        #endregion
+
+        #region Properties
 
         protected IList<Customer> CustomersList { get; set; }
         protected IList<Order> OrdersList { get; set; }
         protected IList<Car> CarsList { get; set; }
 
         public string FilePath { get; protected set; }
-        public bool ErrorHappened { get; set; }
+        #endregion
 
+        #region IErrorReporter interface implementation
+        public bool ErrorHappened { get; set; }
+        #endregion
+
+        #region IRepository interface implementation
         public IEnumerable<Customer> GetCustomers()
         {
             return CustomersList.AsEnumerable();
@@ -38,6 +47,25 @@ namespace DataAccess.Repository.RepositoryFile
             return CarsList.AsEnumerable();
         }
 
+        public void AddCustomer(Customer customer)
+        {
+            CustomersList.Add(customer);
+        }
+
+        public void AddOrder(Order order)
+        {
+            OrdersList.Add(order);
+        }
+
+        public void AddCar(Car car)
+        {
+            CarsList.Add(car);
+        }
+
+        public abstract void SaveChanges();
+        #endregion
+
+        #region Private methods
         private void Create()
         {
             CustomersList = new List<Customer>();
@@ -45,6 +73,32 @@ namespace DataAccess.Repository.RepositoryFile
             CarsList = new List<Car>();
         }
 
+        private void LoadReferences()
+        {
+            foreach (Order order in OrdersList)
+            {
+                order.Customer = CustomersList.First(c => c.CustomerId == order.CustomerId);
+                order.Car = CarsList.First(c => c.CarId == order.CarId);
+            }
+
+            foreach (Car car in CarsList)
+            {
+                car.Customer = CustomersList.First(c => c.CustomerId == car.CustomerId);
+            }
+        }
+
+        private void SetLoadedData(Tuple<Customer[], Order[], Car[]> data)
+        {
+            if (data == null) return;
+            CustomersList = data.Item1.ToList();
+            OrdersList = data.Item2.ToList();
+            CarsList = data.Item3.ToList();
+
+            LoadReferences();
+        }
+        #endregion
+
+        #region Protected methods
         protected abstract Tuple<Customer[], Order[], Car[]> Load(string filePath);
 
         protected void Initialize(FileMode fileMode)
@@ -68,34 +122,6 @@ namespace DataAccess.Repository.RepositoryFile
                 default:
                     throw new ArgumentOutOfRangeException(nameof(fileMode), fileMode, null);
             }
-        }
-
-
-        public void AddCustomer(Customer customer)
-        {
-            CustomersList.Add(customer);
-        }
-
-        public void AddOrder(Order order)
-        {
-            OrdersList.Add(order);
-        }
-
-        public void AddCar(Car car)
-        {
-            CarsList.Add(car);
-        }
-
-        public abstract void SaveChanges();
-
-        private void SetLoadedData(Tuple<Customer[], Order[], Car[]> data)
-        {
-            if (data == null) return;
-            CustomersList = data.Item1.ToList();
-            OrdersList = data.Item2.ToList();
-            CarsList = data.Item3.ToList();
-
-            LoadReferences();
         }
 
         protected void AssignIds()
@@ -122,20 +148,8 @@ namespace DataAccess.Repository.RepositoryFile
             {
                 car.CustomerId = CustomersList.First(c => car.Customer == c).CustomerId;
             }
-        }
+        } 
+        #endregion
 
-        private void LoadReferences()
-        {
-            foreach (Order order in OrdersList)
-            {
-                order.Customer = CustomersList.First(c => c.CustomerId == order.CustomerId);
-                order.Car = CarsList.First(c => c.CarId == order.CarId);
-            }
-
-            foreach (Car car in CarsList)
-            {
-                car.Customer = CustomersList.First(c => c.CustomerId == car.CustomerId);
-            }
-        }
     }
 }

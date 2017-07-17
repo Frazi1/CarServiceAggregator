@@ -2,13 +2,14 @@
 {
     public class DatabaseRepositorySettings : RepositorySettings
     {
+
+        public string ConnectionString { get; }
+        public DatabaseConnectionAction DatabaseConnectionAction { get; }
+
         public DatabaseRepositorySettings(string connectionString, DatabaseConnectionAction databaseConnectionAction)
         {
             ConnectionString = connectionString;
             DatabaseConnectionAction = databaseConnectionAction;
         }
-
-        public string ConnectionString { get; }
-        public DatabaseConnectionAction DatabaseConnectionAction { get; }
     }
 }
