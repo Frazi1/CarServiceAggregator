@@ -9,12 +9,12 @@ namespace AutoServiceViewer.UnityExtensions
 {
     public class UnityXmlRepositoryExtension : UnityRepositoryExtension
     {
-        public string FileName { get; set; }
-
         public UnityXmlRepositoryExtension(string fileName)
         {
             FileName = fileName;
         }
+
+        public string FileName { get; set; }
 
         protected override void RegisterSettings()
         {

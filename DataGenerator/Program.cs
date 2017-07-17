@@ -22,7 +22,7 @@ namespace DataGeneratorConsole
             Random r = new Random();
 
             Console.WriteLine("Number Customers");
-            var countCustomers = int.Parse(Console.ReadLine());
+            int countCustomers = int.Parse(Console.ReadLine());
             //Console.WriteLine("Number orders");
             //var countOrders = int.Parse(Console.ReadLine());
 
@@ -56,8 +56,8 @@ namespace DataGeneratorConsole
             const string prefixNewPath = @"../../../DataAccess/DataForTest/";
             foreach (var sourcePath in FilePaths)
             {
-                var oldPath = sourcePath.Value;
-                var newPath = prefixNewPath + sourcePath.Value;
+                string oldPath = sourcePath.Value;
+                string newPath = prefixNewPath + sourcePath.Value;
                 if (File.Exists(newPath))
                     File.Delete(newPath);
                 File.Copy(oldPath, newPath);

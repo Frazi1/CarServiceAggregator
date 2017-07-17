@@ -8,12 +8,12 @@ namespace AutoServiceViewer.UnityExtensions
 {
     public class UnityDatabaseRepositoryExtension : UnityRepositoryExtension
     {
-        public string ConnectionString { get; set; }
-
         public UnityDatabaseRepositoryExtension(string connectionString)
         {
             ConnectionString = connectionString;
         }
+
+        public string ConnectionString { get; set; }
 
         protected override void RegisterSettings()
         {

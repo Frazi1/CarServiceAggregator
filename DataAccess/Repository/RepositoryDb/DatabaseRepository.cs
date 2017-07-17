@@ -10,6 +10,24 @@ namespace DataAccess.Repository.RepositoryDb
 {
     public class DatabaseRepository : IRepository
     {
+        public IEnumerable<Order> OrdersStash {
+            get { return _ordersStash; }
+        }
+
+        public IEnumerable<Customer> CustomersStash {
+            get { return _customersStash; }
+        }
+
+        public IEnumerable<Car> CarsStash {
+            get { return _carsStash; }
+        }
+
+        #region IErrorReporter interface implementation
+
+        public bool ErrorHappened { get; set; }
+
+        #endregion
+
         //TODO: Сделать кэширование данных
 
         #region Private fields
@@ -42,29 +60,11 @@ namespace DataAccess.Repository.RepositoryDb
             _carsStash = new List<Car>();
             _ordersStash = new List<Order>();
             ErrorHappened = false;
-            Database.SetInitializer(new DbInitializer(this, settings.DatabaseConnectionAction));
-            DbAction(context => context.Database.Initialize(force: true));
+            Database.SetInitializer(new AutoServiceDbInitializer(this, settings.DatabaseConnectionAction));
+            DbAction(context => context.Database.Initialize(true));
         }
 
         #endregion
-
-        #region IErrorReporter interface implementation
-
-        public bool ErrorHappened { get; set; }
-
-        #endregion
-
-        public IEnumerable<Order> OrdersStash {
-            get { return _ordersStash; }
-        }
-
-        public IEnumerable<Customer> CustomersStash {
-            get { return _customersStash; }
-        }
-
-        public IEnumerable<Car> CarsStash {
-            get { return _carsStash; }
-        }
 
         #region IRepository interface implementation
 
@@ -101,7 +101,7 @@ namespace DataAccess.Repository.RepositoryDb
 
         public void SaveChanges()
         {
-            DbAction(action: db =>
+            DbAction(db =>
                 {
                     if (_ordersStash.Any())
                         db.Orders.AddRange(_ordersStash);
@@ -109,7 +109,7 @@ namespace DataAccess.Repository.RepositoryDb
                         db.Customers.AddRange(_customersStash);
                     db.SaveChanges();
                 },
-                finallyAction: db =>
+                db =>
                 {
                     _ordersStash.Clear();
                     _customersStash.Clear();
@@ -123,7 +123,7 @@ namespace DataAccess.Repository.RepositoryDb
 
         private void DbAction(Action<AutoServiceDb> action, Action<AutoServiceDb> finallyAction = null)
         {
-            using (var context = new AutoServiceDb(_connectionString))
+            using (AutoServiceDb context = new AutoServiceDb(_connectionString))
             {
                 DbAction(context, action, finallyAction);
             }
@@ -149,7 +149,7 @@ namespace DataAccess.Repository.RepositoryDb
 
         private TResult DbFunc<TResult>(Func<AutoServiceDb, TResult> func, Action<AutoServiceDb> finallyAction = null)
         {
-            using (var context = new AutoServiceDb(_connectionString))
+            using (AutoServiceDb context = new AutoServiceDb(_connectionString))
             {
                 return DbFunc(context, func, finallyAction);
             }

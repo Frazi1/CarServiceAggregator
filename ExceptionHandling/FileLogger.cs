@@ -6,10 +6,7 @@ namespace ExceptionHandling
 {
     public class FileLogger : ILogger
     {
-        public string LogDirectoryPath { get; set; }
-        public bool StackTrace { get; set; }
-
-        protected string LogFilePath { get; set; }
+        #region Constructor
 
         public FileLogger(string logDirectoryPath)
         {
@@ -18,11 +15,9 @@ namespace ExceptionHandling
             Initialize();
         }
 
-        private void Initialize()
-        {
-            Directory.CreateDirectory(LogDirectoryPath);
-            LogFilePath = Path.Combine(LogDirectoryPath, $"{DateTime.Now:dd.MM.yyy}.log");
-        }
+        #endregion
+
+        #region ILogger implementation
 
         public virtual void Log(Exception e)
         {
@@ -47,14 +42,39 @@ namespace ExceptionHandling
             }
         }
 
+        #endregion
+
+        #region IErrorHandler implementation
+
         public void SetError(IErrorReporter errorReporter)
         {
             errorReporter.ErrorHappened = true;
+        }
+
+        #endregion
+
+        #region Properties
+
+        public string LogDirectoryPath { get; set; }
+        public bool StackTrace { get; set; }
+
+        protected string LogFilePath { get; set; }
+
+        #endregion
+
+        #region Private methods
+
+        private void Initialize()
+        {
+            Directory.CreateDirectory(LogDirectoryPath);
+            LogFilePath = Path.Combine(LogDirectoryPath, $"{DateTime.Now:dd.MM.yyy}.log");
         }
 
         private void Write(string info)
         {
             File.AppendAllText(LogFilePath, info);
         }
+
+        #endregion
     }
 }

@@ -8,14 +8,9 @@ namespace DataAccess.Model
     [Serializable]
     public class Car
     {
-        private int _carId;
-
         [NonSerialized] private Customer _customer;
 
-        public int CarId {
-            get { return _carId; }
-            set { _carId = value; }
-        }
+        public int CarId { get; set; }
 
         public int CustomerId { get; set; }
 

@@ -6,6 +6,18 @@ namespace DataGeneratorLib.ExtensionMethods
 {
     public static class RandomExtensions
     {
+        #region IEnumerable
+
+        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> list)
+        {
+            Random r = new Random();
+            return list.OrderBy(item => r.Next());
+        }
+
+        #endregion
+
+        #region NextInt64
+
         public static long NextInt64(this Random r)
         {
             return r.NextInt64(long.MinValue, long.MaxValue);
@@ -20,9 +32,13 @@ namespace DataGeneratorLib.ExtensionMethods
         {
             var buffer = new byte[8];
             r.NextBytes(buffer);
-            var result = BitConverter.ToInt64(buffer, 0);
+            long result = BitConverter.ToInt64(buffer, 0);
             return Math.Abs(result % (maxValue - minValue)) + minValue;
         }
+
+        #endregion
+
+        #region NextDateTime
 
         public static DateTime NextDateTime(this Random r)
         {
@@ -44,10 +60,6 @@ namespace DataGeneratorLib.ExtensionMethods
             return DateTime.FromBinary(r.NextInt64(minDateTime.Ticks, maxDateTime.Ticks));
         }
 
-        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> list)
-        {
-            Random r = new Random();
-            return list.OrderBy(item => r.Next());
-        }
+        #endregion
     }
 }

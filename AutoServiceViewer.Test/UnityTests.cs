@@ -17,7 +17,7 @@ namespace AutoServiceViewer.Test
             IUnityContainer container = new UnityContainer();
             container.RegisterType<IRepository, XmlRepository>();
             container.RegisterType<XmlRepositorySettings>(new InjectionConstructor("test.xml", FileMode.Open));
-            var repo = container.Resolve<IRepository>();
+            IRepository repo = container.Resolve<IRepository>();
         }
     }
 }

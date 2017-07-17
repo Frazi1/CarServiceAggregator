@@ -40,10 +40,10 @@ namespace AutoServiceViewer
 
         private static void RegisterDbRepository()
         {
-
-            UnityDatabaseRepositoryExtension databaseExtension = new UnityDatabaseRepositoryExtension(ConfigurationManager
-                .ConnectionStrings["mysql"]
-                .ConnectionString);
+            UnityDatabaseRepositoryExtension databaseExtension = new UnityDatabaseRepositoryExtension(
+                ConfigurationManager
+                    .ConnectionStrings["mysql"]
+                    .ConnectionString);
             IocApp.Container.AddExtension(databaseExtension);
         }
 

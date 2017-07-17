@@ -8,14 +8,20 @@ namespace DataAccess.Repository.RepositoryFile
 {
     public abstract class FileRepository : IRepository
     {
-        //TODO: Сделать кэширование данных
-
         #region Constructors
+
         protected FileRepository(FileRepositorySettings settings)
         {
             FilePath = settings.FilePath;
             ErrorHappened = false;
         }
+
+        #endregion
+
+        #region IErrorReporter interface implementation
+
+        public bool ErrorHappened { get; set; }
+
         #endregion
 
         #region Properties
@@ -25,13 +31,11 @@ namespace DataAccess.Repository.RepositoryFile
         protected IList<Car> CarsList { get; set; }
 
         public string FilePath { get; protected set; }
-        #endregion
 
-        #region IErrorReporter interface implementation
-        public bool ErrorHappened { get; set; }
         #endregion
 
         #region IRepository interface implementation
+
         public IEnumerable<Customer> GetCustomers()
         {
             return CustomersList.AsEnumerable();
@@ -63,9 +67,11 @@ namespace DataAccess.Repository.RepositoryFile
         }
 
         public abstract void SaveChanges();
+
         #endregion
 
         #region Private methods
+
         private void Create()
         {
             CustomersList = new List<Customer>();
@@ -82,9 +88,7 @@ namespace DataAccess.Repository.RepositoryFile
             }
 
             foreach (Car car in CarsList)
-            {
                 car.Customer = CustomersList.First(c => c.CustomerId == car.CustomerId);
-            }
         }
 
         private void SetLoadedData(Tuple<Customer[], Order[], Car[]> data)
@@ -96,9 +100,11 @@ namespace DataAccess.Repository.RepositoryFile
 
             LoadReferences();
         }
+
         #endregion
 
         #region Protected methods
+
         protected abstract Tuple<Customer[], Order[], Car[]> Load(string filePath);
 
         protected void Initialize(FileMode fileMode)
@@ -126,13 +132,13 @@ namespace DataAccess.Repository.RepositoryFile
 
         protected void AssignIds()
         {
-            for (int i = 0; i < CustomersList.Count; i++)
+            for (var i = 0; i < CustomersList.Count; i++)
                 CustomersList[i].CustomerId = i + 1;
 
-            for (int i = 0; i < OrdersList.Count; i++)
+            for (var i = 0; i < OrdersList.Count; i++)
                 OrdersList[i].OrderId = i + 1;
 
-            for (int i = 0; i < CarsList.Count; i++)
+            for (var i = 0; i < CarsList.Count; i++)
                 CarsList[i].CarId = i + 1;
         }
 
@@ -145,11 +151,9 @@ namespace DataAccess.Repository.RepositoryFile
             }
 
             foreach (Car car in CarsList)
-            {
                 car.CustomerId = CustomersList.First(c => car.Customer == c).CustomerId;
-            }
-        } 
-        #endregion
+        }
 
+        #endregion
     }
 }

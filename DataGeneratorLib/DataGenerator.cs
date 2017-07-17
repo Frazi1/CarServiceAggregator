@@ -9,6 +9,20 @@ namespace DataGeneratorLib
 {
     public class DataGenerator
     {
+        public DataGenerator(int customersCount, Random r)
+        {
+            InitializePaths();
+            InitializeCollections();
+
+            GenerateCustomers(customersCount, r);
+            GenerateOrders(r);
+
+            Orders = Orders.OrderBy(o => o.TaskStarted)
+                .ToList();
+        }
+
+        #region Constants
+
         private const int MaxCustomerOrdersNumber = 10;
         private const int MinCarManufactureYear = 1950;
         private const int MinCustomerAge = 18;
@@ -19,34 +33,15 @@ namespace DataGeneratorLib
         private const int MinEnginePower = 50;
         private const int MaxEnginePower = 300;
 
-        //private static int _carsGeneratedCount = 1;
-
         private readonly Dictionary<string, string> _filePaths = new Dictionary<string, string>();
+
+        #endregion
+
+        #region Properties
 
         public List<Customer> Customers { get; } = new List<Customer>();
         public List<Order> Orders { get; } = new List<Order>();
         public List<Car> Cars { get; } = new List<Car>();
-
-
-        public DataGenerator( /*bool setId,*/ int customersCount, Random r)
-        {
-            InitializePaths();
-            Initialize();
-            //SetId = setId;
-
-            GenerateCustomers(customersCount, r);
-            GenerateOrders(r);
-
-            //var id = 1;
-
-            Orders = Orders.OrderBy(o => o.TaskStarted)
-                //.Select(o =>
-                //{
-                //    o.OrderId = id++;
-                //    return o;
-                //})
-                .ToList();
-        }
 
         private List<string> Surnames { get; set; }
         private List<string> Firstnames { get; set; }
@@ -55,10 +50,11 @@ namespace DataGeneratorLib
         private List<string> CarModels { get; set; }
         private List<string> Transmissions { get; set; }
         private List<string> TaskNames { get; set; }
-        private Dictionary<Customer, List<Car>> CustomersCars { get; } = new Dictionary<Customer, List<Car>>();
+        private Dictionary<Customer, List<Car>> CustomersCars { get; set; }
 
-        //public bool SetId { get; set; }
+        #endregion
 
+        #region Initialization
 
         private void InitializePaths()
         {
@@ -69,7 +65,7 @@ namespace DataGeneratorLib
             _filePaths.Add("tasks", @"Data/tasks.txt");
         }
 
-        private void Initialize()
+        private void InitializeCollections()
         {
             Surnames = Parser.ParseLines(_filePaths["surname"]);
             Firstnames = Parser.ParseAllTextWithCommas(_filePaths["firstname"]);
@@ -81,16 +77,18 @@ namespace DataGeneratorLib
 
             TaskNames = Parser.ParseLines(_filePaths["tasks"]);
             Transmissions = new List<string> {"Автомат", "Вариатор", "Механическая"};
+
+            CustomersCars = new Dictionary<Customer, List<Car>>();
         }
+
+        #endregion
+
+        #region Generator methods
 
         private void GenerateOrders(Random r)
         {
-            //var currentId = 1;
-
             foreach (Customer customer in Customers)
             {
-                var customerId = customer.CustomerId;
-                //Customer customer = Customers.First(c => c.CustomerId == customerId);
                 var customerCars = CustomersCars[customer];
 
                 for (var j = 0; j < r.Next(MaxCustomerOrdersNumber); j++)
@@ -104,11 +102,8 @@ namespace DataGeneratorLib
 
                     Order order = new Order
                     {
-                        //OrderId = currentId++,
-                        //CustomerId = customerId,
                         Customer = customer,
                         Car = selectedCar,
-                        //CarId = selectedCar.CarId,
                         Price = r.Next(MinOrderPrice, MaxOrderPrice),
                         TaskName = TaskNames[r.Next(TaskNames.Count)],
                         TaskStarted = taskStarted,
@@ -137,11 +132,9 @@ namespace DataGeneratorLib
                     PhoneNumber = phone.ToString()
                 };
 
-                //if (SetId)
-                //    customer.CustomerId = j + 1;
                 Customers.Add(customer);
 
-                var carNumber = r.Next(1, 3);
+                int carNumber = r.Next(1, 3);
                 var cars = new List<Car>();
                 for (var i = 0; i < carNumber; i++)
                 {
@@ -157,7 +150,6 @@ namespace DataGeneratorLib
         {
             return new Car
             {
-                //CarId = _carsGeneratedCount++,
                 CarModel = CarModels[r.Next(CarModels.Count)],
                 CarBrand = CarBrands[r.Next(CarBrands.Count)],
                 ManufactureYear = (short) r.Next(MinCarManufactureYear, DateTime.Now.Year),
@@ -169,7 +161,7 @@ namespace DataGeneratorLib
         private static void GenerateTaskStartedAndFinished(Random r, Customer customer, short manufactureYear,
             out DateTime taskStarted, out DateTime? taskFinished)
         {
-            var isFinished = r.Next(0, 1000) > 200;
+            bool isFinished = r.Next(0, 1000) > 200;
             taskFinished = null;
             if (isFinished)
             {
@@ -190,5 +182,7 @@ namespace DataGeneratorLib
                     .AddSeconds(-r.Next(0, 59));
             }
         }
+
+        #endregion
     }
 }

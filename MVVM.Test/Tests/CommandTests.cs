@@ -10,7 +10,7 @@ namespace Mvvm.Test.Tests
         [TestMethod]
         public void CommandExecutionWithParameterTest()
         {
-            StubViewModel.ChangePropertyCommand = new RelayCommand((o) => StubViewModel.SomeProperty = (int) o);
+            StubViewModel.ChangePropertyCommand = new RelayCommand(o => StubViewModel.SomeProperty = (int) o);
             StubViewModel.ChangePropertyCommand.Execute(5);
             Assert.AreEqual(5, StubViewModel.SomeProperty);
         }
@@ -18,7 +18,7 @@ namespace Mvvm.Test.Tests
         [TestMethod]
         public void CommandCanExecuteTest()
         {
-            StubViewModel.ChangePropertyCommand = new RelayCommand((o) => { }, o => false);
+            StubViewModel.ChangePropertyCommand = new RelayCommand(o => { }, o => false);
             Assert.IsFalse(StubViewModel.ChangePropertyCommand.CanExecute(1));
         }
 

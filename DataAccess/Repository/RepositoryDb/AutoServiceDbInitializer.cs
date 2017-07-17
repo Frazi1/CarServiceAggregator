@@ -3,12 +3,13 @@ using System.Data.Entity;
 
 namespace DataAccess.Repository.RepositoryDb
 {
-    public class DbInitializer : IDatabaseInitializer<AutoServiceDb>
+    public class AutoServiceDbInitializer : IDatabaseInitializer<AutoServiceDb>
     {
-        private readonly DatabaseRepository _databaseRepository;
         private readonly DatabaseConnectionAction _connectionAction;
+        private readonly DatabaseRepository _databaseRepository;
 
-        public DbInitializer(DatabaseRepository databaseRepository, DatabaseConnectionAction connectionAction)
+        public AutoServiceDbInitializer(DatabaseRepository databaseRepository,
+            DatabaseConnectionAction connectionAction)
         {
             _databaseRepository = databaseRepository;
             _connectionAction = connectionAction;

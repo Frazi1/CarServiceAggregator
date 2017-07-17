@@ -7,8 +7,8 @@ namespace AutoServiceViewer.ViewModel
 {
     public class BinarySettingsViewModel : ViewModelBase
     {
-        private string _selectedFilePath;
         private UnityBinaryRepositoryExtension _binaryExtension;
+        private string _selectedFilePath;
 
         public string SelectedFilePath {
             get { return _selectedFilePath; }

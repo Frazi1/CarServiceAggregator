@@ -10,20 +10,6 @@ namespace DataAccess.Repository.RepositoryFile
     {
         private readonly ILogger _logger;
 
-        #region Constructors
-        public BinaryRepository(BinaryRepositorySettings settings)
-            : this(settings, new NullLogger())
-        {
-        }
-
-        public BinaryRepository(BinaryRepositorySettings settings, ILogger logger)
-            : base(settings)
-        {
-            _logger = logger;
-            Initialize(settings.FileMode);
-        } 
-        #endregion
-
         protected override Tuple<Customer[], Order[], Car[]> Load(string filePath)
         {
             try
@@ -57,5 +43,21 @@ namespace DataAccess.Repository.RepositoryFile
                 _logger.SetError(this);
             }
         }
+
+        #region Constructors
+
+        public BinaryRepository(BinaryRepositorySettings settings)
+            : this(settings, new NullLogger())
+        {
+        }
+
+        public BinaryRepository(BinaryRepositorySettings settings, ILogger logger)
+            : base(settings)
+        {
+            _logger = logger;
+            Initialize(settings.FileMode);
+        }
+
+        #endregion
     }
 }

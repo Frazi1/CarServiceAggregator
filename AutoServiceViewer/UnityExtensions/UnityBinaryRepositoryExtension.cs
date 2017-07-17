@@ -7,14 +7,14 @@ using Microsoft.Practices.Unity;
 
 namespace AutoServiceViewer.UnityExtensions
 {
-    public class UnityBinaryRepositoryExtension : UnityContainerExtension
+    public class UnityBinaryRepositoryExtension : UnityRepositoryExtension
     {
-        public string FileName { get; set; }
-
         public UnityBinaryRepositoryExtension(string fileName)
         {
             FileName = fileName;
         }
+
+        public string FileName { get; set; }
 
         protected override void Initialize()
         {
@@ -22,13 +22,13 @@ namespace AutoServiceViewer.UnityExtensions
             RegisterRepository();
         }
 
-        private void RegisterSettings()
+        protected override void RegisterSettings()
         {
             if (string.IsNullOrEmpty(FileName)) throw new ArgumentException("Filename must not be null");
             Container.RegisterType<BinaryRepositorySettings>(new InjectionConstructor(FileName, FileMode.Open));
         }
 
-        private void RegisterRepository()
+        protected override void RegisterRepository()
         {
             string name = ConfigurationManager.AppSettings["binaryRepository"];
             Container.RegisterType<IRepository, BinaryRepository>(name);

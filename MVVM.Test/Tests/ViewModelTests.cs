@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mvvm.Test.Base;
 
@@ -13,7 +14,7 @@ namespace Mvvm.Test.Tests
             StubViewModel.SomeProperty = 10;
         }
 
-        private void Stubvm_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void Stubvm_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             Assert.AreEqual(e.PropertyName, "SomeProperty");
         }

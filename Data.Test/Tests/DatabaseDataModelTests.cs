@@ -42,7 +42,7 @@ namespace Data.Test.Tests
         {
             Repository = new DatabaseRepository(
                 new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create));
-            var incorrectCustomer = new Customer();
+            Customer incorrectCustomer = new Customer();
             Repository.AddCustomer(incorrectCustomer);
             Repository.SaveChanges();
             Assert.IsTrue(Repository.ErrorHappened);
@@ -51,10 +51,10 @@ namespace Data.Test.Tests
         [TestMethod]
         public void DatabaseRepositoryStashClearingWhenErrorTest()
         {
-            var dbRepository = new DatabaseRepository(
+            DatabaseRepository dbRepository = new DatabaseRepository(
                 new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create));
-            var incorrectCustomer = new Customer();
-            var incorrectOrder = new Order();
+            Customer incorrectCustomer = new Customer();
+            Order incorrectOrder = new Order();
             dbRepository.AddCustomer(incorrectCustomer);
             dbRepository.AddOrder(incorrectOrder);
             try
