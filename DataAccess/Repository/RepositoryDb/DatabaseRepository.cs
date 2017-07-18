@@ -28,8 +28,6 @@ namespace DataAccess.Repository.RepositoryDb
 
         #endregion
 
-        //TODO: Сделать кэширование данных
-
         #region Private fields
 
         private readonly ILogger _logger;
@@ -132,18 +130,21 @@ namespace DataAccess.Repository.RepositoryDb
         private void DbAction(AutoServiceDb context, Action<AutoServiceDb> action,
             Action<AutoServiceDb> finallyAction = null)
         {
-            try
+            using (context)
             {
-                action(context);
-            }
-            catch (Exception e)
-            {
-                _logger.Log(e);
-                _logger.SetError(this);
-            }
-            finally
-            {
-                finallyAction?.Invoke(context);
+                try
+                {
+                    action(context);
+                }
+                catch (Exception e)
+                {
+                    _logger.Log(e);
+                    _logger.SetError(this);
+                }
+                finally
+                {
+                    finallyAction?.Invoke(context);
+                }
             }
         }
 
@@ -158,20 +159,23 @@ namespace DataAccess.Repository.RepositoryDb
         private TResult DbFunc<TResult>(AutoServiceDb context, Func<AutoServiceDb, TResult> func,
             Action<AutoServiceDb> finallyAction = null)
         {
-            try
+            using (context)
             {
-                return func(context);
+                try
+                {
+                    return func(context);
+                }
+                catch (Exception e)
+                {
+                    _logger.Log(e);
+                    _logger.SetError(this);
+                }
+                finally
+                {
+                    finallyAction?.Invoke(context);
+                }
+                return default(TResult); 
             }
-            catch (Exception e)
-            {
-                _logger.Log(e);
-                _logger.SetError(this);
-            }
-            finally
-            {
-                finallyAction?.Invoke(context);
-            }
-            return default(TResult);
         }
 
         #endregion
