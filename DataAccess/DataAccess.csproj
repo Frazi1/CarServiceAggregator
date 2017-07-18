@@ -99,7 +99,7 @@
     <Content Include="DataForTest\AutoService.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DataForTest\AutoServiceDump.sql" />
+    <Content Include="DataForTest\autoservicedb_dump.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
