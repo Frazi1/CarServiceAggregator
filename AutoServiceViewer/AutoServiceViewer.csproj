@@ -69,14 +69,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\SettingsCreator\BinarySettingsCreator.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\SettingsCreator\XMLSettingsCreator.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -85,20 +77,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="RepositoryRegistration\Base\RepositoryRegistrator.cs" />
+    <Compile Include="RepositoryRegistration\BinaryRepositoryRegistrator.cs" />
+    <Compile Include="RepositoryRegistration\DatabaseRepositoryRegistrator.cs" />
+    <Compile Include="RepositoryRegistration\XmlRepositoryRegistrator.cs" />
     <Compile Include="UnityExtensions\UnityBinaryRepositoryExtension.cs" />
     <Compile Include="UnityExtensions\UnityDatabaseRepositoryExtension.cs" />
     <Compile Include="UnityExtensions\Base\UnityRepositoryExtension.cs" />
     <Compile Include="UnityExtensions\UnityXmlRepositoryExtension.cs" />
     <Compile Include="IocApp.cs" />
-    <Compile Include="ViewModel\SettingsViewModel\BinarySettingsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="ViewModel\SettingsViewModel\XmlSettingsViewModel.cs" />
-    <Compile Include="View\SettingsCreator\BinarySettingsCreator.xaml.cs">
-      <DependentUpon>BinarySettingsCreator.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SettingsCreator\XMLSettingsCreator.xaml.cs">
-      <DependentUpon>XMLSettingsCreator.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

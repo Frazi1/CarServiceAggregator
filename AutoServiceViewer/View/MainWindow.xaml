@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodels="clr-namespace:AutoServiceViewer.ViewModel"
-    xmlns:settingsCreator="clr-namespace:AutoServiceViewer.View.SettingsCreator"
     xmlns:repository="clr-namespace:DataAccess.Repository;assembly=DataAccess"
     xmlns:converters="clr-namespace:Mvvm.Converters;assembly=Mvvm"
     xmlns:model="clr-namespace:DataAccess.Model;assembly=DataAccess"
@@ -34,17 +33,6 @@
                              IsChecked="{Binding RepositoryType, ConverterParameter={x:Static repository:RepositoryType.Database}, Converter={StaticResource BooleanToEnumConverter}}" />
                 <Button Width="110" HorizontalAlignment="Left" Command="{Binding GetDataCommand}" Margin="5,0,0,0"
                         Content="Загрузить данные" Height="20" d:LayoutOverrides="LeftPosition, RightPosition" />
-            </StackPanel>
-            <StackPanel Height="20" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto"
-                        d:LayoutOverrides="Height">
-                <settingsCreator:XmlSettingsCreator x:Name="XmlSettings"
-                                                    DataContext="{Binding XmlSettingsViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
-                                                    HorizontalAlignment="Left" VerticalAlignment="Top"
-                                                    Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=RbXml}" />
-                <settingsCreator:BinarySettingsCreator x:Name="BinarySettings"
-                                                       DataContext="{Binding BinarySettingsViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
-                                                       HorizontalAlignment="Left" VerticalAlignment="Top"
-                                                       Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=RbBinary}" />
             </StackPanel>
         </StackPanel>
         <!--/Переключалка-->

@@ -14,7 +14,7 @@ namespace AutoServiceViewer
     {
         public App()
         {
-            RegisterDbRepository();
+            //RegisterDbRepository();
             RegisterLogger();
             //Current.Dispatcher.UnhandledException += Dispatcher_UnhandledException;
         }
@@ -38,14 +38,14 @@ namespace AutoServiceViewer
         //    MessageBox.Show(s.ToString());
         //}
 
-        private static void RegisterDbRepository()
-        {
-            UnityDatabaseRepositoryExtension databaseExtension = new UnityDatabaseRepositoryExtension(
-                ConfigurationManager
-                    .ConnectionStrings["mysql"]
-                    .ConnectionString);
-            IocApp.Container.AddExtension(databaseExtension);
-        }
+        //private static void RegisterDbRepository()
+        //{
+        //    UnityDatabaseRepositoryExtension databaseExtension = new UnityDatabaseRepositoryExtension(
+        //        ConfigurationManager
+        //            .ConnectionStrings["mysql"]
+        //            .ConnectionString);
+        //    IocApp.Container.AddExtension(databaseExtension);
+        //}
 
         private static void RegisterLogger()
         {

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using DataAccess.Model;
 using DataAccess.Repository;
@@ -10,7 +11,7 @@ namespace AutoServiceViewer.ViewModel
     {
         private ObservableCollection<Customer> _customers;
         private ObservableCollection<Order> _orders;
-        private IRepository _repository;
+        //private IRepository _repository;
         private RepositoryType _repositoryType;
         private Order _selectedOrder;
 
@@ -53,24 +54,27 @@ namespace AutoServiceViewer.ViewModel
         }
 
         public ICommand GetDataCommand {
-            get { return new RelayCommand(o => GetData(), o => IocApp.IsRegistered(RepositoryType)); }
+            get { return new RelayCommand(o => GetData()); }
         }
 
         private void GetData()
         {
-            ClearData();
-            _repository = IocApp.GetRepository(RepositoryType);
-            if (_repository.ErrorHappened) return;
-            var orders = _repository.GetOrders();
-            var customers = _repository.GetCustomers();
+            if (!RegisterRepository()) return;
+            IRepository repository = IocApp.GetRepository(RepositoryType);
+            if (repository.ErrorHappened) return;
+            SetData(repository.GetOrders(), repository.GetCustomers());
+        }
+
+        private void SetData(IEnumerable<Order> orders, IEnumerable<Customer> customers)
+        {
             Orders = new ObservableCollection<Order>(orders);
             Customers = new ObservableCollection<Customer>(customers);
         }
 
-        private void ClearData()
+        private bool RegisterRepository()
         {
-            Orders.Clear();
-            Customers.Clear();
+            return IocApp.GetRegistrator(RepositoryType)
+                .Register();
         }
     }
 }

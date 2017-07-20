@@ -13,13 +13,5 @@ namespace AutoServiceViewer.ViewModel
         public MainViewModel MainViewModel {
             get { return ServiceLocator.Current.GetInstance<MainViewModel>(); }
         }
-
-        public XmlSettingsViewModel XmlSettingsViewModel {
-            get { return ServiceLocator.Current.GetInstance<XmlSettingsViewModel>(); }
-        }
-
-        public BinarySettingsViewModel BinarySettingsViewModel {
-            get { return ServiceLocator.Current.GetInstance<BinarySettingsViewModel>(); }
-        }
     }
 }
