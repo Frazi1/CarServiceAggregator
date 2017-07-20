@@ -10,8 +10,8 @@
     xmlns:model="clr-namespace:DataAccess.Model;assembly=DataAccess"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance {x:Type viewmodels:MainViewModel}}"
-    Title="CarServiceViewer" Height="443.432" Width="980.619"
-    DataContext="{Binding MainViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}">
+    Title="CarServiceViewer"
+    DataContext="{Binding MainViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}" MinWidth="800" MinHeight="600" Width="800" Height="600">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converters:BooleanToEnumConverter x:Key="BooleanToEnumConverter" />
