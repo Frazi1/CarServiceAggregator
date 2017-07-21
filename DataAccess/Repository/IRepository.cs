@@ -14,9 +14,6 @@ namespace DataAccess.Repository
         void AddCustomer(Customer customer);
         void AddCar(Car car);
 
-        //Order GetOrder(int id);
-        //Customer GetCustomer(int id);
-
         void SaveChanges();
     }
 }

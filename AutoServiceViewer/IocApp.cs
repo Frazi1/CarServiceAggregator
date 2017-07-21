@@ -67,7 +67,7 @@ namespace AutoServiceViewer
             }
         }
 
-        public static RepositoryRegistration.RepositoryRegistrator GetRegistrator(RepositoryType repositoryType)
+        public static RepositoryRegistrator GetRegistrator(RepositoryType repositoryType)
         {
             switch (repositoryType)
             {
