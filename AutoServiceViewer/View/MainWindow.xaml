@@ -15,6 +15,7 @@
     <Window.Resources>
         <converters:BooleanToEnumConverter x:Key="BooleanToEnumConverter" />
         <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
+        <converters:PriceFormatConverter x:Key="PriceFormatConverter"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -57,7 +58,7 @@
                 <DataGridTextColumn Header="Наименование работ" Binding="{Binding TaskName}" Width="*"/>
                 <DataGridTextColumn Header="Время начала работ" Binding="{Binding TaskStarted, Converter={StaticResource DateTimeToStringConverter}}" Width="*" />
                 <DataGridTextColumn Header="Время окончания работ" Binding="{Binding TaskFinished, Converter={StaticResource DateTimeToStringConverter}}" Width="*" />
-                <DataGridTextColumn Header="Стоимость работ" Binding="{Binding Price, StringFormat=\{0\} руб.}" Width="*" />
+                <DataGridTextColumn Header="Стоимость работ" Binding="{Binding Price, Converter={StaticResource PriceFormatConverter}}" Width="*" />
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate DataType="model:Order">
