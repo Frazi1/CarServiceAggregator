@@ -13,75 +13,75 @@
     Title="CarServiceViewer"
     DataContext="{Binding MainViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}" MinWidth="800" MinHeight="600" Width="800" Height="600">
     <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converters:BooleanToEnumConverter x:Key="BooleanToEnumConverter" />
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
-            <RowDefinition />
+            <RowDefinition Height="55" />
+            <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
 
         <!--Переключалка-->
-        <StackPanel Orientation="Vertical" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
-            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal">
-                <RadioButton x:Name="RbXml" Content="Xml" Margin="0,0,5,0" VerticalAlignment="Center"
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <RadioButton Grid.Column="0" x:Name="RbXml" Content="Xml" VerticalAlignment="Center" HorizontalAlignment="Center"
                              IsChecked="{Binding RepositoryType, ConverterParameter={x:Static repository:RepositoryType.Xml}, Converter={StaticResource BooleanToEnumConverter}}" />
-                <RadioButton x:Name="RbBinary" Content="Binary" Margin="5,0,5,0" VerticalAlignment="Center"
+            <RadioButton Grid.Column="1" x:Name="RbBinary" Content="Binary" VerticalAlignment="Center" HorizontalAlignment="Center"
                              IsChecked="{Binding RepositoryType, ConverterParameter={x:Static repository:RepositoryType.Binary}, Converter={StaticResource BooleanToEnumConverter}}" />
-                <RadioButton x:Name="RbMySql" Content="MySql" Margin="5,0,5,0" VerticalAlignment="Center"
+            <RadioButton Grid.Column="2" x:Name="RbMySql" Content="MySql" VerticalAlignment="Center" HorizontalAlignment="Center"
                              IsChecked="{Binding RepositoryType, ConverterParameter={x:Static repository:RepositoryType.Database}, Converter={StaticResource BooleanToEnumConverter}}" />
-                <Button Width="110" HorizontalAlignment="Left" Command="{Binding GetDataCommand}" Margin="5,0,0,0"
-                        Content="Загрузить данные" Height="20" d:LayoutOverrides="LeftPosition, RightPosition" />
-            </StackPanel>
-        </StackPanel>
+            <Button Grid.Column="3" Width="160" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding GetDataCommand}"
+                        Content="Загрузить данные"  />
+        </Grid>
         <!--/Переключалка-->
 
         <!--Таблица-->
         <DataGrid x:Name="GridOrders" Grid.Row="1" Height="Auto" ItemsSource="{Binding Orders}"
                   AutoGenerateColumns="False"
                   SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" IsReadOnly="True" ColumnWidth="Auto"
-                  Margin="0,0,0,0" d:LayoutOverrides="Width, LeftMargin, RightMargin, TopMargin, BottomMargin"
                   SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding OrderId}" />
-                <DataGridTextColumn Header="Марка" Binding="{Binding Car.CarBrand}" />
-                <DataGridTextColumn Header="Модель" Binding="{Binding Car.CarModel}" />
-                <DataGridTextColumn Header="Год выпуска" Binding="{Binding Car.ManufactureYear}" />
-                <DataGridTextColumn Header="Тип трансмиссии" Binding="{Binding Car.TransmissionType}" />
+                <DataGridTextColumn Header="ID" Binding="{Binding OrderId}" Width="*" />
+                <DataGridTextColumn Header="Марка" Binding="{Binding Car.CarBrand}" Width="*" />
+                <DataGridTextColumn Header="Модель" Binding="{Binding Car.CarModel}" Width="*" />
+                <DataGridTextColumn Header="Год выпуска" Binding="{Binding Car.ManufactureYear}" Width="*" />
+                <DataGridTextColumn Header="Тип трансмиссии" Binding="{Binding Car.TransmissionType}" Width="*" />
                 <DataGridTextColumn Header="Мощность двигателя"
-                                    Binding="{Binding Car.EnginePower, StringFormat=\{0\} л.с.}" />
-                <DataGridTextColumn Header="Наименование работ" Binding="{Binding TaskName}" />
-                <DataGridTextColumn Header="Время начала работ" Binding="{Binding TaskStarted}" />
-                <DataGridTextColumn Header="Время окончания работ" Binding="{Binding TaskFinished}" />
-                <DataGridTextColumn Header="Стоимость работ" Binding="{Binding Price, StringFormat=\{0\} руб.}" />
+                                    Binding="{Binding Car.EnginePower, StringFormat=\{0\} л.с.}" Width="*" />
+                <DataGridTextColumn Header="Наименование работ" Binding="{Binding TaskName}" Width="*"/>
+                <DataGridTextColumn Header="Время начала работ" Binding="{Binding TaskStarted}" Width="*" />
+                <DataGridTextColumn Header="Время окончания работ" Binding="{Binding TaskFinished}" Width="*" />
+                <DataGridTextColumn Header="Стоимость работ" Binding="{Binding Price, StringFormat=\{0\} руб.}" Width="*" />
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate DataType="model:Order">
                     <Border Padding="0" BorderThickness="0">
-                        <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
-                            <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center"
-                                        ClipToBounds="True" MinWidth="60">
+                        <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" >
+                            <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center">
                                 <TextBlock FontWeight="Bold" Text="Фамилия" VerticalAlignment="Center" />
                                 <TextBlock Text="{Binding Customer.Surname}" VerticalAlignment="Center" />
                             </StackPanel>
-                            <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center"
-                                        ClipToBounds="True" MinWidth="60">
+                            <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center">
                                 <TextBlock FontWeight="Bold" Text="Имя" VerticalAlignment="Center" />
                                 <TextBlock Text="{Binding Customer.FirstName}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center"
-                                        ClipToBounds="True" MinWidth="60">
+                                        ClipToBounds="True">
                                 <TextBlock FontWeight="Bold" Text="Отчество" VerticalAlignment="Center" />
                                 <TextBlock Text="{Binding Customer.Patronymic}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center"
-                                        ClipToBounds="True" MinWidth="60">
+                                        ClipToBounds="True">
                                 <TextBlock FontWeight="Bold" Text="Год рождения" VerticalAlignment="Center" />
                                 <TextBlock Text="{Binding Customer.BirthYear}" VerticalAlignment="Center" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center"
-                                        ClipToBounds="True" MinWidth="60">
+                                        ClipToBounds="True">
                                 <TextBlock FontWeight="Bold" Text="Телефон" VerticalAlignment="Center" />
                                 <TextBlock Text="{Binding Customer.PhoneNumber}" VerticalAlignment="Center" />
                             </StackPanel>
@@ -91,6 +91,5 @@
             </DataGrid.RowDetailsTemplate>
         </DataGrid>
         <!--/Таблица-->
-
     </Grid>
 </Window>
