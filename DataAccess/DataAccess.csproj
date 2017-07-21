@@ -50,6 +50,8 @@
     <Compile Include="Repository\RepositoryDb\DatabaseConnectionAction.cs" />
     <Compile Include="Repository\RepositoryDb\Exceptions\DatabaseMissingException.cs" />
     <Compile Include="Repository\RepositoryDb\Exceptions\DatabaseRepositoryException.cs" />
+    <Compile Include="Repository\RepositoryFile\Exceptions\FileCorruptedException.cs" />
+    <Compile Include="Repository\RepositoryFile\Exceptions\FileRepositoryException.cs" />
     <Compile Include="Repository\RepositoryFile\FileRepository.cs" />
     <Compile Include="Repository\RepositoryFile\FileRepositorySettings.cs" />
     <Compile Include="Repository\RepositoryFile\RepositoryBinary\BinaryHelper.cs" />

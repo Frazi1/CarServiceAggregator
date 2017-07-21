@@ -9,17 +9,14 @@ namespace DataAccess.Repository.RepositoryFile
 {
     public sealed class XmlRepository : FileRepository
     {
-        private readonly ILogger _logger;
-
         public XmlRepository(XmlRepositorySettings settings)
             : this(settings, new NullLogger())
         {
         }
 
         public XmlRepository(XmlRepositorySettings settings, ILogger logger)
-            : base(settings)
+            : base(settings, logger)
         {
-            _logger = logger;
             Initialize(settings.FileMode);
         }
 
@@ -31,8 +28,8 @@ namespace DataAccess.Repository.RepositoryFile
             }
             catch (Exception e)
             {
-                _logger.Log(e);
-                _logger.SetError(this);
+                Logger.Log(e);
+                Logger.SetError(this);
             }
             return null;
         }
@@ -54,8 +51,8 @@ namespace DataAccess.Repository.RepositoryFile
             }
             catch (Exception e)
             {
-                _logger.Log(e);
-                _logger.SetError(this);
+                Logger.Log(e);
+                Logger.SetError(this);
             }
         }
     }

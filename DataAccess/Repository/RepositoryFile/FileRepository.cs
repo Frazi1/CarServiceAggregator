@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using DataAccess.Model;
+using ExceptionHandling;
 
 namespace DataAccess.Repository.RepositoryFile
 {
@@ -10,12 +11,12 @@ namespace DataAccess.Repository.RepositoryFile
     {
         #region Constructors
 
-        protected FileRepository(FileRepositorySettings settings)
+        protected FileRepository(FileRepositorySettings settings, ILogger logger)
         {
+            Logger = logger;
             FilePath = settings.FilePath;
             ErrorHappened = false;
         }
-
         #endregion
 
         #region IErrorReporter interface implementation
@@ -29,6 +30,8 @@ namespace DataAccess.Repository.RepositoryFile
         protected IList<Customer> CustomersList { get; set; }
         protected IList<Order> OrdersList { get; set; }
         protected IList<Car> CarsList { get; set; }
+
+        protected ILogger Logger { get; }
 
         public string FilePath { get; protected set; }
 
@@ -81,14 +84,21 @@ namespace DataAccess.Repository.RepositoryFile
 
         private void LoadReferences()
         {
-            foreach (Order order in OrdersList)
+            try
             {
-                order.Customer = CustomersList.First(c => c.CustomerId == order.CustomerId);
-                order.Car = CarsList.First(c => c.CarId == order.CarId);
-            }
+                foreach (Order order in OrdersList)
+                {
+                    order.Customer = CustomersList.First(c => c.CustomerId == order.CustomerId);
+                    order.Car = CarsList.First(c => c.CarId == order.CarId);
+                }
 
-            foreach (Car car in CarsList)
-                car.Customer = CustomersList.First(c => c.CustomerId == car.CustomerId);
+                foreach (Car car in CarsList)
+                    car.Customer = CustomersList.First(c => c.CustomerId == car.CustomerId);
+            }
+            catch (InvalidOperationException e)
+            {
+                throw new FileCorruptedException("Скорее всего файл поврежден.", e);
+            }
         }
 
         private void SetLoadedData(Tuple<Customer[], Order[], Car[]> data)
@@ -98,7 +108,15 @@ namespace DataAccess.Repository.RepositoryFile
             OrdersList = data.Item2.ToList();
             CarsList = data.Item3.ToList();
 
-            LoadReferences();
+            try
+            {
+                LoadReferences();
+            }
+            catch (Exception e)
+            {
+                Logger.Log(e);
+                Logger.SetError(this);
+            }
         }
 
         #endregion

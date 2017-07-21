@@ -8,7 +8,19 @@ namespace DataAccess.Repository.RepositoryFile
 {
     public sealed class BinaryRepository : FileRepository
     {
-        private readonly ILogger _logger;
+        #region Constructors
+
+        public BinaryRepository(BinaryRepositorySettings settings)
+            : this(settings, new NullLogger())
+        {
+        }
+
+        public BinaryRepository(BinaryRepositorySettings settings, ILogger logger)
+            : base(settings, logger)
+        {
+            Initialize(settings.FileMode);
+        }
+        #endregion
 
         protected override Tuple<Customer[], Order[], Car[]> Load(string filePath)
         {
@@ -18,8 +30,8 @@ namespace DataAccess.Repository.RepositoryFile
             }
             catch (Exception e)
             {
-                _logger.Log(e);
-                _logger.SetError(this);
+                Logger.Log(e);
+                Logger.SetError(this);
             }
             return null;
         }
@@ -30,8 +42,9 @@ namespace DataAccess.Repository.RepositoryFile
             SaveReferencesIds();
 
             var tuple
-                = new Tuple<Customer[], Order[], Car[]>(GetCustomers().ToArray(), GetOrders().ToArray(),
-                    GetCars().ToArray());
+                = new Tuple<Customer[], Order[], Car[]>(GetCustomers().ToArray(),
+                GetOrders().ToArray(),
+                GetCars().ToArray());
 
             try
             {
@@ -39,25 +52,9 @@ namespace DataAccess.Repository.RepositoryFile
             }
             catch (Exception e)
             {
-                _logger.Log(e);
-                _logger.SetError(this);
+                Logger.Log(e);
+                Logger.SetError(this);
             }
         }
-
-        #region Constructors
-
-        public BinaryRepository(BinaryRepositorySettings settings)
-            : this(settings, new NullLogger())
-        {
-        }
-
-        public BinaryRepository(BinaryRepositorySettings settings, ILogger logger)
-            : base(settings)
-        {
-            _logger = logger;
-            Initialize(settings.FileMode);
-        }
-
-        #endregion
     }
 }
