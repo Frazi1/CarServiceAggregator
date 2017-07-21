@@ -14,6 +14,7 @@
     DataContext="{Binding MainViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}" MinWidth="800" MinHeight="600" Width="800" Height="600">
     <Window.Resources>
         <converters:BooleanToEnumConverter x:Key="BooleanToEnumConverter" />
+        <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -54,8 +55,8 @@
                 <DataGridTextColumn Header="Мощность двигателя"
                                     Binding="{Binding Car.EnginePower, StringFormat=\{0\} л.с.}" Width="*" />
                 <DataGridTextColumn Header="Наименование работ" Binding="{Binding TaskName}" Width="*"/>
-                <DataGridTextColumn Header="Время начала работ" Binding="{Binding TaskStarted}" Width="*" />
-                <DataGridTextColumn Header="Время окончания работ" Binding="{Binding TaskFinished}" Width="*" />
+                <DataGridTextColumn Header="Время начала работ" Binding="{Binding TaskStarted, Converter={StaticResource DateTimeToStringConverter}}" Width="*" />
+                <DataGridTextColumn Header="Время окончания работ" Binding="{Binding TaskFinished, Converter={StaticResource DateTimeToStringConverter}}" Width="*" />
                 <DataGridTextColumn Header="Стоимость работ" Binding="{Binding Price, StringFormat=\{0\} руб.}" Width="*" />
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
