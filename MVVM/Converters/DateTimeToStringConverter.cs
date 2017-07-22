@@ -9,7 +9,7 @@ namespace Mvvm.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((DateTime?)value)?.ToString("g", culture.DateTimeFormat) ?? DependencyProperty.UnsetValue;
+            return ((DateTime?)value)?.ToString("g", culture) ?? DependencyProperty.UnsetValue;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

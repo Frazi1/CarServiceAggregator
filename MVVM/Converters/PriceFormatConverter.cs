@@ -9,9 +9,7 @@ namespace Mvvm.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string s = value?.ToString();
-            if (string.IsNullOrEmpty(s)) return DependencyProperty.UnsetValue;
-            return s.ToString(culture.NumberFormat);
+            return ((decimal?) value)?.ToString("C", culture) ?? DependencyProperty.UnsetValue;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
