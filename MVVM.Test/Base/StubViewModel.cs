@@ -14,9 +14,6 @@ namespace Mvvm.Test.Base
             }
         }
 
-        //public ICommand ChangePropertyCommand {
-        //    get { return new RelayCommand(o => ChangeProperty(o)); }
-        //}
         public ICommand ChangePropertyCommand { get; set; }
 
         private void ChangeProperty(object value)

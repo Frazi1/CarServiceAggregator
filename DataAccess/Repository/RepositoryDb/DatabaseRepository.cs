@@ -99,14 +99,14 @@ namespace DataAccess.Repository.RepositoryDb
 
         public void SaveChanges()
         {
-            DbAction(action: db =>
+            DbAction(db =>
                 {
                     db.Orders.AddRange(_ordersStash);
                     db.Customers.AddRange(_customersStash);
                     db.Cars.AddRange(_carsStash);
                     db.SaveChanges();
                 },
-                finallyAction: db =>
+                db =>
                 {
                     _ordersStash.Clear();
                     _customersStash.Clear();

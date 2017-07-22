@@ -23,8 +23,6 @@ namespace DataGeneratorConsole
 
             Console.WriteLine("Number Customers");
             int countCustomers = int.Parse(Console.ReadLine());
-            //Console.WriteLine("Number orders");
-            //var countOrders = int.Parse(Console.ReadLine());
 
 
             var repositories = new List<IRepository>

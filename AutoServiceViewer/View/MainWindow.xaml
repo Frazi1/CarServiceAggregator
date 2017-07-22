@@ -11,34 +11,39 @@
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance {x:Type viewmodels:MainViewModel}}"
     Title="Автосервис – заказы"
-    DataContext="{Binding MainViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}" MinWidth="800" MinHeight="600" Width="800" Height="600">
+    DataContext="{Binding MainViewModel, Mode=OneWay, Source={StaticResource ViewModelLocator}}" MinWidth="800"
+    MinHeight="600" Width="800" Height="600">
     <Window.Resources>
         <converters:BooleanToEnumConverter x:Key="BooleanToEnumConverter" />
-        <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
-        <converters:PriceFormatConverter x:Key="PriceFormatConverter"/>
+        <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
+        <converters:PriceFormatConverter x:Key="PriceFormatConverter" />
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="55" />
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
 
         <!--Переключалка-->
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <RadioButton Grid.Column="0" x:Name="RbXml" Content="Xml" VerticalAlignment="Center" HorizontalAlignment="Center"
-                             IsChecked="{Binding RepositoryType, ConverterParameter={x:Static repository:RepositoryType.Xml}, Converter={StaticResource BooleanToEnumConverter}}" />
-            <RadioButton Grid.Column="1" x:Name="RbBinary" Content="Binary" VerticalAlignment="Center" HorizontalAlignment="Center"
-                             IsChecked="{Binding RepositoryType, ConverterParameter={x:Static repository:RepositoryType.Binary}, Converter={StaticResource BooleanToEnumConverter}}" />
-            <RadioButton Grid.Column="2" x:Name="RbMySql" Content="MySql" VerticalAlignment="Center" HorizontalAlignment="Center"
-                             IsChecked="{Binding RepositoryType, ConverterParameter={x:Static repository:RepositoryType.Database}, Converter={StaticResource BooleanToEnumConverter}}" />
-            <Button Grid.Column="3" Width="160" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding GetDataCommand}"
-                        Content="Загрузить данные"  />
+            <RadioButton Grid.Column="0" x:Name="RbXml" Content="Xml" VerticalAlignment="Center"
+                         HorizontalAlignment="Center"
+                         IsChecked="{Binding RepositoryType, ConverterParameter={x:Static repository:RepositoryType.Xml}, Converter={StaticResource BooleanToEnumConverter}}" />
+            <RadioButton Grid.Column="1" x:Name="RbBinary" Content="Binary" VerticalAlignment="Center"
+                         HorizontalAlignment="Center"
+                         IsChecked="{Binding RepositoryType, ConverterParameter={x:Static repository:RepositoryType.Binary}, Converter={StaticResource BooleanToEnumConverter}}" />
+            <RadioButton Grid.Column="2" x:Name="RbMySql" Content="MySql" VerticalAlignment="Center"
+                         HorizontalAlignment="Center"
+                         IsChecked="{Binding RepositoryType, ConverterParameter={x:Static repository:RepositoryType.Database}, Converter={StaticResource BooleanToEnumConverter}}" />
+            <Button Grid.Column="3" Width="160" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Command="{Binding GetDataCommand}"
+                    Content="Загрузить данные" />
         </Grid>
         <!--/Переключалка-->
 
@@ -55,15 +60,21 @@
                 <DataGridTextColumn Header="Тип трансмиссии" Binding="{Binding Car.TransmissionType}" Width="*" />
                 <DataGridTextColumn Header="Мощность двигателя"
                                     Binding="{Binding Car.EnginePower, StringFormat=\{0\} л.с.}" Width="*" />
-                <DataGridTextColumn Header="Наименование работ" Binding="{Binding TaskName}" Width="*"/>
-                <DataGridTextColumn Header="Время начала работ" Binding="{Binding TaskStarted, Converter={StaticResource DateTimeToStringConverter}}" Width="*" />
-                <DataGridTextColumn Header="Время окончания работ" Binding="{Binding TaskFinished, Converter={StaticResource DateTimeToStringConverter}}" Width="*" />
-                <DataGridTextColumn Header="Стоимость работ" Binding="{Binding Price, Converter={StaticResource PriceFormatConverter}}" Width="*" />
+                <DataGridTextColumn Header="Наименование работ" Binding="{Binding TaskName}" Width="*" />
+                <DataGridTextColumn Header="Время начала работ"
+                                    Binding="{Binding TaskStarted, Converter={StaticResource DateTimeToStringConverter}}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Время окончания работ"
+                                    Binding="{Binding TaskFinished, Converter={StaticResource DateTimeToStringConverter}}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Стоимость работ"
+                                    Binding="{Binding Price, Converter={StaticResource PriceFormatConverter}}"
+                                    Width="*" />
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate DataType="model:Order">
                     <Border Padding="0" BorderThickness="0">
-                        <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" >
+                        <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
                             <StackPanel Orientation="Vertical" Margin="15,5" VerticalAlignment="Center">
                                 <TextBlock FontWeight="Bold" Text="Фамилия" VerticalAlignment="Center" />
                                 <TextBlock Text="{Binding Customer.Surname}" VerticalAlignment="Center" />

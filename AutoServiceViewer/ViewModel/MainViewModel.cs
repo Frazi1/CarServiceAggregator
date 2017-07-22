@@ -11,7 +11,6 @@ namespace AutoServiceViewer.ViewModel
     {
         private ObservableCollection<Customer> _customers;
         private ObservableCollection<Order> _orders;
-        //private IRepository _repository;
         private RepositoryType _repositoryType;
         private Order _selectedOrder;
 

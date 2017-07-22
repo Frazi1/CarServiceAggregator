@@ -8,20 +8,6 @@ namespace DataAccess.Repository.RepositoryFile
 {
     public sealed class BinaryRepository : FileRepository
     {
-        #region Constructors
-
-        public BinaryRepository(BinaryRepositorySettings settings)
-            : this(settings, new NullLogger())
-        {
-        }
-
-        public BinaryRepository(BinaryRepositorySettings settings, ILogger logger)
-            : base(settings, logger)
-        {
-            Initialize(settings.FileMode);
-        }
-        #endregion
-
         protected override Tuple<Customer[], Order[], Car[]> Load(string filePath)
         {
             try
@@ -43,8 +29,8 @@ namespace DataAccess.Repository.RepositoryFile
 
             var tuple
                 = new Tuple<Customer[], Order[], Car[]>(GetCustomers().ToArray(),
-                GetOrders().ToArray(),
-                GetCars().ToArray());
+                    GetOrders().ToArray(),
+                    GetCars().ToArray());
 
             try
             {
@@ -56,5 +42,20 @@ namespace DataAccess.Repository.RepositoryFile
                 Logger.SetError(this);
             }
         }
+
+        #region Constructors
+
+        public BinaryRepository(BinaryRepositorySettings settings)
+            : this(settings, new NullLogger())
+        {
+        }
+
+        public BinaryRepository(BinaryRepositorySettings settings, ILogger logger)
+            : base(settings, logger)
+        {
+            Initialize(settings.FileMode);
+        }
+
+        #endregion
     }
 }

@@ -17,6 +17,7 @@ namespace DataAccess.Repository.RepositoryFile
             FilePath = settings.FilePath;
             ErrorHappened = false;
         }
+
         #endregion
 
         #region IErrorReporter interface implementation

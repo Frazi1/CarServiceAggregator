@@ -15,7 +15,6 @@ namespace Mvvm
             _predicate = predicate;
         }
 
-        //TODO: Переделать реализацию
         public event EventHandler CanExecuteChanged {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
