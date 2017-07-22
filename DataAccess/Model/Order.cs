@@ -26,7 +26,7 @@ namespace DataAccess.Model
         public DateTime? TaskFinished { get; set; }
 
         [Required]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
         [ForeignKey("CustomerId")]
         [XmlIgnore]
