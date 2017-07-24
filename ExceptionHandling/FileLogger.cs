@@ -33,7 +33,7 @@ namespace ExceptionHandling
                 if (StackTrace)
                     s.Append($"[StackTrace] \r\n [{e.StackTrace}] \r\n");
 
-                s.Append(Environment.NewLine);
+                s.Append("\r\n");
                 Write(s.ToString());
             }
             catch

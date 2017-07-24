@@ -147,36 +147,6 @@ namespace DataAccess.Repository.RepositoryDb
             }
         }
 
-        private TResult DbFunc<TResult>(Func<AutoServiceDb, TResult> func, Action<AutoServiceDb> finallyAction = null)
-        {
-            using (AutoServiceDb context = new AutoServiceDb(_connectionString))
-            {
-                return DbFunc(context, func, finallyAction);
-            }
-        }
-
-        private TResult DbFunc<TResult>(AutoServiceDb context, Func<AutoServiceDb, TResult> func,
-            Action<AutoServiceDb> finallyAction = null)
-        {
-            using (context)
-            {
-                try
-                {
-                    return func(context);
-                }
-                catch (Exception e)
-                {
-                    _logger.Log(e);
-                    _logger.SetError(this);
-                }
-                finally
-                {
-                    finallyAction?.Invoke(context);
-                }
-                return default(TResult);
-            }
-        }
-
         #endregion
 
         #region Internal Methods

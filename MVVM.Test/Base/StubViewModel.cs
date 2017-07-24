@@ -15,10 +15,5 @@ namespace Mvvm.Test.Base
         }
 
         public ICommand ChangePropertyCommand { get; set; }
-
-        private void ChangeProperty(object value)
-        {
-            SomeProperty = (int) value;
-        }
     }
 }

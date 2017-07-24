@@ -11,7 +11,7 @@ namespace Mvvm.Converters
         {
             Enum parameterEnum = parameter as Enum;
             if (parameterEnum == null) return DependencyProperty.UnsetValue;
-            return value.Equals(parameterEnum);
+            return value != null && value.Equals(parameterEnum);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

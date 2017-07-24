@@ -11,7 +11,7 @@ namespace Mvvm.Converters
         {
             var decimalValue = (decimal?) value;
             if (decimalValue == null) return DependencyProperty.UnsetValue;
-            return decimalValue?.ToString("C", culture);
+            return decimalValue.Value.ToString("C", culture);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
