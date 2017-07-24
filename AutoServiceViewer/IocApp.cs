@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Configuration;
 using AutoServiceViewer.RepositoryRegistration;
 using DataAccess.Repository;
 using DataAccess.Repository.RepositoryDb;
 using DataAccess.Repository.RepositoryFile;
+using ExceptionHandling;
 using Microsoft.Practices.Unity;
 
 namespace AutoServiceViewer
@@ -12,16 +12,12 @@ namespace AutoServiceViewer
     {
         private static IUnityContainer _container;
 
-        public static IUnityContainer Container {
+        private static IUnityContainer Container {
             get {
-                if (_container == null) Initialize();
+                if (_container != null) return _container;
+                _container = new UnityContainer();
                 return _container;
             }
-        }
-
-        private static void Initialize()
-        {
-            _container = new UnityContainer();
         }
 
         public static IRepository GetRepository(RepositoryType repositoryType)
@@ -34,21 +30,6 @@ namespace AutoServiceViewer
                     return Container.Resolve<XmlRepository>();
                 case RepositoryType.Binary:
                     return Container.Resolve<BinaryRepository>();
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(repositoryType), repositoryType, null);
-            }
-        }
-
-        public static bool IsRegistered(RepositoryType repositoryType)
-        {
-            switch (repositoryType)
-            {
-                case RepositoryType.Xml:
-                    return Container.IsRegistered<IRepository>(ConfigurationManager.AppSettings["xmlRepository"]);
-                case RepositoryType.Binary:
-                    return Container.IsRegistered<IRepository>(ConfigurationManager.AppSettings["binaryRepository"]);
-                case RepositoryType.Database:
-                    return Container.IsRegistered<IRepository>(ConfigurationManager.AppSettings["dbRepository"]);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(repositoryType), repositoryType, null);
             }
@@ -67,6 +48,18 @@ namespace AutoServiceViewer
                 default:
                     throw new ArgumentOutOfRangeException(nameof(repositoryType), repositoryType, null);
             }
+        }
+
+        public static void RegisterLogger<T>(params InjectionMember[] injectionMembers)
+            where T : ILogger
+        {
+            Container.RegisterType<ILogger, T>(injectionMembers);
+        }
+
+        public static void AddExtension<T>(T extension)
+            where T : UnityContainerExtension
+        {
+            Container.AddExtension(extension);
         }
     }
 }

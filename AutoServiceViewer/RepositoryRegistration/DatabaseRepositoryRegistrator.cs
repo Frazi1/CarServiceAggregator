@@ -11,7 +11,7 @@ namespace AutoServiceViewer.RepositoryRegistration
                 ConfigurationManager
                     .ConnectionStrings["mysql"]
                     .ConnectionString);
-            IocApp.Container.AddExtension(databaseExtension);
+            IocApp.AddExtension(databaseExtension);
             return true;
         }
     }

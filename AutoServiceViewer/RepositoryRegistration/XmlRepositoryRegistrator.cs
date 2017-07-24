@@ -13,7 +13,7 @@ namespace AutoServiceViewer.RepositoryRegistration
             };
             if (ofd.ShowDialog() != true) return false;
             UnityXmlRepositoryExtension xmlExtension = new UnityXmlRepositoryExtension(ofd.FileName);
-            IocApp.Container.AddExtension(xmlExtension);
+            IocApp.AddExtension(xmlExtension);
             return true;
         }
     }

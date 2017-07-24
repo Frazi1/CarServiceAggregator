@@ -13,7 +13,7 @@ namespace AutoServiceViewer.RepositoryRegistration
             };
             if (ofd.ShowDialog() != true) return false;
             UnityBinaryRepositoryExtension binaryExtension = new UnityBinaryRepositoryExtension(ofd.FileName);
-            IocApp.Container.AddExtension(binaryExtension);
+            IocApp.AddExtension(binaryExtension);
             return true;
         }
     }

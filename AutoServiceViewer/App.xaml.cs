@@ -32,7 +32,7 @@ namespace AutoServiceViewer
         private static void RegisterLogger()
         {
             string appPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
-            IocApp.Container.RegisterType<ILogger, Messenger>(new InjectionConstructor(appPath));
+            IocApp.RegisterLogger<Messenger>(new InjectionConstructor(appPath));
         }
     }
 }

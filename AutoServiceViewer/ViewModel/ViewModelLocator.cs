@@ -7,7 +7,7 @@ namespace AutoServiceViewer.ViewModel
     {
         public ViewModelLocator()
         {
-            ServiceLocator.SetLocatorProvider(() => new UnityServiceLocator(IocApp.Container));
+            ServiceLocator.SetLocatorProvider(() => new UnityServiceLocator(new UnityContainer()));
         }
 
         public MainViewModel MainViewModel {
