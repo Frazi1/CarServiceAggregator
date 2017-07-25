@@ -9,14 +9,12 @@ namespace AutoServiceViewer.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private ObservableCollection<Customer> _customers;
         private ObservableCollection<Order> _orders;
         private RepositoryType _repositoryType;
         private Order _selectedOrder;
 
         public MainViewModel()
         {
-            Customers = new ObservableCollection<Customer>();
             Orders = new ObservableCollection<Order>();
         }
 
@@ -32,14 +30,6 @@ namespace AutoServiceViewer.ViewModel
             get { return _selectedOrder; }
             set {
                 _selectedOrder = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        public ObservableCollection<Customer> Customers {
-            get { return _customers; }
-            set {
-                _customers = value;
                 NotifyPropertyChanged();
             }
         }
@@ -61,13 +51,12 @@ namespace AutoServiceViewer.ViewModel
             if (!RegisterRepository()) return;
             IRepository repository = IocApp.GetRepository(RepositoryType);
             if (repository.ErrorHappened) return;
-            SetData(repository.GetOrders(), repository.GetCustomers());
+            SetData(repository.GetOrders());
         }
 
-        private void SetData(IEnumerable<Order> orders, IEnumerable<Customer> customers)
+        private void SetData(IEnumerable<Order> orders)
         {
             Orders = new ObservableCollection<Order>(orders);
-            Customers = new ObservableCollection<Customer>(customers);
         }
 
         private bool RegisterRepository()
