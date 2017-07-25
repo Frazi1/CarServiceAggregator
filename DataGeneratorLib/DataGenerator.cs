@@ -72,7 +72,7 @@ namespace DataGeneratorLib
             Patronymics = Parser.ParseLines(_filePaths["patronymic"]);
             CarBrands = Parser.ParseLines(_filePaths["brands"]);
             CarModels = new List<string>();
-            for (var i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
                 CarModels.Add($"Model{i}");
 
             TaskNames = Parser.ParseLines(_filePaths["tasks"]);
@@ -89,9 +89,9 @@ namespace DataGeneratorLib
         {
             foreach (Customer customer in Customers)
             {
-                var customerCars = CustomersCars[customer];
+                List<Car> customerCars = CustomersCars[customer];
 
-                for (var j = 0; j < r.Next(MaxCustomerOrdersNumber); j++)
+                for (int j = 0; j < r.Next(MaxCustomerOrdersNumber); j++)
                 {
                     Car selectedCar = customerCars[r.Next(customerCars.Count)];
 
@@ -117,11 +117,11 @@ namespace DataGeneratorLib
 
         private void GenerateCustomers(int count, Random r)
         {
-            for (var j = 0; j < count; j++)
+            for (int j = 0; j < count; j++)
             {
                 StringBuilder phone = new StringBuilder();
                 phone.Append("8");
-                for (var i = 0; i < 10; i++)
+                for (int i = 0; i < 10; i++)
                     phone.Append(r.Next(10));
                 Customer customer = new Customer
                 {
@@ -135,8 +135,8 @@ namespace DataGeneratorLib
                 Customers.Add(customer);
 
                 int carNumber = r.Next(1, 3);
-                var cars = new List<Car>();
-                for (var i = 0; i < carNumber; i++)
+                List<Car> cars = new List<Car>();
+                for (int i = 0; i < carNumber; i++)
                 {
                     Car car = GenerateCar(r);
                     car.Customer = customer;

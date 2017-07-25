@@ -151,13 +151,13 @@ namespace DataAccess.Repository.RepositoryFile
 
         protected void AssignIds()
         {
-            for (var i = 0; i < CustomersList.Count; i++)
+            for (int i = 0; i < CustomersList.Count; i++)
                 CustomersList[i].CustomerId = i + 1;
 
-            for (var i = 0; i < OrdersList.Count; i++)
+            for (int i = 0; i < OrdersList.Count; i++)
                 OrdersList[i].OrderId = i + 1;
 
-            for (var i = 0; i < CarsList.Count; i++)
+            for (int i = 0; i < CarsList.Count; i++)
                 CarsList[i].CarId = i + 1;
         }
 

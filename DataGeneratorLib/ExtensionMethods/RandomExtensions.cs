@@ -30,7 +30,7 @@ namespace DataGeneratorLib.ExtensionMethods
 
         public static long NextInt64(this Random r, long minValue, long maxValue)
         {
-            var buffer = new byte[8];
+            byte[] buffer = new byte[8];
             r.NextBytes(buffer);
             long result = BitConverter.ToInt64(buffer, 0);
             return Math.Abs(result % (maxValue - minValue)) + minValue;

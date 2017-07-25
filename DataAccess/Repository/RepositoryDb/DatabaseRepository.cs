@@ -91,7 +91,6 @@ namespace DataAccess.Repository.RepositoryDb
             return _orders;
         }
 
-
         public IEnumerable<Car> GetCars()
         {
             return _cars;
@@ -167,7 +166,6 @@ namespace DataAccess.Repository.RepositoryDb
                 Load(context);
             });
         }
-
 
         internal void CreateIfNotExists(AutoServiceDb inputContext)
         {
