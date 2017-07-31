@@ -17,7 +17,7 @@ namespace DataAccess.Repository.RepositoryFile
         public XmlRepository(XmlRepositorySettings settings, ILogger logger)
             : base(settings, logger)
         {
-            Initialize(settings.FileMode);
+            Initialize(settings.FileRepositoryMode);
         }
 
         protected override Tuple<Customer[], Order[], Car[]> Load(string filePath)

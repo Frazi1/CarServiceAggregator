@@ -1,16 +1,14 @@
-﻿using System.IO;
-
-namespace DataAccess.Repository.RepositoryFile
+﻿namespace DataAccess.Repository.RepositoryFile
 {
     public class FileRepositorySettings : RepositorySettings
     {
-        public FileRepositorySettings(string filePath, FileMode fileMode)
+        public FileRepositorySettings(string filePath, FileRepositoryMode fileRepositoryMode)
         {
             FilePath = filePath;
-            FileMode = fileMode;
+            FileRepositoryMode = fileRepositoryMode;
         }
 
         public string FilePath { get; }
-        public FileMode FileMode { get; }
+        public FileRepositoryMode FileRepositoryMode { get; }
     }
 }

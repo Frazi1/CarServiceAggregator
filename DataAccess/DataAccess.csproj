@@ -64,6 +64,7 @@
     <Compile Include="Model\Order.cs" />
     <Compile Include="Repository\RepositoryFile\RepositoryBinary\BinaryRepositorySettings.cs" />
     <Compile Include="Repository\RepositoryFile\RepositoryXml\XmlRepositorySettings.cs" />
+    <Compile Include="Repository\RepositoryFile\FileRepositoryMode.cs" />
     <Compile Include="Repository\RepositorySettings.cs" />
     <Compile Include="Repository\RepositoryFile\RepositoryXml\XmlHelper.cs" />
     <Compile Include="Repository\RepositoryFile\RepositoryXml\XmlRepository.cs" />

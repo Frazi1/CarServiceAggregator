@@ -1,11 +1,9 @@
-﻿using System.IO;
-
-namespace DataAccess.Repository.RepositoryFile
+﻿namespace DataAccess.Repository.RepositoryFile
 {
     public sealed class XmlRepositorySettings : FileRepositorySettings
     {
-        public XmlRepositorySettings(string filePath, FileMode fileMode)
-            : base(filePath, fileMode)
+        public XmlRepositorySettings(string filePath, FileRepositoryMode fileRepositoryMode)
+            : base(filePath, fileRepositoryMode)
         {
         }
     }

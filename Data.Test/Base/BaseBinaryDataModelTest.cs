@@ -1,4 +1,5 @@
 using System.IO;
+using DataAccess.Repository;
 using DataAccess.Repository.RepositoryFile;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -12,7 +13,7 @@ namespace Data.Test.Base
         public override void Initialize()
         {
             BinaryFilePath = "test.dat";
-            Repository = new BinaryRepository(new BinaryRepositorySettings(BinaryFilePath, FileMode.Create));
+            Repository = new BinaryRepository(new BinaryRepositorySettings(BinaryFilePath, FileRepositoryMode.Create));
             base.Initialize();
         }
 

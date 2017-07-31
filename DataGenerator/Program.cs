@@ -27,8 +27,8 @@ namespace DataGeneratorConsole
 
             var repositories = new List<IRepository>
             {
-                new XmlRepository(new XmlRepositorySettings(FilePaths["xml"], FileMode.Create)),
-                new BinaryRepository(new BinaryRepositorySettings(FilePaths["binary"], FileMode.Create)),
+                new XmlRepository(new XmlRepositorySettings(FilePaths["xml"], FileRepositoryMode.Create)),
+                new BinaryRepository(new BinaryRepositorySettings(FilePaths["binary"], FileRepositoryMode.Create)),
                 new DatabaseRepository(
                     new DatabaseRepositorySettings(ConnectionString, DatabaseConnectionAction.Create))
             };

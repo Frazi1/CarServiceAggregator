@@ -53,7 +53,7 @@ namespace DataAccess.Repository.RepositoryFile
         public BinaryRepository(BinaryRepositorySettings settings, ILogger logger)
             : base(settings, logger)
         {
-            Initialize(settings.FileMode);
+            Initialize(settings.FileRepositoryMode);
         }
 
         #endregion

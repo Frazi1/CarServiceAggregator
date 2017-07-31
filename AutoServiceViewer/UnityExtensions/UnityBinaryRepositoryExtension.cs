@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.IO;
 using DataAccess.Repository;
 using DataAccess.Repository.RepositoryFile;
 using Microsoft.Practices.Unity;
@@ -25,7 +24,7 @@ namespace AutoServiceViewer.UnityExtensions
         protected override void RegisterSettings()
         {
             if (string.IsNullOrEmpty(FileName)) throw new ArgumentException("Filename must not be null");
-            Container.RegisterType<BinaryRepositorySettings>(new InjectionConstructor(FileName, FileMode.Open));
+            Container.RegisterType<BinaryRepositorySettings>(new InjectionConstructor(FileName, FileRepositoryMode.Open));
         }
 
         protected override void RegisterRepository()

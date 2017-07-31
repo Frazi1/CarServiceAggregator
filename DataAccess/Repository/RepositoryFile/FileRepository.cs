@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using DataAccess.Model;
 using ExceptionHandling;
@@ -126,28 +125,21 @@ namespace DataAccess.Repository.RepositoryFile
 
         protected abstract Tuple<Customer[], Order[], Car[]> Load(string filePath);
 
-        protected void Initialize(FileMode fileMode)
+        protected void Initialize(FileRepositoryMode fileRepositoryMode)
         {
-            switch (fileMode)
+            switch (fileRepositoryMode)
             {
-                case FileMode.CreateNew:
-                    throw new InvalidOperationException();
-                case FileMode.Create:
+                case FileRepositoryMode.Create:
                     Create();
                     break;
-                case FileMode.Open:
+                case FileRepositoryMode.Open:
                     SetLoadedData(Load(FilePath));
                     break;
-                case FileMode.OpenOrCreate:
-                    throw new InvalidOperationException();
-                case FileMode.Truncate:
-                    throw new InvalidOperationException();
-                case FileMode.Append:
-                    throw new InvalidOperationException();
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(fileMode), fileMode, null);
+                    throw new ArgumentOutOfRangeException(nameof(fileRepositoryMode), fileRepositoryMode, null);
             }
         }
+
 
         protected void AssignIds()
         {
