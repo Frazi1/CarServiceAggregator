@@ -42,6 +42,11 @@ namespace ExceptionHandling
             }
         }
 
+        public void Log(string text)
+        {
+            Write(text);
+        }
+
         #endregion
 
         #region IErrorHandler implementation

@@ -13,10 +13,23 @@ namespace AutoServiceViewer
     /// </summary>
     public partial class App
     {
+        public string[] Parameters { get; set; }
+
         public App()
         {
             RegisterLogger();
             SetUpCulture();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            Parameters = e.Args;
+            ILogger logger = IocApp.GetLogger<ILogger>();
+            foreach (string parameter in Parameters)
+            {
+                logger.Log(parameter);
+            }
         }
 
         private static void SetUpCulture()

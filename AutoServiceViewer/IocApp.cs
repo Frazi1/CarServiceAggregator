@@ -56,6 +56,12 @@ namespace AutoServiceViewer
             Container.RegisterType<ILogger, T>(injectionMembers);
         }
 
+        public static T GetLogger<T>()
+            where T: ILogger
+        {
+            return Container.Resolve<T>();
+        }
+
         public static void AddExtension<T>(T extension)
             where T : UnityContainerExtension
         {

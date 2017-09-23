@@ -9,6 +9,11 @@ namespace ExceptionHandling.Null
             throw e;
         }
 
+        public void Log(string text)
+        {
+            
+        }
+
         public void SetError(IErrorReporter errorReporter)
         {
             errorReporter.ErrorHappened = true;
